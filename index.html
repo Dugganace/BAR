@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BAR Toolkit</title>
+<style>
+	:root { --bg: #1a1c20; --panel: #24272d; --border: #3a3e46; --text: #e6e8eb; --text-dim: #9aa0aa; --accent: #5fb3ff; }
+	body { margin: 0; font-family: -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); padding: 30px; }
+	h1 { font-size: 22px; }
+	p.sub { color: var(--text-dim); font-size: 13px; max-width: 640px; }
+	.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 24px; }
+	.card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+	.card h2 { font-size: 15px; margin: 0 0 6px; }
+	.card p { color: var(--text-dim); font-size: 12.5px; margin: 0 0 10px; }
+	.card code { display: block; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 11px; margin-bottom: 8px; }
+	.card a { color: var(--accent); font-size: 12.5px; text-decoration: none; }
+	.card a:hover { text-decoration: underline; }
+	.folder { color: var(--text-dim); font-size: 11px; font-family: Consolas, monospace; }
+	.card .hint { color: var(--text-dim); font-size: 11px; }
+	.brand { display: flex; align-items: center; gap: 14px; }
+	.brand img { height: 44px; width: auto; }
+</style>
+</head>
+<body>
+<div class="brand">
+	<img src="bar-logo.svg" alt="Beyond All Reason logo">
+	<h1 style="margin:0">BAR Toolkit</h1>
+</div>
+<p class="sub">Everything built for the Beyond All Reason content-creation project, in one place. These links open the actual local files directly &mdash; no server needed, just double-click index.html in each folder if a link doesn't open your browser automatically. Data/code tools are for Claude to draw on; visual tools are for direct use.</p>
+
+<div class="grid">
+	<div class="card">
+		<h2>Preset Builder</h2>
+		<p>Pick units from the database to add to a lab/printer/commander's buildoptions. Generates correctly-encoded Lua ready to paste into the game.</p>
+		<div class="folder">bar-preset-builder/</div>
+		<a href="../bar-preset-builder/index.html">Open buildoptions picker &rarr;</a><br>
+		<a href="../bar-preset-builder/newunit.html">Open new unit builder &rarr;</a><br>
+		<a href="../bar-preset-builder/explorer.html">Open preset explorer &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Unit Database</h2>
+		<p>957 real units parsed from the game's own source. Faction-organized (Armada/Cortex/Legion/Raptors/Scavengers), visual, searchable. Run check-for-updates.js to detect new game content.</p>
+		<div class="folder">bar-unit-database/</div>
+		<a href="../bar-unit-database/viewer/index.html">Open database viewer &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Preset Catalog</h2>
+		<p>Every tweak slot decoded across all 51 of your saved presets. Search across all of them to find and reuse pieces from things you've already built.</p>
+		<div class="folder">bar-custom-buildings/catalog-viewer/</div>
+		<a href="../bar-custom-buildings/catalog-viewer/index.html">Open preset catalog &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Custom Buildings Gallery</h2>
+		<p>Visual, no-code view of everything custom we've built so far &mdash; real in-game icons, names, descriptions.</p>
+		<div class="folder">bar-custom-buildings/gallery.html</div>
+		<a href="../bar-custom-buildings/gallery.html">Open gallery &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Replay Miner</h2>
+		<p>Scans all 710 of your local game replays, decodes each one's tweakdefs/tweakunits, and surfaces the custom units/buildings you've actually played with &mdash; deduped down to 47 distinct preset variants.</p>
+		<div class="folder">bar-replay-miner/</div>
+		<a href="../bar-replay-miner/viewer/index.html">Open replay miner &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Custom Content Catalog</h2>
+		<p>Every custom unit found in your replay history, with build picture, name, and the real stat changes vs. the vanilla base unit &mdash; browse and pick what to adopt.</p>
+		<div class="folder">bar-replay-miner/catalog-viewer/</div>
+		<a href="../bar-replay-miner/catalog-viewer/index.html">Open catalog &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Scav Spawn Editor</h2>
+		<p>Visual editor for the game's real PvE spawn-pool tables (which units spawn in which wave/tier). Parked/incomplete, still needs real work.</p>
+		<div class="folder">bar-scav-spawn-editor/</div>
+		<a href="../bar-scav-spawn-editor/index.html">Open spawn pool editor &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Evolving Economy System</h2>
+		<p>tetrisface's "ExponentialEvoEcoConTurV2" from the base preset &mdash; not our own content, reference/study only. The real math behind the "evo build turret" on T2/T3 constructors: 30 levels of Construction Turret, plus Evo Fusion and Evo Energy Converter.</p>
+		<div class="folder">bar-toolkit-hub/evo-economy/</div>
+		<a href="../bar-toolkit-hub/evo-economy/index.html">Open evolving economy viewer &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Custom Content + Delivery Pipeline</h2>
+		<p>The actual content (custom_buildings.lua) and the proven pipeline that encodes and injects it into a working preset (split-and-package.js). Mostly a Claude-facing tool &mdash; the Custom Buildings Gallery is the visual view of what this produces.</p>
+		<div class="folder">bar-custom-buildings/</div>
+		<a href="../bar-custom-buildings/gallery.html">View what it's built so far &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>NuttyB Configurator (reference, not built by us)</h2>
+		<p>The real community tool for generating NuttyB's Raptor PvE tweak set as `!bset` chat commands. Copied in locally (rcorex/nuttyb-config) as a reference for slot-assignment and base64 encoding proven to work for real players &mdash; see <code>index.html</code>'s <code>generateCommands()</code>/<code>parseConfigData()</code>.</p>
+		<div class="folder">bar-toolkit-hub/nuttyb-configurator/</div>
+		<a href="../bar-toolkit-hub/nuttyb-configurator/index.html">Open NuttyB Configurator &rarr;</a>
+	</div>
+
+	<div class="card">
+		<h2>Map Editor (reference, not built by us)</h2>
+		<p>Real tools for future map creation/editing &mdash; not something we made, verified links for when this becomes active work.</p>
+		<a href="https://github.com/Spring-SpringBoard/SpringBoard-Core" target="_blank">Springboard &mdash; BAR's real map editor (separate clone, not built into the client) &rarr;</a><br>
+		<a href="https://github.com/tebeer/BARMapEdit" target="_blank">BARMapEdit &mdash; community alternative editor &rarr;</a><br>
+		<a href="https://github.com/beyond-all-reason/map_blueprint" target="_blank">map_blueprint &mdash; official starting template for a new map &rarr;</a><br>
+		<a href="https://www.beyondallreason.info/guide/mapping-1-file-structure-prerequisites" target="_blank">Official file-structure &amp; prerequisites guide &rarr;</a>
+		<p class="hint" style="margin-top:8px">Also needed per the official guide: World Machine (terrain generation), Spring Map Compiler (Beherith's GitHub), 7-Zip (for .sd7 packaging), a photo editor (Photoshop/GIMP).</p>
+	</div>
+</div>
+</body>
+</html>
