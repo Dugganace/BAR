@@ -1,0 +1,20 @@
+{
+  "00_Main_tweakdefs.lua": [],
+  "01_T4_Defences_Test.lua": [
+    "legendary_bastion",
+    "legendary_pulsar"
+  ],
+  "02_Mini_Bosses.lua": [],
+  "03_Cross_Faction_T2.lua": [],
+  "04_T3_Eco.lua": [],
+  "05_T3_Builders.lua": [],
+  "06_Unit_Launchers.lua": [],
+  "07_Main_tweakunits.lua": [],
+  "08_Legion_NuttyB_Evolving_Commander.lua": [],
+  "09_Armada_NuttyB_Evolving_Commander.lua": [],
+  "10_Cortex_NuttyB_Evolving_Commander.lua": [],
+  "11_Experimental_Wave_Challenge.lua": [],
+  "12_LRPC_Rebalance_v2.lua": [],
+  "13_T4_Air_Rework.lua": [],
+  "14_Mega_Nuke.lua": []
+}

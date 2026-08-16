@@ -1,0 +1,3 @@
+--T3 Eco builtin v6
+-- docs.google.com/spreadsheets/d/1QSVsuAAMhBrhiZdTihVfSCwPzbbZWDLCtXWP23CU0ko
+local a,b=UnitDefs or{},{'armack','armaca','armacv','corack','coraca','coracv','legack','legaca','legacv'}for c,d in pairs({'armmmkrt3','cormmkrt3','legadveconvt3'})do table.mergeInPlace(a[d],{footprintx=6,footprintz=6})end;for c,e in pairs(b)do local f,g=e:sub(1,3),#a[e].buildoptions;a[e].buildoptions[g+1]=f..'afust3'a[e].buildoptions[g+2]=f=='leg'and'legadveconvt3'or f..'mmkrt3'end;do local e='legck'local g=#a[e].buildoptions;a[e].buildoptions[g+1]='legdtf'end;for c,h in pairs({'coruwadves','legadvestore'})do table.mergeInPlace(a[h],{footprintx=4,footprintz=4})end

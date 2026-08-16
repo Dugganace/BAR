@@ -4,6 +4,35 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## NuttyB Configurator content mined into both catalogs (2026-08-16)
+
+User request: "is it possible to do the same for the nutty configuartor,
+take all the custom units and buildings and add them to our content
+gallery and behaviours mod catalogue." Decoded the real payload
+(`tweakdata.txt`, 15 real toggles as base64-encoded `!bset` commands) into
+`bar-toolkit-hub/nuttyb-configurator/decoded/*.lua` and read every one:
+
+- **Only 1 of 15 toggles creates new unit ids** ("T4 Defences" —
+  Legendary Bastion/Bulwark/Pulsar) — and those turned out to be the
+  exact same units already found via Mewi's replay-traced content, now
+  confirmed NuttyB is the canonical source they were copied from. Nothing
+  new to add to Content Gallery as a result (already covered).
+- **The other 14 are genuine behavior/balance mods**, added to Behavior
+  Mods Catalog with real descriptions (not auto-generated) covering: the
+  core PvE-difficulty def file (EMP/paralyze buffs across the Raptor
+  roster, a new attachable shield weapon), Mini Bosses' adaptive
+  scaling, TetrisCo's Cross Faction Tax (confirmed identical to what's
+  already wired into "Tetris scav mode"), T3 Eco/constructor unlocks,
+  a Pawn Launcher ordinance pack (flagged as a compatibility risk — it
+  touches the exact weapon our own Depawner intercepts), NuttyB's own
+  Evolving Commander system per faction (flagged as a direct alternative
+  to our own Commander Progression Chain — pick one, not both), Wave
+  Challenge squad-spawn behavior, LRPC/T4 Air/Mega Nuke rebalances.
+  `bar-toolkit-hub/nuttyb-configurator/scan-nuttyb-units.js` is the
+  reusable scanner (same technique as `bar-replay-miner/
+  scan-all-new-units.js`) for re-checking if NuttyB's toggles change in
+  a future version.
+
 ## Content Gallery / Behavior Mods Catalog corrections (2026-08-16, live session)
 
 User feedback after reviewing the merged Content Gallery: "some of the

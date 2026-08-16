@@ -34,7 +34,7 @@
 <header>
 	<a href="../index.html">&larr; Hub</a>
 	<h1>Behavior Mods Catalog</h1>
-	<p>Gameplay/behavior modifications traced to specific authors across the 200k-replay global scan -- these modify EXISTING units in place (stats, buildoptions, balance) rather than creating new unit ids, so they're a different content type from the <a href="../content-gallery/index.html" style="color:var(--accent)">Content Gallery</a>. Descriptions here are written after actually reading each author's real code, not auto-generated from raw credit-comment titles. Sorted by occurrences across scanned games -- a rough signal of how proven/played each one is. Browse and mark what to consider for your next preset build; this doesn't change any live preset on its own.</p>
+	<p>Gameplay/behavior modifications traced to specific authors, from the 200k-replay global scan plus the NuttyB Configurator's own real toggles -- these modify EXISTING units in place (stats, buildoptions, balance) rather than creating new unit ids, so they're a different content type from the <a href="../content-gallery/index.html" style="color:var(--accent)">Content Gallery</a>. Every description here is written after actually reading each author's real code, not auto-generated from raw titles. Sorted by replay occurrences where available (NuttyB toggles show their source instead, since they aren't from the replay scan). Browse and mark what to consider for your next preset build; this doesn't change any live preset on its own.</p>
 </header>
 <main>
 	<div class="sidebar">
@@ -45,7 +45,7 @@
 </main>
 <script src="data.js"></script>
 <script>
-const DATA = [...window.BEHAVIOR_MODS].sort((a, b) => b.occurrences - a.occurrences);
+const DATA = [...window.BEHAVIOR_MODS].sort((a, b) => (b.occurrences || 0) - (a.occurrences || 0));
 const STORAGE_KEY = 'bar-behavior-mods-marked-v1';
 let marked = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
 
@@ -62,10 +62,10 @@ function renderTray() {
 		tray.innerHTML = '<div class="tray-empty">Nothing marked yet.</div>';
 		return;
 	}
-	tray.innerHTML = [...marked].map(author => {
-		const item = DATA.find(d => d.author === author);
+	tray.innerHTML = [...marked].map(title => {
+		const item = DATA.find(d => d.title === title);
 		if (!item) return '';
-		return `<div class="tray-item"><span>${escapeHtml(item.author)}</span><span data-unmark="${escapeHtml(author)}">&times;</span></div>`;
+		return `<div class="tray-item"><span>${escapeHtml(item.title)}</span><span data-unmark="${escapeHtml(title)}">&times;</span></div>`;
 	}).join('');
 	tray.querySelectorAll('[data-unmark]').forEach(el => {
 		el.onclick = () => { marked.delete(el.dataset.unmark); saveMarked(); render(); };
@@ -76,7 +76,7 @@ function render() {
 	renderTray();
 	const content = document.getElementById('content');
 	content.innerHTML = DATA.map(d => {
-		const isMarked = marked.has(d.author);
+		const isMarked = marked.has(d.title);
 		return `
 		<div class="card ${isMarked ? 'marked' : ''}">
 			<div class="card-top">
@@ -84,18 +84,18 @@ function render() {
 					<div class="title">${escapeHtml(d.title)}</div>
 					<div class="author">by ${escapeHtml(d.author)}</div>
 				</div>
-				<button class="mark-btn ${isMarked ? 'active' : ''}" data-mark="${escapeHtml(d.author)}">${isMarked ? 'Marked' : 'Mark'}</button>
+				<button class="mark-btn ${isMarked ? 'active' : ''}" data-mark="${escapeHtml(d.title)}">${isMarked ? 'Marked' : 'Mark'}</button>
 			</div>
 			<div class="description">${escapeHtml(d.description)}</div>
 			${d.verdict ? `<div class="verdict">${escapeHtml(d.verdict)}</div>` : ''}
-			<div class="occ">Seen ${d.occurrences} time${d.occurrences === 1 ? '' : 's'} across scanned games</div>
+			<div class="occ">${d.occurrences != null ? `Seen ${d.occurrences} time${d.occurrences === 1 ? '' : 's'} across scanned games` : `Source: ${escapeHtml(d.source || 'Unknown')}`}</div>
 		</div>
 		`;
 	}).join('');
 	content.querySelectorAll('[data-mark]').forEach(btn => {
 		btn.onclick = () => {
-			const author = btn.dataset.mark;
-			if (marked.has(author)) marked.delete(author); else marked.add(author);
+			const title = btn.dataset.mark;
+			if (marked.has(title)) marked.delete(title); else marked.add(title);
 			saveMarked();
 			render();
 		};
