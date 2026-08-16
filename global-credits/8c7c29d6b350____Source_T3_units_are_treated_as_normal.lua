@@ -1,0 +1,1 @@
+-- Source T3 units are treated as normal units/heavy by HP threshold.

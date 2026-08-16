@@ -1,0 +1,232 @@
+--NuttyB v1.52 Legion Com
+-- Authors: ChrispyNut, BackBash
+-- docs.google.com/spreadsheets/d/1QSVsuAAMhBrhiZdTihVfSCwPzbbZWDLCtXWP23CU0ko
+{legcom={energymake=50,metalmake=5,health=6000,autoheal=40,buildoptions={[32]='cornecro',[33]='legdtl',[34]='legdtf',[35]='legdtr',[36]='legjam'},customparams={evolution_announcement='Legion commanders have upgraded to level 2',evolution_announcement_size=18.5,evolution_target='legcomlvl2',evolution_condition='timer',evolution_timer=420,combatradius=0,paratrooper=true,fall_damage_multiplier=0},weapondefs={legcomlaser={corethickness=0.25,duration=0.09,name='Light close-quarters g2g/g2a laser',range=360,reloadtime=0.20,rgbcolor='0 2 1',soundhitdry='',soundhitwet='sizzle',soundstart='lasrcrw1',soundtrigger=true,sprayangle=700,thickness=6,texture1='shot',texture2='empty',weapontype='LaserCannon',weaponvelocity=2100,damage={default=250}},shotgun={areaofeffect=60,energypershot=0,avoidfeature=false,craterboost=0,cratermult=0,cameraShake=0,edgeeffectiveness=0.65,explosiongenerator='custom:genericshellexplosion-small',impulseboost=0.2,impulsefactor=0.2,intensity=3,name='6 Gauge Shotgun',noselfdamage=true,predictboost=1,projectiles=6,range=320,reloadtime=2,rgbcolor='1 0.75 0.25',size=2,soundhit='xplomed2xs',soundhitwet='splsmed',soundstart='kroggie2xs',soundstartvolume=12,sprayangle=2000,turret=true,commandfire=true,weapontimer=1,weapontype='Cannon',weaponvelocity=600,stockpile=true,stockpiletime=5,customparams={stockpilelimit=10},damage={default=1800,commanders=0}}},weapons={[3]={def='shotgun',onlytargetcategory='SURFACE'}}},legcomlvl2={energymake=150,metalmake=15,speed=57.5,autoheal=100,customparams={combatradius=0,evolution_timer=600,paratrooper=true,fall_damage_multiplier=0},buildoptions={[1]='cornecro',[2]='legadvsol',[13]='corhllt',[26]='leggeo',[27]='legnanotc',[28]='legjam',[29]='legdtf',[30]='legmg',[31]='legrad',[32]='legdtl',[33]='legdtr',[34]='legrhapsis',[35]='legwin'},weapondefs={legcomlaser={accuracy=50,areaofeffect=60,avoidfriendly=false,avoidfeature=false,collidefriendly=false,collidefeature=true,beamtime=0.09,corethickness=0.3,duration=0.09,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=1,impulseboost=0,impulsefactor=0,name='Light close-quarters g2g/g2a laser',noselfdamage=true,range=500,reloadtime=0.2,rgbcolor='0 0.95 0.05',soundhitdry='',soundhitwet='sizzle',soundstart='lasrcrw1',soundtrigger=true,sprayangle=500,targetmoveerror=0.05,thickness=7,tolerance=1000,texture1='shot',texture2='empty',turret=true,weapontype='LaserCannon',weaponvelocity=2200,damage={bombers=180,default=450,fighters=110,subs=5}},shotgun={areaofeffect=65,energypershot=0,avoidfeature=false,craterboost=0,cratermult=0,cameraShake=0,edgeeffectiveness=0.65,explosiongenerator='custom:genericshellexplosion-small',impulseboost=0.2,impulsefactor=0.2,intensity=3,name='12 Gauge Shotgun',noselfdamage=true,predictboost=1,projectiles=7,range=440,reloadtime=2,rgbcolor='1 0.75 0.25',size=2.5,soundhit='xplomed2xs',soundhitwet='splsmed',soundstart='kroggie2xs',soundstartvolume=12,sprayangle=2250,turret=true,commandfire=true,weapontimer=1,weapontype='Cannon',weaponvelocity=600,stockpile=true,stockpiletime=5,customparams={stockpilelimit=15},damage={default=2200,commanders=0}}},weapons={[1]={def='legcomlaser',onlytargetcategory='NOTSUB',fastautoretargeting=true},[3]={def='shotgun',onlytargetcategory='SURFACE'}}},legcomlvl3={energymake=1280,metalmake=40,speed=70.5,workertime=700,autoheal=150,customparams={combatradius=0,evolution_timer=420,paratrooper=true,fall_damage_multiplier=0},buildoptions={[1]='legdeflector',[2]='legfus',[3]='legbombard',[4]='legadvestore',[5]='legmoho',[6]='legadveconv',[10]='legarad',[11]='legajam',[12]='legforti',[13]='legacluster',[14]='legamstor',[15]='legflak',[16]='legabm',[17]='legbastion',[29]='legdtr',[32]='cornecro',[33]='legdtl',[37]='leglab',[18]='',[19]='',[20]=''},weapondefs={armcomlaser={accuracy=50,areaofeffect=80,avoidfriendly=true,avoidfeature=true,collidefriendly=false,collidefeature=true,beamtime=0.09,corethickness=0.55,duration=0.09,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=0,impulseboost=0,impulsefactor=0,name='Light close-quarters g2g/g2a laser',noselfdamage=true,range=640,reloadtime=0.2,rgbcolor='0 0.2 0.8',soundhitdry='',soundhitwet='sizzle',soundstart='lasrcrw1',soundtrigger=true,sprayangle=500,targetmoveerror=0.05,thickness=7,tolerance=1000,texture1='shot',texture2='empty',turret=true,weapontype='LaserCannon',weaponvelocity=2500,damage={bombers=180,default=650,fighters=110,subs=5}},shotgun={areaofeffect=90,energypershot=0,avoidfeature=false,craterboost=0,cratermult=0,cameraShake=0,edgeeffectiveness=0.65,explosiongenerator='custom:genericshellexplosion-small',impulseboost=0.2,impulsefactor=0.2,intensity=3,name='12 Gauge Shotgun',noselfdamage=true,predictboost=1,projectiles=7,range=540,reloadtime=2,rgbcolor='1 0.75 0.25',size=2.5,soundhit='xplomed2xs',soundhitwet='splsmed',soundstart='kroggie2xs',soundstartvolume=12,sprayangle=2500,turret=true,commandfire=true,weapontimer=1,weapontype='Cannon',weaponvelocity=600,stockpile=true,stockpiletime=5,customparams={stockpilelimit=20},damage={default=3200,commanders=0}}},weapons={[1]={def='armcomlaser',onlytargetcategory='NOTSUB',fastautoretargeting=true},[3]={def='shotgun',onlytargetcategory='SURFACE'},[5]={def=''}}},legcomlvl4={energymake=1980,metalmake=46,speed=88.5,workertime=1000,autoheal=180,customparams={combatradius=0,evolution_timer=300,paratrooper=true,fall_damage_multiplier=0,evolution_target="legcomt2com"},buildoptions={[1]='legdeflector',[2]='legfus',[3]='legbombard',[4]='legadvestore',[5]='legmoho',[6]='legadveconv',[9]='legeshotgunmech',[10]='legarad',[11]='legajam',[12]='legkeres',[13]='legacluster',[14]='legamstor',[15]='legflak',[16]='legabm',[17]='legbastion',[18]='legdtr',[19]='legnanotct2',[20]='legnanotct2plat',[21]='legrwall',[24]='leglab',[28]='legtarg',[29]='legsd',[30]='legpede',[31]='legerailtank',[32]='legeheatraymech',[33]='cornecro',[34]='legafus',[35]='leglraa',[36]='legdtl',[37]='legdtf',[39]='legministarfall',[48]='legstarfall',[49]='leggatet3',[50]='legperdition',[51]='legsilo',[52]='legsrailt4',[53]='legelrpcmech',[54]='legnanotcbase'},weapondefs={armcomlaser={accuracy=50,areaofeffect=126,avoidfriendly=true,avoidfeature=true,collidefriendly=false,collidefeature=true,beamtime=0.1,corethickness=.5,duration=0.09,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=0,impulseboost=0,impulsefactor=0,name='Light close-quarters g2g/g2a laser',noselfdamage=true,range=900,reloadtime=0.1,rgbcolor='0.45 0 1',soundhitdry='',soundhitwet='sizzle',soundstart='lasrcrw1',soundtrigger=1,sprayangle=400,targetmoveerror=0.05,thickness=6,tolerance=1000,texture1='shot',texture2='empty',turret=true,weapontype='LaserCannon',weaponvelocity=3000,damage={bombers=180,default=1750,fighters=110,subs=5}},shotgun={areaofeffect=75,energypershot=0,avoidfeature=false,craterboost=0,cratermult=0,cameraShake=0,edgeeffectiveness=0.65,explosiongenerator='custom:genericshellexplosion-small',impulseboost=0.2,impulsefactor=0.2,intensity=3,name='60 Gauge Raptor Popper',noselfdamage=true,predictboost=1,projectiles=9,range=550,reloadtime=1,rgbcolor='1 0.75 0.25',size=5,soundhit='xplomed2xs',soundhitwet='splsmed',soundstart='kroggie2xs',soundstartvolume=12,sprayangle=3000,turret=true,commandfire=true,weapontimer=1,weapontype='Cannon',weaponvelocity=600,stockpile=true,stockpiletime=4,customparams={stockpilelimit=20},damage={default=4400,commanders=0}}},weapons={[1]={def='armcomlaser',onlytargetcategory='NOTSUB'},[3]={def='shotgun',onlytargetcategory='SURFACE'},[5]={def=''}}},legcomt2com={energymake=2280,metalmake=64,speed=92,workertime=1500,autoheal=3500,buildoptions={[1]='legdeflector',[2]='legfus',[3]='legbombard',[4]='legadvestore',[5]='legmoho',[6]='legadveconv',[9]='legeshotgunmech',[10]='legarad',[11]='legajam',[12]='legkeres',[13]='legacluster',[14]='legamstor',[15]='legflak',[16]='legabm',[17]='legbastion',[18]='legdtr',[19]='legnanotct2',[20]='legnanotct2plat',[21]='legrwall',[24]='leglab',[28]='legtarg',[29]='legsd',[30]='legpede',[31]='legerailtank',[32]='legeheatraymech',[33]='cornecro',[34]='legafus',[35]='leglraa',[36]='legdtl',[37]='legdtf',[39]='legministarfall',[48]='legstarfall',[49]='leggatet3',[50]='legperdition',[51]='legsilo',[52]='legsrailt4',[53]='legelrpcmech',[54]='legnanotcbase'},featuredefs={dead={reclaimable=false,damage=99999}},weapondefs={armcomlaser={accuracy=50,areaofeffect=12,avoidfriendly=true,avoidfeature=true,collidefriendly=false,collidefeature=true,beamtime=0.1,burst=7,burstrate=0.005,corethickness=.5,duration=0.03,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=0,impulseboost=0,impulsefactor=0,laserflaresize=2.7,name='Light close-quarters g2g/g2a laser',noselfdamage=true,range=1500,reloadtime=0.1,rgbcolor='0 1 1',soundhitdry='',soundhitwet='sizzle',soundstart='lasrcrw1',soundtrigger=1,sprayangle=400,targetmoveerror=0.05,thickness=5,tolerance=1000,texture1='shot',texture2='empty',turret=true,weapontype='LaserCannon',weaponvelocity=3000,damage={bombers=180,default=800,fighters=110,subs=5}},commando_stunner={commandfire=true,areaofeffect=12,avoidfeature=false,beamdecay=0.5,beamtime=0.4,beamttl=0.2,collideenemy=false,collidefriendly=false,collidefeature=false,corethickness=0.5,craterareaofeffect=0,craterboost=0,cratermult=0,duration=0.1,edgeeffectiveness=1,explosiongenerator="custom:laserhit-emp",impulsefactor=0,laserflaresize=4,name="Close-quarters Scattergun",noselfdamage=true,paralyzer=false,paralyzetime=7,projectiles=20,range=500,reloadtime=2.2,rgbcolor="0.7 0.7 1",sprayangle=8000,soundhitdry="flashemgxlhit",soundhitwet="sizzle",soundstart="lasfirerb",soundtrigger=1,targetborder=1,thickness=8,turret=true,weapontype="BeamLaser",weaponvelocity=800,damage={default=5000}},corcomeyelaser={areaofeffect=16,avoidfeature=false,beamtime=0.20,corethickness=0.575,craterareaofeffect=0,craterboost=0,cratermult=0,edgeeffectiveness=0.15,energypershot=0,explosiongenerator="custom:laserhit-small-red",firestarter=100,impactonly=1,impulsefactor=0,laserflaresize=5,name="Eye laser",noselfdamage=true,proximitypriority=1,range=1000,reloadtime=0.19,rgbcolor="1 0.5 0",soundhitdry="",soundhitwet="sizzle",soundstart="beamershot2",soundtrigger=1,thickness=12,tolerance=10000,turret=true,weapontype="BeamLaser",weaponvelocity=2250,damage={default=800,subs=30}}},weapons={[1]={def="armcomlaser",onlytargetcategory="NOTSUB",fastautoretargeting=true},[3]={def="commando_stunner",onlytargetcategory="WEAPON"},[5]={def="corcomeyelaser",onlytargetcategory="SURFACE"}}}}--NuttyB v1.52 Cortex Com
+-- Authors: ChrispyNut, BackBash
+-- docs.google.com/spreadsheets/d/1QSVsuAAMhBrhiZdTihVfSCwPzbbZWDLCtXWP23CU0ko
+{corcom={customparams={evolution_announcement='Cor Commanders upgraded',evolution_announcement_size=18.5,evolution_target='corcomlvl2',evolution_condition='timer',evolution_timer=420,combatradius=0,paratrooper=true,fall_damage_multiplier=0},autoheal=80,speed=45,energymake=75,metalmake=6,health=5500,buildoptions={[28]='corhllt',[29]='cornecro',[30]='corlevlr',[31]='corak',[32]='cormaw'},weapondefs={corcomlaser={range=370,damage={bombers=180,default=260,fighters=110,subs=5}},disintegrator={energypershot=1000,reloadtime=8}}},corcomlvl2={speed=62,health=8500,energymake=255,metalmake=16,autoheal=300,builddistance=200,workertime=600,buildoptions={[1]='corsolar',[2]='coradvsol',[3]='corwin',[4]='corgeo',[5]='cormstor',[6]='corestor',[7]='cormex',[8]='corexp',[9]='cormakr',[10]='corcan',[11]='correap',[12]='corlab',[13]='corvp',[14]='corap',[15]='corhp',[16]='cornanotc',[17]='coreyes',[18]='corrad',[19]='cordrag',[20]='cormaw',[21]='corllt',[22]='corhllt',[23]='corhlt',[24]='corpun',[25]='corrl',[26]='cormadsam',[27]='corerad',[28]='cordl',[29]='corjamt',[30]='corjuno',[31]='corsy',[32]='coruwgeo',[33]='corfasp',[34]='cornerco',[35]='coruwes',[36]='corplat',[37]='corfhp',[38]='coruwms',[39]='corfhlt',[40]='cornanotcplat',[41]='corfmkr',[42]='cortide',[43]='corfrad',[44]='corfrt',[45]='corfdrag',[46]='cortl',[47]='cornecro'},customparams={evolution_announcement='Combat Commanders upgraded',evolution_announcement_size=18.5,evolution_target='corcomlvl3',evolution_condition='timer',evolution_timer=900,combatradius=0,shield_power=500,shield_radius=100,paratrooper=true,fall_damage_multiplier=0},weapondefs={armcomlaser={areaofeffect=16,avoidfeature=false,beamtime=0.1,corethickness=0.1,craterareaofeffect=0,craterboost=0,cratermult=0,cylindertargeting=1,edgeeffectiveness=1,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=1,impulseboost=0,impulsefactor=0,laserflaresize=7.7,name='Light close-quarters g2g/g2a laser',noselfdamage=true,range=500,reloadtime=0.4,rgbcolor='0.6 0.3 0.8',soundhitdry='',soundhitwet='sizzle',soundstart='lasrfir1',soundtrigger=1,targetmoveerror=0.05,thickness=4,tolerance=10000,turret=true,weapontype='BeamLaser',weaponvelocity=900,damage={bombers=180,default=1500,fighters=110,subs=5}},disintegrator={areaofeffect=36,avoidfeature=false,avoidfriendly=false,avoidground=false,bouncerebound=0,cegtag='dgunprojectile',commandfire=true,craterboost=0,cratermult=0.15,edgeeffectiveness=0.15,energypershot=500,explosiongenerator='custom:expldgun',firestarter=100,firesubmersed=false,groundbounce=true,impulseboost=0,impulsefactor=0,name='Disintegrator',noexplode=true,noselfdamage=true,range=250,reloadtime=6,paralyzer={},soundhit='xplomas2s',soundhitwet='sizzlexs',soundstart='disigun1',soundhitvolume=36,soundstartvolume=96,soundtrigger=true,tolerance=10000,turret=true,waterweapon=true,weapontimer=4.2,weapontype='DGun',weaponvelocity=300,damage={commanders=0,default=20000,raptors=10000}}},weapons={[1]={def='armcomlaser',onlytargetcategory='NOTSUB',fastautoretargeting=true},[3]={def='DISINTEGRATOR',onlytargetcategory='NOTSUB'}}},corcomlvl3={speed=80,health=30000,energymake=2180,metalmake=49,autoheal=1500,workertime=1200,builddistance=250,buildoptions={[1]='corfus',[2]='corafus',[3]='corageo',[4]='corbhmth',[5]='cormoho',[6]='cormexp',[7]='cormmkr',[8]='coruwadves',[9]='coruwadvms',[10]='corarad',[11]='corshroud',[12]='corfort',[13]='corlab',[14]='cortarg',[15]='corsd',[16]='corgate',[17]='cortoast',[18]='corvipe',[19]='cordoom',[20]='corflak',[21]='corscreamer',[22]='corvp',[23]='corfmd',[24]='corap',[25]='corint',[26]='corplat',[27]='corsy',[28]='coruwmme',[29]='coruwmmm',[30]='corenaa',[31]='corfdoom',[32]='coratl',[33]='coruwfus',[34]='corjugg',[35]='corshiva',[36]='corsumo',[37]='corgol',[38]='corkorg',[39]='cornanotc2plat',[40]='cornanotct2',[41]='cornecro',[42]='cordoomt3',[43]='corhllllt',[44]='cormaw',[45]='cormwall',[46]='corgatet3'},customparams={shield_power=500,shield_radius=100,paratrooper=true,fall_damage_multiplier=0},weapondefs={corcomlaser={areaofeffect=12,avoidfeature=false,beamtime=0.1,corethickness=0.1,craterareaofeffect=0,craterboost=0,cratermult=0,cylindertargeting=1,edgeeffectiveness=1,explosiongenerator='custom:laserhit-small-red',firestarter=70,impactonly=1,impulseboost=0,impulsefactor=0,laserflaresize=5.5,name='J7Laser',noselfdamage=true,range=900,reloadtime=0.4,rgbcolor='0.7 0 1',soundhitdry='',soundhitwet='sizzle',soundstart='lasrfir1',soundtrigger=1,targetmoveerror=0.05,thickness=3,tolerance=10000,turret=true,weapontype='BeamLaser',weaponvelocity=900,damage={default=2000,subs=5}},disintegrator={areaofeffect=36,avoidfeature=false,avoidfriendly=false,avoidground=false,bouncerebound=0,cegtag='dgunprojectile',commandfire=true,craterboost=0,cratermult=0.15,edgeeffectiveness=0.15,energypershot=500,explosiongenerator='custom:expldgun',firestarter=100,firesubmersed=false,groundbounce=true,impulseboost=0,impulsefactor=0,name='Disintegrator',noexplode=true,noselfdamage=true,range=250,reloadtime=3,paralyzer={},soundhit='xplomas2s',soundhitwet='sizzlexs',soundstart='disigun1',soundhitvolume=36,soundstartvolume=96,soundtrigger=true,tolerance=10000,turret=true,waterweapon=true,weapontimer=4.2,weapontype='DGun',weaponvelocity=300,damage={commanders=0,default=20000,scavboss=1000}}},weapons={[1]={def='CORCOMLASER',onlytargetcategory='NOTSUB',fastautoretargeting=true},[5]={def=''}}}}--T3 Geo&Paragon code file
+{
+legparadrone = {
+weapondefs = {
+			semiauto = {
+				accuracy = 7,
+				areaofeffect = 16,
+				avoidfeature = false,
+				burnblow = false,
+				craterareaofeffect = 0,
+				craterboost = 0,
+				cratermult = 0,
+				edgeeffectiveness = 0.5,
+				explosiongenerator = "custom:plasmahit-sparkonly",
+				impulsefactor = 0.123,
+				intensity = 0.8,
+				name = "Full Autmatic Machine Gun",
+				noselfdamage = true,
+				ownerExpAccWeight = 4.0,
+				proximitypriority = 1,
+				range = 300,
+				reloadtime = 0.1,
+				rgbcolor = "1 0.95 0.4",
+				soundhit = "bimpact3",
+				soundhitwet = "splshbig",
+				soundstart = "mgun3",
+				soundtrigger = true,
+				sprayangle = 1024,
+				texture1 = "shot",
+				texture2 = "empty",
+				thickness = 2.0,
+				tolerance = 6000,
+				turret = true,
+				weapontype = "LaserCannon",
+				weaponvelocity = 692,
+				damage = {
+					default = 7,
+				},
+			},
+		},
+		weapons = {
+			[1] = {
+				badtargetcategory = "VTOL",
+				def = "SEMIAUTO",
+				maindir = "0 0 1",
+				maxangledif = 90,
+				onlytargetcategory = "NOTSUB",
+			},
+		},
+},
+legparagon = {
+weapondefs = {
+			plasma = {
+				areaofeffect = 4,
+				avoidfeature = false,
+				craterareaofeffect = 0,
+				craterboost = 0,
+				cratermult = 0,
+				edgeeffectiveness = 0.15,
+				explosiongenerator = "",
+				gravityaffected = "true",
+				hightrajectory = 1,
+				impulsefactor = 0.123,
+				name = "HeavyCannon",
+				noselfdamage = true,
+				metalpershot = 15,
+				energypershot = 500,
+				range = 1100,
+				reloadtime = 2.5,
+				size = 0,
+				soundhit = "",
+				soundhitwet = "",
+				soundstart = "",
+				stockpile = true,
+				stockpiletime = 10,
+				turret = true,
+				weapontype = "Cannon",
+				weaponvelocity = 1000,
+				damage = {
+					default = 0,
+				},
+				customparams = {
+					carried_unit = "legparadrone",     --Name of the unit spawned by this carrier unit.
+					engagementrange = 1100,
+					spawns_surface = "LAND",    -- "LAND" or "SEA". The SEA option has not been tested currently.
+					spawnrate = 5, 				--Spawnrate roughly in seconds.
+					maxunits = 10,				--Will spawn units until this amount has been reached.
+					energycost = 500,			--Custom spawn cost. Remove this or set = nil to inherit the cost from the carried_unit unitDef. Cost inheritance is currently not working.
+					metalcost = 15,				--Custom spawn cost. Remove this or set = nil to inherit the cost from the carried_unit unitDef. Cost inheritance is currently not working.
+					controlradius = 1200,			--The spawned units should stay within this radius. Unfinished behavior may cause exceptions. Planned: radius = 0 to disable radius limit.
+					decayrate = 4,
+					carrierdeaththroe = "release",
+					dockingarmor = 0.2,
+					dockinghealrate = 16,
+					docktohealthreshold = 66,
+					enabledocking = true,		--If enabled, docking behavior is used. Currently docking while moving or stopping, and undocking while attacking. Unfinished behavior may cause exceptions.
+					dockingHelperSpeed = 5,
+					dockingpieces = "4 5 6 7 8 9",
+					dockingradius = 80,			--The range at which the units snap to the carrier unit when docking.
+					stockpilelimit = 6,
+					stockpilemetal = 15,
+					stockpileenergy = 500,
+				}
+			},
+		},
+		weapons = {
+			[1] = {
+				badtargetcategory = "VTOL",
+				def = "PLASMA",
+				onlytargetcategory = "NOTSUB",
+			},
+		},
+},
+armfirewall = {
+weapondefs = {
+			lightning = {
+				areaofeffect = 8,
+				avoidfeature = false,
+				beamttl = 1,
+				burst = 4,
+				burstrate = 0.02,
+				craterareaofeffect = 0,
+				craterboost = 0,
+				cratermult = 0,
+				duration = 1,
+				edgeeffectiveness = 0.15,
+				energypershot = 5,
+				explosiongenerator = "custom:genericshellexplosion-large-lightning2",
+				firestarter = 50,
+				impactonly = 1,
+				impulsefactor = 0,
+				intensity = 28, --was 24
+				name = "EMP Lightning Cannon",
+				noselfdamage = true,
+				range = 500,
+				reloadtime = 0.1,
+				rgbcolor = "0.5 0.5 1",
+				soundhit = "lashit",
+				soundhitwet = "sizzle",
+				soundstart = "lghthvy1",
+				soundtrigger = true,
+				thickness = 2.2,
+				turret = true,
+				weapontype = "LightningCannon",
+				weaponvelocity = 400,
+				paralyzer = true,
+				paralyzetime = 60,
+				damage = {
+					default = 1000,
+				},
+			},
+},
+		weapons = {
+			[1] = {
+				def = "lightning",
+				onlytargetcategory = "NOTSUB",
+				fastautoretargeting = true,
+			},
+		},
+},
+corageot3 = {
+weapondefs = {
+cor_georockets = {
+				areaofeffect = 500,
+				avoidfeature = true,
+				avoidfriendly = false,
+				burnblow = true,
+				canattackground = true,
+				castshadow = false,
+				cegtag = "missiletrailaa-large",
+				collidefriendly = false,
+				craterareaofeffect = 500,
+				craterboost = 0,
+				cratermult = 0,
+				edgeeffectiveness = 0.9,
+				energypershot = 0,
+				explosiongenerator = "custom:genericshellexplosion-huge-aa",
+				firestarter = 90,
+				flighttime = 10,
+				impulsefactor = 0,
+				metalpershot = 0,
+				model = "corscreamermissile.s3o",
+				name = "Long Range Seeker Rocket Platform",
+				noselfdamage = true,
+				proximitypriority = -1,
+				range = 3000,
+				reloadtime = 1,
+				smokecolor = 0.9,
+				smokeperiod = 2,
+				smokesize = 4,
+				smoketime = 24,
+				smoketrail = true,
+				smoketrailcastshadow = false,
+				soundhit = "impact",
+				soundhitvolume = 8,
+				soundhitwet = "splslrg",
+				soundstart = "aarocket",
+				soundstartvolume = 8,
+				startvelocity = 1000,
+				texture1 = "null",
+				texture2 = "smoketrailaaflak",
+				tolerance = 10000,
+				tracks = true,
+				trajectoryheight = 2,
+				turnrate = 40000,
+				turret = true,
+				weapontimer = 1,
+				weaponacceleration = 1000,
+				weapontype = "StarburstLauncher",
+				weaponvelocity = 2000,
+				damage = {
+					default  = 3000,
+					vtol = 5000,
+					commander = 2500,
+				},
+			},
+},
+weapons = {
+[1] = {
+				def = "COR_GEOROCKETS",
+				fastautoretargeting = true,
+				onlytargetcategory = "NOTSUB",
+    },
+},
+},
+}
