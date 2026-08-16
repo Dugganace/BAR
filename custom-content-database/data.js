@@ -5,6 +5,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Upgraded Vehicle Plant with much higher build power.",
     "baseId": "armvp",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armvp.png",
     "source": "Unattributed (found in saved presets)",
     "confidence": "guessed",
     "foundInPresets": [
@@ -28,6 +30,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Shoots down the Pawn Launcher's shell in flight -- if it connects, the Pawn never spawns.",
     "baseId": "armbotrail",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armbotrail.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [],
@@ -39,6 +43,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Slow heavy assault unit. High-damage, slow-firing laser.",
     "baseId": "armbull",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "armbull.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -61,6 +67,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Heavy area-control tower. Tougher, harder-hitting.",
     "baseId": "armhlt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armhlt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -84,6 +92,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Shoots down the Pawn Launcher's shell in flight -- if it connects, the Pawn never spawns.",
     "baseId": "armflak",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armflak.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -106,6 +116,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Massively upscaled Fusion Reactor. Produces 3000 energy.",
     "baseId": "armfus",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armfus.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -129,6 +141,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Missile point defense. Shoots down incoming missiles.",
     "baseId": "armamd",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armamd.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -151,6 +165,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Beam point defense. Always ready, no stockpile needed.",
     "baseId": "armhlt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armhlt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -173,6 +189,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Armored laser tower: more health plus a personal shield.",
     "baseId": "armllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -195,6 +213,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "High-cost laser tower: longer range, far more damage.",
     "baseId": "armllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -217,6 +237,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Rapid-fire anti-swarm turret. Weak vs single targets.",
     "baseId": "armllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -239,6 +261,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Long-range assist & repair turret.",
     "baseId": "armnanotc",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "armnanotc.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -262,6 +286,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Ultimate Terminator Tank",
     "baseId": "armthor",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "armthor.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -311,6 +337,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "The most anticipated barely illegal underground Bio Printer",
     "baseId": "lootboxnano_t4_var3",
     "baseIsRealUnit": false,
+    "type": "Unknown",
+    "icon": null,
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -359,6 +387,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Heavy long range Anti Air Turret",
     "baseId": "raptor_turret_antiair_t3_v1",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptor_turretl_antiair.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -406,6 +436,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Khrathm... no, not that one! Air Fighter",
     "baseId": "raptor_air_fighter_basic_t4_v1",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptorw2.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -453,6 +485,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Upgraded Vehicle Plant with much higher build power.",
     "baseId": "corvp",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corvp.png",
     "source": "Unattributed (found in saved presets)",
     "confidence": "guessed",
     "foundInPresets": [
@@ -476,6 +510,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Heavy area-control tower. Tougher, harder-hitting.",
     "baseId": "corhlt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corhlt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -499,6 +535,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Earth scorching Demon",
     "baseId": "cordemon",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "cordemon.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -548,6 +586,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Shoots down the Pawn Launcher's shell in flight -- if it connects, the Pawn never spawns.",
     "baseId": "corflak",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corflak.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -570,6 +610,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Slow heavy assault unit. High-damage, slow-firing laser.",
     "baseId": "corgol",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "corgol.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -592,6 +634,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Massively upscaled Fusion Reactor. Produces 3300 energy.",
     "baseId": "corfus",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corfus.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -615,6 +659,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Missile point defense. Shoots down incoming missiles.",
     "baseId": "corfmd",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corfmd.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -637,6 +683,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Beam point defense. Always ready, no stockpile needed.",
     "baseId": "corhlt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corhlt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -659,6 +707,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Armored laser tower: more health plus a personal shield.",
     "baseId": "corllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -681,6 +731,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "High-cost laser tower: longer range, far more damage.",
     "baseId": "corllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -703,6 +755,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Rapid-fire anti-swarm turret. Weak vs single targets.",
     "baseId": "corllt",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "corllt.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -725,6 +779,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Long-range assist & repair turret.",
     "baseId": "cornanotc",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "cornanotc.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -748,6 +804,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Experimental Heat Ray Heavy Spider",
     "baseId": "corthermite",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "corthermite.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -797,6 +855,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "The mother of all private army unit printers.",
     "baseId": "lootboxnano_t4_var9",
     "baseIsRealUnit": false,
+    "type": "Unknown",
+    "icon": null,
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -846,6 +906,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Grenadier Beetle",
     "baseId": "raptorartillery",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptorr1.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -893,6 +955,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Anti Air Drone Carrier",
     "baseId": "legheavydrone",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "legheavydrone.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -942,6 +1006,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Oww, what´s in the box?! Produces 33000 energy and 60 metal",
     "baseId": "lootboxplatinum",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "lootboxes/lootboxplatinum.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -991,6 +1057,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Experimental Hunter Killer",
     "baseId": "corcomboss",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "scavengers/corcomboss.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1040,6 +1108,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Experimental Hunter Killer",
     "baseId": "armscavengerbossv2_easy",
     "baseIsRealUnit": false,
+    "type": "Unknown",
+    "icon": null,
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1088,6 +1158,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Upgraded Vehicle Plant with much higher build power.",
     "baseId": "legvp",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "legvp.png",
     "source": "Unattributed (found in saved presets)",
     "confidence": "guessed",
     "foundInPresets": [
@@ -1111,6 +1183,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Heavy area-control tower. Tougher, harder-hitting.",
     "baseId": "leglht",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "leglht.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1134,6 +1208,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Shoots down the Pawn Launcher's shell in flight -- if it connects, the Pawn never spawns.",
     "baseId": "legflak",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "legflak.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1156,6 +1232,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Massively upscaled Fusion Reactor. Produces 3600 energy.",
     "baseId": "legfus",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "legfus.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1179,6 +1257,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Slow heavy assault unit. High-damage, slow-firing laser.",
     "baseId": "leginc",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "leginc.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1201,6 +1281,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Missile point defense. Shoots down incoming missiles.",
     "baseId": "legabm",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "legabm.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1223,6 +1305,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Beam point defense. Always ready, no stockpile needed.",
     "baseId": "leglht",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "leglht.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1245,6 +1329,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Armored heat ray tower: more health plus a personal shield.",
     "baseId": "leglht",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "leglht.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1267,6 +1353,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "High-cost heat ray tower: longer range, far more damage.",
     "baseId": "leglht",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "leglht.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1289,6 +1377,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Rapid-fire anti-swarm turret. Weak vs single targets.",
     "baseId": "leglht",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "leglht.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1311,6 +1401,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Long-range assist & repair turret.",
     "baseId": "legnanotc",
     "baseIsRealUnit": true,
+    "type": "Building",
+    "icon": "legnanotc.png",
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1334,6 +1426,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "When hope was lost, he kept building",
     "baseId": "armcomboss",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "scavengers/armcomboss.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1379,6 +1473,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Raptor Overseer",
     "baseId": "raptorh5",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptorh5.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1426,6 +1522,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Portable, affordable, explosive! Produces 3300 energy",
     "baseId": "lootboxgold",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "lootboxes/lootboxgold.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1475,6 +1573,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "You can almost put it in your Pocket! Produces 1100 energy",
     "baseId": "lootboxsilver",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "lootboxes/lootboxsilver.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1524,6 +1624,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Salvaged Raptor bio-tech energy building. Produces 2800 energy.",
     "baseId": "lootboxgold",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "lootboxes/lootboxgold.png",
     "source": "Unattributed (found in saved presets)",
     "confidence": "guessed",
     "foundInPresets": [
@@ -1547,6 +1649,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Sprays Acid on enemies",
     "baseId": "raptor_air_gunship_acid_t2_v1",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptorf1.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1594,6 +1698,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Launches big Projectiles over greater distance",
     "baseId": "raptor_turret_basic_t3_v1",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptor_turretl.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1641,6 +1747,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Launches AoE Projectiles",
     "baseId": "raptor_turret_basic_t2_v1",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "raptors/raptor_turrets.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1688,6 +1796,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Anti Air Drone Carrier",
     "baseId": "cordronecarryair",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": null,
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [
@@ -1737,6 +1847,8 @@ window.CUSTOM_CONTENT_DATABASE = [
     "tooltip": "Mobile all-terrain Shield Unit",
     "baseId": "armscab",
     "baseIsRealUnit": true,
+    "type": "Unit",
+    "icon": "armscab.png",
     "source": "CrossGamer",
     "confidence": "confirmed",
     "foundInPresets": [

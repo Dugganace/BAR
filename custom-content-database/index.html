@@ -17,6 +17,11 @@
 	.count { color: var(--text-dim); font-size: 12px; margin-left: auto; }
 	.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 0 20px 24px; }
 	.card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+	.card .top-row { display: flex; gap: 10px; align-items: flex-start; }
+	.card .icon { width: 40px; height: 40px; border-radius: 6px; background: var(--bg); flex-shrink: 0; object-fit: cover; }
+	.card .icon-placeholder { width: 40px; height: 40px; border-radius: 6px; background: var(--bg); flex-shrink: 0; }
+	.card .customize-link { font-size: 10.5px; color: var(--accent); text-decoration: none; margin-top: 4px; display: inline-block; }
+	.card .customize-link:hover { text-decoration: underline; }
 	.card .name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
 	.card .id { font-size: 11px; color: var(--text-dim); font-family: Consolas, monospace; margin-bottom: 8px; }
 	.card .tooltip { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; min-height: 32px; }
@@ -41,6 +46,11 @@
 	<select id="sourceFilter">
 		<option value="">All sources</option>
 	</select>
+	<select id="typeFilter">
+		<option value="">All types</option>
+		<option value="Building">Buildings</option>
+		<option value="Unit">Units</option>
+	</select>
 	<div class="count" id="count"></div>
 </div>
 <div class="grid" id="grid"></div>
@@ -61,11 +71,15 @@ function sourceClass(source) {
 	return '';
 }
 
+const typeFilter = document.getElementById('typeFilter');
+
 function render() {
 	const q = document.getElementById('search').value.toLowerCase();
 	const sourceQ = sourceFilter.value;
+	const typeQ = typeFilter.value;
 	const filtered = DB.filter(d => {
 		if (sourceQ && d.source !== sourceQ) return false;
+		if (typeQ && d.type !== typeQ) return false;
 		if (!q) return true;
 		return d.id.toLowerCase().includes(q) || (d.name || '').toLowerCase().includes(q) || (d.tooltip || '').toLowerCase().includes(q);
 	});
@@ -73,14 +87,21 @@ function render() {
 	const grid = document.getElementById('grid');
 	grid.innerHTML = filtered.map((d, i) => `
 		<div class="card">
-			<div class="name">${d.name}</div>
-			<div class="id">${d.id}${d.baseId ? ' &larr; ' + d.baseId : ''}</div>
+			<div class="top-row">
+				${d.icon ? `<img class="icon" src="../../bar-unit-database/icons-png/${d.icon}" onerror="this.outerHTML='<div class=&quot;icon-placeholder&quot;></div>'">` : '<div class="icon-placeholder"></div>'}
+				<div style="flex:1; min-width:0">
+					<div class="name">${d.name}</div>
+					<div class="id">${d.id}${d.baseId ? ' &larr; ' + d.baseId : ''}</div>
+				</div>
+			</div>
 			<div class="tooltip">${d.tooltip || '<em>No description found.</em>'}</div>
 			<div class="meta">
 				<span class="tag ${sourceClass(d.source)}">${d.source}</span>
+				<span class="tag">${d.type}</span>
 				<span class="tag">${d.confidence}</span>
 				<span class="tag">seen in ${d.presetCount} preset${d.presetCount === 1 ? '' : 's'}</span>
 			</div>
+			${d.baseId ? `<a class="customize-link" href="../../bar-preset-builder/newunit.html?base=${encodeURIComponent(d.baseId)}">Clone this base to make a new unit &rarr;</a><br>` : ''}
 			${d.presetCount ? `<div class="presets" onclick="this.nextElementSibling.classList.toggle('open')">Show presets &darr;</div>
 			<div class="presets-list">${d.foundInPresets.map(p => `<div>${p}</div>`).join('')}</div>` : ''}
 		</div>
@@ -89,6 +110,7 @@ function render() {
 
 document.getElementById('search').addEventListener('input', render);
 sourceFilter.addEventListener('change', render);
+typeFilter.addEventListener('change', render);
 render();
 </script>
 </body>

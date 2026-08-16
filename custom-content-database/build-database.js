@@ -86,7 +86,19 @@ for (const [author, file] of Object.entries(AUTHOR_FILES)) {
 }
 
 // --- 5. Merge everything, preferring clean sources over raw extraction ---
-const realUnitIds = fs.existsSync(UNIT_DB) ? new Set(Object.keys(JSON.parse(fs.readFileSync(UNIT_DB, 'utf8')))) : new Set();
+const unitDb = fs.existsSync(UNIT_DB) ? JSON.parse(fs.readFileSync(UNIT_DB, 'utf8')) : {};
+const realUnitIds = new Set(Object.keys(unitDb));
+
+// Type (Building/Unit) and icon are inherited from the base unit -- a
+// tableMerge clone keeps its parent's speed/buildpic unless explicitly
+// overridden, matching how the Custom Buildings Gallery already displays
+// our own content (icons/png/<baseId>.png there, same pattern used here
+// with bar-unit-database's broader 869-icon set as the general fallback).
+function deriveTypeAndIcon(baseId) {
+	const base = baseId ? unitDb[baseId] : null;
+	if (!base) return { type: 'Unknown', icon: null };
+	return { type: base.speed != null ? 'Unit' : 'Building', icon: base.icon || null };
+}
 
 const allIds = new Set([...Object.keys(presetsById), ...Object.keys(ourEntries), ...Object.keys(authorEntries)]);
 const database = [];
@@ -97,12 +109,15 @@ for (const id of allIds) {
 		const extracted = extractFromRaw(id, rawSampleById[id]);
 		entry = { name: extracted.name || id, tooltip: extracted.tooltip, baseId: extracted.baseId, source: 'Unattributed (found in saved presets)' };
 	}
+	const { type, icon } = deriveTypeAndIcon(entry.baseId);
 	database.push({
 		id,
 		name: entry.name || id,
 		tooltip: entry.tooltip || null,
 		baseId: entry.baseId || null,
 		baseIsRealUnit: entry.baseId ? realUnitIds.has(entry.baseId) : null,
+		type,
+		icon,
 		source: entry.source,
 		confidence,
 		foundInPresets: presetsById[id] || [],
