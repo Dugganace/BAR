@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BAR New Unit Builder</title>
+<style>
+	:root { --bg: #1a1c20; --panel: #24272d; --border: #3a3e46; --text: #e6e8eb; --text-dim: #9aa0aa; --accent: #5fb3ff; --good: #6bd48a; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font-family: -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; }
+	#left { width: 380px; border-right: 1px solid var(--border); overflow-y: auto; padding: 14px; }
+	#right { flex: 1; overflow-y: auto; padding: 14px; }
+	h1 { font-size: 15px; margin: 0 0 12px; }
+	h3 { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 6px; }
+	label { display: block; font-size: 12px; color: var(--text-dim); margin-top: 8px; margin-bottom: 2px; }
+	input, select { width: 100%; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 8px; font-size: 13px; }
+	input[readonly] { color: var(--text-dim); }
+	.base-card { display: flex; gap: 10px; align-items: center; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 8px; margin-top: 8px; }
+	.base-card img { width: 48px; height: 48px; border-radius: 6px; background: #111; }
+	.base-card .info { font-size: 11px; }
+	.base-card .info .name { font-weight: 600; font-size: 12px; }
+	button { background: var(--accent); color: #0b1a24; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; margin-top: 14px; }
+	button.secondary { background: var(--panel); color: var(--text); border: 1px solid var(--border); font-weight: 500; }
+	#outputCode { width: 100%; height: 300px; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 10px; font-family: Consolas, monospace; font-size: 11px; }
+	.hint { color: var(--text-dim); font-size: 11px; margin-top: 4px; }
+	.stat-row { display: flex; gap: 8px; }
+	.stat-row > div { flex: 1; }
+	a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="left">
+	<a href="../bar-toolkit-hub/index.html" style="display:block;margin-bottom:6px;">&larr; Hub</a>
+	<h1>New Unit Builder</h1>
+	<a href="index.html">&larr; back to build-options picker</a>
+
+	<h3>1. Base unit to clone from</h3>
+	<input id="baseSearch" type="text" placeholder="Search a real unit to clone (e.g. armhlt)...">
+	<div id="baseResults"></div>
+	<div id="baseSelected"></div>
+
+	<h3>2. Overrides</h3>
+	<label>Display name</label>
+	<input id="fName" type="text" placeholder="e.g. Bulwark Tower">
+	<label>New unique id (lowercase, no spaces)</label>
+	<input id="fId" type="text" placeholder="e.g. armbulwark">
+	<div class="stat-row">
+		<div><label>Metal cost</label><input id="fMetal" type="number"></div>
+		<div><label>Energy cost</label><input id="fEnergy" type="number"></div>
+	</div>
+	<div class="stat-row">
+		<div><label>Build time</label><input id="fBuildtime" type="number"></div>
+		<div><label>Health</label><input id="fHealth" type="number"></div>
+	</div>
+	<label>Tooltip / description (short — the game's tooltip box is small)</label>
+	<input id="fTooltip" type="text" placeholder="One short sentence">
+	<label>Tech level (1-4, informational — matches BAR's own tiering)</label>
+	<input id="fTechLevel" type="number" min="1" max="4" placeholder="e.g. 2">
+
+	<h3>3. Which units/buildings can build it?</h3>
+	<input id="fTarget" type="text" placeholder="e.g. armcom, armvp, armalab (comma-separated, leave blank to skip)">
+	<div class="hint">Every id listed here gets this unit added to its buildoptions.</div>
+
+	<button id="generateBtn">Generate Lua</button>
+</div>
+<div id="right">
+	<h3 style="margin-top:0">Generated code (append this into your content file)</h3>
+	<p class="hint">This clones the real base unit's stats/model, overrides only the fields you set above, and (if you set a target) appends it to that building's buildoptions list. Copy this into your project's .lua file or straight into a numbered Tweak Defs box (base64-encode first via the picker page).</p>
+	<textarea id="outputCode" readonly></textarea>
+	<button class="secondary" id="copyBtn">Copy Lua</button>
+</div>
+<script src="data.js"></script>
+<script src="newunit.js"></script>
+</body>
+</html>
