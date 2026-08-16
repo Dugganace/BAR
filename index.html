@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BAR Scav Spawn Pool Editor</title>
+<style>
+	:root {
+		--bg: #1a1c20;
+		--panel: #24272d;
+		--border: #3a3e46;
+		--text: #e6e8eb;
+		--text-dim: #9aa0aa;
+		--accent: #5fb3ff;
+		--danger: #ff6b6b;
+		--success: #6bd48a;
+	}
+	* { box-sizing: border-box; }
+	body {
+		margin: 0;
+		font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+		background: var(--bg);
+		color: var(--text);
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+	}
+	header {
+		padding: 12px 20px;
+		border-bottom: 1px solid var(--border);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+	header .stats { font-size: 12px; color: var(--text-dim); }
+	.actions { display: flex; gap: 8px; }
+	button {
+		background: var(--panel);
+		border: 1px solid var(--border);
+		color: var(--text);
+		padding: 6px 12px;
+		border-radius: 6px;
+		cursor: pointer;
+		font-size: 13px;
+	}
+	button:hover { border-color: var(--accent); }
+	button.btn-add, button#btn-export { background: var(--accent); color: #0b1a24; border: none; font-weight: 600; }
+	button.btn-remove { color: var(--danger); border: none; background: none; font-size: 14px; }
+	main { flex: 1; display: flex; overflow: hidden; }
+	#nav {
+		width: 260px;
+		overflow-y: auto;
+		border-right: 1px solid var(--border);
+		padding: 12px;
+	}
+	.nav-domain { margin-bottom: 14px; }
+	.nav-domain-label { font-weight: 700; font-size: 13px; color: var(--accent); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+	.nav-role { font-size: 12px; color: var(--text-dim); margin-top: 8px; margin-bottom: 4px; }
+	.nav-tiers { display: flex; flex-wrap: wrap; gap: 4px; }
+	.tier-btn { padding: 3px 8px; font-size: 12px; }
+	.tier-btn.active { background: var(--accent); color: #0b1a24; border-color: var(--accent); font-weight: 600; }
+	#editor { flex: 1; overflow-y: auto; padding: 20px; }
+	#editor h2 { margin-top: 0; font-size: 15px; }
+	.hint { color: var(--text-dim); font-size: 13px; }
+	table.unit-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+	table.unit-table th, table.unit-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 13px; }
+	table.unit-table th { color: var(--text-dim); font-weight: 500; }
+	td.unit-id { font-family: Consolas, monospace; }
+	table.unit-table input[type=number] { width: 70px; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 4px; }
+	.add-row { margin-top: 16px; display: flex; gap: 8px; align-items: center; }
+	.add-row input[type=text] { flex: 1; max-width: 320px; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 10px; font-family: Consolas, monospace; }
+	.add-row input[type=number] { width: 70px; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px; }
+	#preview-modal {
+		position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+		display: flex; align-items: center; justify-content: center; z-index: 10;
+	}
+	#preview-modal.hidden { display: none; }
+	.modal-box { width: 80vw; height: 80vh; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; }
+	.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+	#preview-text { flex: 1; overflow: auto; margin: 0; padding: 14px; font-family: Consolas, monospace; font-size: 12px; white-space: pre; }
+</style>
+</head>
+<body>
+
+<header>
+	<a href="../bar-toolkit-hub/index.html" style="color:var(--accent);text-decoration:none;font-size:12px;">&larr; Hub</a>
+	<h1>BAR Scav Spawn Pool Editor</h1>
+	<div class="stats">Units in pools: <span id="total-count">0</span> (original: <span id="original-count">0</span>)</div>
+	<div class="actions">
+		<button id="btn-reset">Reset to original</button>
+		<button id="btn-preview">Preview full file</button>
+		<button id="btn-export">Export scav_spawn_defs.lua</button>
+	</div>
+</header>
+
+<main>
+	<nav id="nav"></nav>
+	<section id="editor"></section>
+</main>
+
+<div id="preview-modal" class="hidden">
+	<div class="modal-box">
+		<div class="modal-header">
+			<strong>Full reconstructed scav_spawn_defs.lua</strong>
+			<button id="btn-close-preview">Close</button>
+		</div>
+		<pre id="preview-text"></pre>
+	</div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
