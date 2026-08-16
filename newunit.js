@@ -40,6 +40,7 @@ function renderBaseResults() {
 
 function selectBase(u) {
 	selectedBase = u;
+	selectedBase.weaponKeys = null; // filled in async by detectWeaponKeys() below
 	document.getElementById('baseResults').innerHTML = '';
 	document.getElementById('baseSearch').value = '';
 	const container = document.getElementById('baseSelected');
@@ -50,6 +51,7 @@ function selectBase(u) {
 			el('div', { class: 'name', text: 'Base: ' + (u.name || u.id) }),
 			el('div', { text: u.id + ' | ' + (u.faction || '') }),
 			el('div', { text: `${u.metalcost ?? '?'}M / ${u.energycost ?? '?'}E / ${u.buildtime ?? '?'}BT / ${u.health ?? '?'}HP` }),
+			el('div', { id: 'weaponKeyStatus', text: u.hasWeapons ? 'Checking real weapon key…' : '' }),
 		]),
 	]));
 	// prefill overrides with base values as a starting point
@@ -57,6 +59,34 @@ function selectBase(u) {
 	document.getElementById('fEnergy').value = u.energycost ?? '';
 	document.getElementById('fBuildtime').value = u.buildtime ?? '';
 	document.getElementById('fHealth').value = u.health ?? '';
+
+	if (u.hasWeapons && u.file) detectWeaponKeys(u);
+}
+
+// Auto-detects the real weapondefs key(s) for a base unit by fetching its
+// actual source file from the game repo -- weapon key names are
+// faction/unit-specific (armllt uses arm_lightlaser, armhlt uses
+// arm_laserh1, Legion is often heat_ray) and guessing wrong produces a
+// tweak that loads without error but silently does nothing. This was
+// previously a fully manual step every time.
+async function detectWeaponKeys(u) {
+	const statusEl = document.getElementById('weaponKeyStatus');
+	try {
+		const url = `https://raw.githubusercontent.com/beyond-all-reason/Beyond-All-Reason/master/units/${u.file}`;
+		const res = await fetch(url);
+		if (!res.ok) throw new Error(`HTTP ${res.status}`);
+		const text = await res.text();
+		const keys = [...new Set([...text.matchAll(/weapondefs\s*=\s*\{\s*([A-Za-z0-9_]+)\s*=/g)].map(m => m[1]))];
+		if (selectedBase !== u) return; // user picked a different base while this was in flight
+		selectedBase.weaponKeys = keys;
+		if (statusEl) {
+			statusEl.textContent = keys.length ? `Real weapon key${keys.length > 1 ? 's' : ''}: ${keys.join(', ')}` : 'No weapondefs found in source (may use a shared/inherited weapon).';
+			statusEl.style.color = keys.length ? '#6bd48a' : '#e8b34d';
+		}
+	} catch (e) {
+		if (selectedBase !== u) return;
+		if (statusEl) { statusEl.textContent = `Couldn't fetch real source to verify weapon key (${e.message}) -- verify manually.`; statusEl.style.color = '#e8b34d'; }
+	}
 }
 
 document.getElementById('baseSearch').addEventListener('input', renderBaseResults);
@@ -104,10 +134,18 @@ document.getElementById('generateBtn').addEventListener('click', () => {
 		for (const t of targets) lines.push(`addBuildOption('${t}', '${id}')`);
 	}
 	lines.push('');
-	lines.push(`-- NOTE: this only overrides top-level stats. If ${selectedBase.id} has a weapon,`);
-	lines.push(`-- its weapondefs key was NOT auto-detected here -- verify the real key name`);
-	lines.push(`-- (fetch ${selectedBase.file || selectedBase.id + '.lua'} from the game repo) before`);
-	lines.push(`-- overriding damage/range, or the override will silently do nothing.`);
+	if (selectedBase.hasWeapons && selectedBase.weaponKeys && selectedBase.weaponKeys.length) {
+		lines.push(`-- Real weapon key${selectedBase.weaponKeys.length > 1 ? 's' : ''} for ${selectedBase.id}, auto-detected from the live game source:`);
+		for (const key of selectedBase.weaponKeys) {
+			lines.push(`--   weapondefs = { ${key} = { range = ..., reloadtime = ..., damage = { default = ... } } },`);
+		}
+		lines.push(`-- Add the block above (merged into the tableMerge's second argument) to override damage/range.`);
+	} else if (selectedBase.hasWeapons) {
+		lines.push(`-- NOTE: ${selectedBase.id} has a weapon, but its real key couldn't be auto-detected`);
+		lines.push(`-- (fetch ${selectedBase.file || selectedBase.id + '.lua'} from the game repo manually) --`);
+		lines.push(`-- verify the exact key name before overriding damage/range, or the override will`);
+		lines.push(`-- silently do nothing.`);
+	}
 
 	document.getElementById('outputCode').value = lines.join('\n');
 });
