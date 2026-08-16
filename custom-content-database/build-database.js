@@ -77,6 +77,24 @@ const ourEntries = {};
 		const tooltipMatch = after.match(new RegExp(String.raw`i18n_en_tooltip\s*=\s*${LUA_STRING}`));
 		ourEntries[id] = { name: nameMatch ? unescapeLuaString(nameMatch[1]) : id, tooltip: tooltipMatch ? unescapeLuaString(tooltipMatch[1]) : null, baseId, source: 'Ours (current)' };
 	}
+
+	// Special-case: the Commander Progression Chain builds its ids
+	// dynamically (`unitDefs[rankId] = def` where rankId is a runtime
+	// string, not a literal), so the regex above can't find them. Known,
+	// fixed structure -- 10 ranks x 3 factions, hardcoded here rather
+	// than attempting a general dynamic-key extractor.
+	const rankNamesMatch = ourText.match(/local rankNames = \{ ((?:'[^']+',?\s*)+)\}/);
+	if (rankNamesMatch) {
+		const rankNames = [...rankNamesMatch[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
+		for (const prefix of ['arm', 'cor', 'leg']) {
+			rankNames.forEach((rankName, i) => {
+				const level = i + 1;
+				const id = `${prefix}rank${level}`;
+				const baseId = level === 1 ? `${prefix}com` : `${prefix}comlvl${level}`;
+				ourEntries[id] = { name: rankName, tooltip: rankName, baseId, source: 'Ours (current)' };
+			});
+		}
+	}
 }
 
 // --- 4. Traced authors (clean, from dedicated extraction passes) ---
