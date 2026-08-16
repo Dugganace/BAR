@@ -4,6 +4,58 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Content Gallery / Behavior Mods Catalog corrections (2026-08-16, live session)
+
+User feedback after reviewing the merged Content Gallery: "some of the
+content doesnt make sense to me, the behaviour mods catalogue for example
+it should just show me what the content is with a description of what it
+does and give me the option to use them in my next [preset] build." Fixed:
+
+- **Behavior Mods Catalog rebuilt with real descriptions.** The old
+  version showed raw credit-comment titles (often garbled concatenations
+  of two adjacent comments, e.g. "T3 Coms Early Infrastructure + Scout
+  Boost by Bezz-- T3 Com Commander Corpse / Explosion Normalization" as
+  one string) plus a code dump — not useful without reading Lua. Actually
+  read every author's real script in
+  `bar-replay-miner/global-credits-full/` and hand-wrote one real
+  plain-English description per author (consolidating ~23 near-duplicate
+  Bezz snippets into a single accurate summary, for example). Turned out
+  **Bezz's package is much bigger than "T3 Commander overhaul" implied**
+  — it's a total-conversion-style rebalance: commander transformed into
+  an 85-145k HP combat monster cloned from a Raptor boss unit, PLUS a
+  global rebalance of the entire unit roster's HP/damage. Added a "Mark"
+  button + persistent tray (localStorage), same UX as Content Gallery,
+  so marked items carry into your next preset build.
+- **Found and corrected a real author-attribution bug.** The file traced
+  to "Djarshi" is actually a copy of LoH's BaRandom (identical code,
+  different constants) — Djarshi's real content ("LavaT3pack"/"LavaPack")
+  is mislabeled under **LordOfHangovers** and **onetrick** instead. Fixed
+  in the new descriptions; the underlying replay-miner attribution
+  pipeline itself wasn't touched (out of scope for this pass, but now
+  documented so it's not silently wrong).
+- **Broadened new-unit scanning to every traced author, not just 3.**
+  Building the corrected descriptions required reading each author's raw
+  code, which surfaced that **RandomGuyJunior's "Space Expansion" (70
+  new orbital units) and Mewi's 3 standalone T4 defense buildings
+  actually create new unit ids** — they'd been sitting unscanned because
+  the original extraction only covered CrossGamer/Hazyhazelnuts/
+  Waffles_II. New generic scanner
+  (`bar-replay-miner/scan-all-new-units.js`) detects UnitDefs-alias
+  assignment across arbitrary code styles (not one fixed regex), with a
+  plausibility filter for the inherent false-positive risk of scope-blind
+  regex scanning. Content Gallery went from 56 to **129 unique
+  units/buildings** as a result. Confirmed Bezz/LoH/Ambo/MGGW/Djarshi
+  genuinely don't create new units (0 hits each) — they modify existing
+  ones in place, correctly staying in Behavior Mods Catalog only.
+
+**Answering the user's direct question** ("show me all units and
+buildings we have seen that are not part of the vanilla game, all so
+far, and add any when we come across them") — Content Gallery is now
+that list. Re-run `node custom-content-database/build-database.js`
+(after `node ../bar-replay-miner/scan-all-new-units.js` and
+`extract-remaining-authors-content.js` if a new author gets traced) to
+keep it current as more content is found.
+
 ## Overnight autonomous pass (2026-08-16) — read this first
 
 Ran unsupervised overnight per explicit instruction ("finish all the

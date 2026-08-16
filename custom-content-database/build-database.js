@@ -17,6 +17,8 @@ const AUTHOR_FILES = {
 	CrossGamer: path.join(__dirname, '..', '..', 'bar-replay-miner', 'crossgamer-custom-content.json'),
 	Hazyhazelnuts: path.join(__dirname, '..', '..', 'bar-replay-miner', 'hazy-custom-content.json'),
 	Waffles_II: path.join(__dirname, '..', '..', 'bar-replay-miner', 'waffles-custom-content.json'),
+	RandomGuyJunior: path.join(__dirname, '..', '..', 'bar-replay-miner', 'randomguyjunior-custom-content.json'),
+	Mewi: path.join(__dirname, '..', '..', 'bar-replay-miner', 'mewi-custom-content.json'),
 };
 const UNIT_DB = path.join(__dirname, '..', '..', 'bar-unit-database', 'units-database.json');
 const REPLAY_MINER_CATALOG = path.join(__dirname, '..', '..', 'bar-replay-miner', 'catalog-viewer', 'catalog-data.js');
