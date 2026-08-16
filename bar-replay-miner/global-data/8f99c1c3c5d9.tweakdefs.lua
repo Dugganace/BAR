@@ -1,0 +1,5 @@
+--BAR Editor Mod
+-- Author: Developer
+-- Description: A custom unit configuration mod.
+-- Generated with BAR Editor
+-- ---------------------------------------------------- 

@@ -1,0 +1,4 @@
+node_modules/
+viewer/icons/
+catalog-viewer/icons/
+*.log

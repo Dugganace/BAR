@@ -1,0 +1,80 @@
+[
+ {
+  "id": "armthort4",
+  "baseId": "armthor",
+  "name": "Epic Thor",
+  "tooltip": "Ultimate Terminator Tank"
+ },
+ {
+  "id": "cordemont4",
+  "baseId": "cordemon",
+  "name": "Hellblazer",
+  "tooltip": "Earth scorching Demon"
+ },
+ {
+  "id": "corthermitet3",
+  "baseId": "corthermite",
+  "name": "Core Melter",
+  "tooltip": "Experimental Heat Ray Heavy Spider"
+ },
+ {
+  "id": "portfus",
+  "baseId": "lootboxsilver",
+  "name": "Pocket Fusion Reactor",
+  "tooltip": "You can almost put it in your Pocket! Produces 1100 energy"
+ },
+ {
+  "id": "portafus",
+  "baseId": "lootboxgold",
+  "name": "Portable Advanced Fusion Reactor",
+  "tooltip": "Portable, affordable, explosive! Produces 3300 energy"
+ },
+ {
+  "id": "infinitybox",
+  "baseId": "lootboxplatinum",
+  "name": "Infinity Box",
+  "tooltip": "Oww, what´s in the box?! Produces 33000 energy and 60 metal"
+ },
+ {
+  "id": "jaeger",
+  "baseId": "corcomboss",
+  "name": "Jaeger Mk I",
+  "tooltip": "Experimental Hunter Killer"
+ },
+ {
+  "id": "jaegermk2",
+  "baseId": "armscavengerbossv2_easy",
+  "name": "Jaeger Mk II",
+  "tooltip": "Experimental Hunter Killer"
+ },
+ {
+  "id": "hunterdrone",
+  "baseId": "legheavydrone",
+  "name": "Swarmship",
+  "tooltip": "Anti Air Drone Carrier"
+ },
+ {
+  "id": "swarmship",
+  "baseId": "cordronecarryair",
+  "name": "Swarmship",
+  "tooltip": "Anti Air Drone Carrier"
+ },
+ {
+  "id": "umbrellamk2",
+  "baseId": "armscab",
+  "name": "Umbrella Mk II",
+  "tooltip": "Mobile all-terrain Shield Unit"
+ },
+ {
+  "id": "epicunitprinter",
+  "baseId": "lootboxnano_t4_var9",
+  "name": "Epic Unit Printer",
+  "tooltip": "The mother of all private army unit printers."
+ },
+ {
+  "id": "overcom",
+  "baseId": "armcomboss",
+  "name": "Metal OverCommander",
+  "tooltip": "When hope was lost, he kept building"
+ }
+]

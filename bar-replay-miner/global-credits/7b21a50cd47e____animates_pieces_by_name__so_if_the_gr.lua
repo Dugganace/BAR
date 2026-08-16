@@ -1,0 +1,1 @@
+-- animates pieces by name, so if the grunt model's piece names differ we just lose

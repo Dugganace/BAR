@@ -1,0 +1,2 @@
+--No Metal Mod by Ambo V0.1
+for name,ud in pairs(UnitDefs)do if ud.metalcost and ud.metalcost >0 and ud.energycost and ud.energycost >0 then ud.energycost=ud.energycost +((ud.energycost / ud.metalcost)*ud.metalcost)ud.metalcost=0 end if ud.metalcost and ud.metalcost >0 then ud.energycost=(5*ud.metalcost)ud.metalcost=0 end end for name,ud in pairs(UnitDefs)do if ud.extractsmetal and ud.extractsmetal > 0 then ud.maxthisunit=0 end if ud.customparams and ud.customparams.energyconv_efficiency and ud.customparams.energyconv_efficiency > 0 then ud.maxthisunit=0 end end
