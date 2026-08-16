@@ -19,6 +19,7 @@ const AUTHOR_FILES = {
 	Waffles_II: path.join(__dirname, '..', '..', 'bar-replay-miner', 'waffles-custom-content.json'),
 };
 const UNIT_DB = path.join(__dirname, '..', '..', 'bar-unit-database', 'units-database.json');
+const REPLAY_MINER_CATALOG = path.join(__dirname, '..', '..', 'bar-replay-miner', 'catalog-viewer', 'catalog-data.js');
 
 // --- 1. Load the preset catalog (all 51 presets, per-slot unitIds + raw text) ---
 let catalogText = fs.readFileSync(CATALOG_DATA, 'utf8').replace('window.CATALOG = ', '').replace(/;\s*$/, '');
@@ -85,6 +86,19 @@ for (const [author, file] of Object.entries(AUTHOR_FILES)) {
 	}
 }
 
+// --- 4b. Real stat-diff data (before -> after vs. vanilla), from the
+// Custom Content Catalog's replay-derived extraction -- unique data not
+// otherwise available (name/tooltip alone don't show what actually
+// changed numerically). ---
+const changesById = {};
+if (fs.existsSync(REPLAY_MINER_CATALOG)) {
+	const win = {};
+	eval(fs.readFileSync(REPLAY_MINER_CATALOG, 'utf8').replace(/^window\./, 'win.'));
+	for (const item of win.CATALOG || []) {
+		if (item.changes) changesById[item.id] = item.changes;
+	}
+}
+
 // --- 5. Merge everything, preferring clean sources over raw extraction ---
 const unitDb = fs.existsSync(UNIT_DB) ? JSON.parse(fs.readFileSync(UNIT_DB, 'utf8')) : {};
 const realUnitIds = new Set(Object.keys(unitDb));
@@ -122,6 +136,8 @@ for (const id of allIds) {
 		confidence,
 		foundInPresets: presetsById[id] || [],
 		presetCount: (presetsById[id] || []).length,
+		changes: changesById[id] || null,
+		rawCode: rawSampleById[id] || (ourEntries[id] ? ourText.slice(ourText.indexOf(`unitDefs.${id}`), ourText.indexOf(`unitDefs.${id}`) + 500) : null),
 	});
 }
 

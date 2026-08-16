@@ -88,7 +88,7 @@ Reorganized from v0.1 (see `ROADMAP-v0.1.md` for the raw chronological
 notes from the tool-by-tool walkthrough on 2026-08-15) by initiative.
 Not prioritized/ordered within each section — still a running list.
 
-## Big initiative: consolidate the content browsers
+## Big initiative: consolidate the content browsers — ✅ DONE (2026-08-16)
 
 Three separate tools all turned out to be doing the same basic thing —
 browse content, see items, maybe pick some — and the user confirmed this
@@ -100,33 +100,57 @@ redundancy directly on all three:
   doing in other tools."
 - **Preset Explorer** — "isnt that just another catalogue picker?"
 
-**Target design**: one gallery-style tool, modeled directly on the
-**Custom Buildings Gallery**, which the user confirmed as the pattern to
-follow ("i like the custom buildings gallery... this page is very
-helpful and i like how you have presented it all good work"). It should:
+**Built as `bar-toolkit-hub/content-gallery/`**, following a mockup
+session (interactive widget mockups iterated on live with the user)
+before building anything. Design decisions made during that session:
 
-- Show everything as visual cards (build picture, name, plain-English
-  description of what changed) — never raw Lua.
-  **✅ PARTIAL — Preset Catalog now defaults to visual cards** (icon,
-  name, tooltip, cloned-from) instead of raw code; raw Lua is still
-  available behind a "Show raw code" toggle for when it's actually
-  needed. Custom Content Catalog and Preset Explorer not yet merged in —
-  full three-tool consolidation is still the bigger ask below.
-- Cover the full scope, not just our own content: our
-  `custom_buildings.lua`, plus everything found in the replay-mining
-  project (CrossGamer, Bezz, LoH, Ambo, MGGW, Mewi, Djarshi, etc.) and
-  the 52-unit local diff catalog. User: "for all the ones in all the
-  tweaks we have found so far its easier for me to see like this."
-  **NOT YET DONE** — the author content (CrossGamer/Bezz/etc.) is still
-  raw `.lua` files, not structured into name/icon/diff cards yet. Real
-  work, not just wiring — needs its own extraction pass per author.
-- **Split buildings from units** throughout.
-  **✅ DONE in Unit Database viewer, Preset Builder, and Custom
-  Buildings Gallery** — same All/Buildings/Units toggle pattern
-  everywhere, split on the `speed` field (387 buildings vs 570 units),
-  combined with faction tabs so it's "one type at a time, per faction"
-  as requested, not just a global filter. Not yet done for the
-  author-sourced content since that's not structured yet (see above).
+- Show which preset(s) each item was found in, not just the item itself
+  — user: "i want to be able to select which and know which are added
+  and where they came from."
+- A "Mark" button per card + sidebar tray (persisted to localStorage) for
+  tracking items under consideration — explicitly NOT a pick-and-inject
+  cart. Injecting into a live preset stays a deliberate separate step in
+  Preset Explorer, per the user's explicit choice to keep that flow
+  separate rather than merge it in.
+- Real stat diffs vs. vanilla (before → after with %, e.g. "health: 620
+  -> 1860 (+200%)") pulled in from the Custom Content Catalog's
+  replay-derived data — genuinely unique data that name/tooltip alone
+  didn't carry, folded into `custom-content-database/build-database.js`'s
+  output rather than lost when that tool's browsing UI was retired.
+- Raw code per item, behind a toggle (same pattern Preset Catalog
+  established) — sourced from the preset-catalog raw text samples
+  already captured during the database build.
+- Real icons (inherited from the base unit, same source as Custom
+  Buildings Gallery), a Buildings/Units type split, and the
+  click-to-customize link into New Unit Builder — carried over from the
+  cross-tool consistency audit fix applied to Custom Content Database
+  just before the merge (see below).
+
+The 3 old tools' **hub cards were removed** (Preset Catalog, Custom
+Content Catalog) and the interim Custom Content Database card was
+replaced with the Content Gallery card — their underlying files are
+untouched on disk, just no longer surfaced as separate tools, since
+Content Gallery supersedes their browsing function. Preset Explorer's
+own hub link is unchanged (its picking/injection feature was
+deliberately kept separate, not merged).
+
+**Before the merge, a cross-tool consistency audit** (user request:
+"lets check we arent repeating the same tools over each tool needlessly
+or the opposite, we arent implementing some of our ideas to some tools
+and not others") found real gaps — mostly in Custom Content Database,
+built the night before without checking established conventions:
+missing real icons, missing the Buildings/Units type split, missing the
+click-to-customize link. Fixed before building on top of it. Also
+confirmed: same icon set physically duplicated on disk across 5 tool
+folders (~245MB each, git-ignored so not in the repo, but still worth a
+shared-path fix on the local machine someday) — not fixed this pass,
+noted for later.
+
+**Still separately not-yet-structured** (lower priority now that the
+main consolidation is done): the wider author content beyond the 3
+traced authors — CrossGamer/Bezz/LoH/Ambo/MGGW/Mewi/Djarshi's gameplay
+mods live in the separate Behavior Mods Catalog (see above), not fully
+decoded feature-by-feature.
 - Fix the specific Preset Catalog bug along the way: clicking an item
   currently collapses the sidebar list it's in — should stay expanded.
   **✅ DONE** — root cause was the sidebar rebuilding from scratch on
@@ -134,9 +158,10 @@ helpful and i like how you have presented it all good work"). It should:
   `openPresets` set that survives re-renders.
 - This is a joint design task — user wants mockups first ("we will
   flesh out together maybe with mock ups"), not a solo build.
-  **Still true for the FULL three-tool merge** — what's built above are
-  real incremental improvements within the existing tools, not the
-  final consolidated gallery. That still needs the mockup session.
+  **✅ DONE (2026-08-16)** — the mockup session happened (interactive
+  widget mockups, iterated live), and the full merge was built as
+  `bar-toolkit-hub/content-gallery/`. See the initiative header above for
+  the actual outcome.
 
 ## Big initiative: unit-tree building workflow
 

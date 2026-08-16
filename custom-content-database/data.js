@@ -22,7 +22,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 3000 -> 4200 (+40%)",
+      "metalcost: 590 -> 2600 (+341%)",
+      "energycost: 1550 -> 26000 (+1577%)",
+      "buildtime: 5700 -> 24000 (+321%)",
+      "tooltip: \"Upgraded Vehicle Plant with much higher build power.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armassemblycomplex = tableMerge(unitDefs['armvp'], {\n\tname = 'Assembly Complex',\n\tunitname = 'armassemblycomplex',\n\tmetalcost = 2600,\n\tenergycost = 26000,\n\tbuildtime = 24000,\n\thealth = 4200,\n\tworkertime = 900,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Assembly Complex',\n\t\ti18n_en_tooltip = 'Upgraded Vehicle Plant with much higher build power.',\n\t},\n})\n\nunitDefs.corassemblycomplex = tableMerge(unitDefs['corvp'], {\n\tname = 'Assembly Complex',\n\tunitname = 'corassemblycomplex',\n\tmetalcost = 2600,\n\ten"
   },
   {
     "id": "armbotrail",
@@ -35,7 +43,9 @@ window.CUSTOM_CONTENT_DATABASE = [
     "source": "Ours (current)",
     "confidence": "confirmed",
     "foundInPresets": [],
-    "presetCount": 0
+    "presetCount": 0,
+    "changes": null,
+    "rawCode": "unitDefs.armbotrail = tableMerge(unitDefs['armbotrail'], {\n\t\tweapondefs = {\n\t\t\tarm_botrail = { targetable = PAWN_INTERCEPT_FLAG },\n\t\t},\n\t})\nend\n\nunitDefs.armdepawner = tableMerge(unitDefs['armflak'], {\n\tname = 'The Depawner',\n\tunitname = 'armdepawner',\n\tmetalcost = 1250,\n\tenergycost = 22000,\n\tbuildtime = 26000,\n\thealth = 2300,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Depawner',\n\t\ti18n_en_tooltip = 'Shoots down the Pawn Launcher\\'s shell in flight -- if it connects, the Pawn never spawns.',\n\t"
   },
   {
     "id": "armbull_heavy",
@@ -59,7 +69,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 4650 -> 7200 (+55%)",
+      "metalcost: 950 -> 2200 (+132%)",
+      "energycost: 13000 -> 30000 (+131%)",
+      "buildtime: 23000 -> 48000 (+109%)",
+      "speed: 62 -> 32 (-48%)",
+      "weapon \"arm_bull\" tuned: weapontype=\"BeamLaser\", range=650, reloadtime=3.6, beamtime=0.3",
+      "tooltip: \"Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armbull_heavy = tableMerge(unitDefs['armbull'], {\n\tname = 'The Bull',\n\tunitname = 'armbull_heavy',\n\tmetalcost = 2200,\n\tenergycost = 30000,\n\tbuildtime = 48000,\n\thealth = 7200,\n\tspeed = 32,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Bull',\n\t\ti18n_en_tooltip = 'Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.',\n\t},\n\tweapondefs = {\n\t\tarm_bull = {\n\t\t\tweapontype = 'BeamLaser',\n\t\t\trange = 650,\n\t\t\treloadtime = 3.6,\n\t\t\tbeamtime = 0.3,\n\t\t\tdamage = { default = 1900, commanders "
   },
   {
     "id": "armbulwark",
@@ -84,7 +104,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 2600 -> 7200 (+177%)",
+      "metalcost: 440 -> 3400 (+673%)",
+      "energycost: 4700 -> 42000 (+794%)",
+      "buildtime: 11300 -> 38000 (+236%)",
+      "weapon \"arm_laserh1\" tuned: range=780, reloadtime=1.4",
+      "tooltip: \"Heavy area-control defense tower, tougher and harder-hitting than the standard laser tower.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armbulwark = tableMerge(unitDefs['armhlt'], {\n\tname = 'Bulwark Tower',\n\tunitname = 'armbulwark',\n\tmetalcost = 3400,\n\tenergycost = 42000,\n\tbuildtime = 38000,\n\thealth = 7200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Bulwark Tower',\n\t\ti18n_en_tooltip = 'Heavy area-control defense tower, tougher and harder-hitting than the standard laser tower.',\n\t},\n\tweapondefs = {\n\t\tlaser = {\n\t\t\trange = 780,\n\t\t\treloadtime = 1.4,\n\t\t\tdamage = { default = 480 },\n\t\t},\n\t},\n})\n\nunitDefs.corbulwark = tableMerge(unitDefs["
   },
   {
     "id": "armdepawner",
@@ -108,7 +137,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 1750 -> 2300 (+31%)",
+      "metalcost: 820 -> 1250 (+52%)",
+      "energycost: 13000 -> 22000 (+69%)",
+      "buildtime: 19000 -> 26000 (+37%)",
+      "weapon \"armflak_gun\" tuned: range=1050, reloadtime=0.35",
+      "tooltip: \"Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armdepawner = tableMerge(unitDefs['armflak'], {\n\tname = 'The Depawner',\n\tunitname = 'armdepawner',\n\tmetalcost = 1250,\n\tenergycost = 22000,\n\tbuildtime = 26000,\n\thealth = 2300,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Depawner',\n\t\ti18n_en_tooltip = 'Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.',\n\t},\n\tweapondefs = {\n\t\tarmflak_gun = {\n\t\t\trange = 1050,\n\t\t\treloadtime = "
   },
   {
     "id": "armhyperreactor",
@@ -133,7 +171,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 3800 -> 9000 (+137%)",
+      "metalcost: 3350 -> 24000 (+616%)",
+      "energycost: 18000 -> 340000 (+1789%)",
+      "buildtime: 54000 -> 260000 (+381%)",
+      "energystorage: undefined -> 4000",
+      "tooltip: \"Massively upscaled Fusion Reactor. Produces 3000 energy.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armhyperreactor = tableMerge(unitDefs['armfus'], {\n\tname = 'Hyper Reactor',\n\tunitname = 'armhyperreactor',\n\tmetalcost = 24000,\n\tenergycost = 340000,\n\tbuildtime = 260000,\n\thealth = 9000,\n\tenergymake = 3000,\n\tenergystorage = 4000,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Hyper Reactor',\n\t\ti18n_en_tooltip = 'Massively upscaled Fusion Reactor. Produces 3000 energy.',\n\t\ttechlevel = 4,\n\t},\n})\n\nunitDefs.corhyperreactor = tableMerge(unitDefs['corfus'], {\n\tname = 'Hyper Reactor',\n\tunitname = 'corhyperrea"
   },
   {
     "id": "arminterceptor_artillery",
@@ -157,7 +204,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 3300 -> 2400 (-27%)",
+      "metalcost: 1500 -> 650 (-57%)",
+      "energycost: 38000 -> 16000 (-58%)",
+      "buildtime: 60000 -> 22000 (-63%)",
+      "weapon \"amd_rocket\" tuned: coverage=2600, reloadtime=1.1, stockpiletime=40",
+      "tooltip: \"Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.arminterceptor_artillery = tableMerge(unitDefs['armamd'], {\n\tname = 'Artillery Interceptor',\n\tunitname = 'arminterceptor_artillery',\n\tmetalcost = 650,\n\tenergycost = 16000,\n\tbuildtime = 22000,\n\thealth = 2400,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Artillery Interceptor',\n\t\ti18n_en_tooltip = 'Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondefs = {\n\t\tamd_rocket = {\n"
   },
   {
     "id": "arminterceptor_energy",
@@ -181,7 +237,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 2600 -> 2200 (-15%)",
+      "metalcost: 440 -> 900 (+105%)",
+      "energycost: 4700 -> 24000 (+411%)",
+      "buildtime: 11300 -> 20000 (+77%)",
+      "weapon \"arm_laserh1\" tuned: interceptor=1, coverage=1600, range=900, reloadtime=0.35, energypershot=120",
+      "tooltip: \"Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.\""
+    ],
+    "rawCode": "20 },\n\t\t\tdamage = { default = 1500 },\n\t\t},\n\t},\n})\n\nunitDefs.arminterceptor_energy = tableMerge(unitDefs['armhlt'], {\n\tname = 'Energy Interceptor',\n\tunitname = 'arminterceptor_energy',\n\tmetalcost = 900,\n\tenergycost = 24000,\n\tbuildtime = 20000,\n\thealth = 2200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Energy Interceptor',\n\t\ti18n_en_tooltip = 'Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondef"
   },
   {
     "id": "armllt_armored",
@@ -205,7 +270,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 620 -> 1860 (+200%)",
+      "metalcost: 85 -> 215 (+153%)",
+      "energycost: 680 -> 900 (+32%)",
+      "buildtime: 2400 -> 3600 (+50%)",
+      "tooltip: \"Heavily armored laser tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.\""
+    ],
+    "rawCode": " onlytargetcategory = \"NOTSUB\" })\n\treturn def\nend\n\nunitDefs.armllt_armored = addSelfShield(tableMerge(unitDefs['armllt'], {\n\tname = 'Armored Tower',\n\tunitname = 'armllt_armored',\n\tmetalcost = 215,\n\tenergycost = 900,\n\tbuildtime = 3600,\n\thealth = 1860,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Armored Tower',\n\t\ti18n_en_tooltip = 'Heavily armored laser tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.',\n\t},\n}), 700, 62, 25)\n\nunitDefs.corllt_armored = addSelfShield(tableMerge(unitDefs['corllt'], {\n"
   },
   {
     "id": "armllt_hp",
@@ -229,7 +302,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 620 -> 930 (+50%)",
+      "metalcost: 85 -> 255 (+200%)",
+      "energycost: 680 -> 2380 (+250%)",
+      "buildtime: 2400 -> 6000 (+150%)",
+      "weapon \"arm_lightlaser\" tuned: range=688, energypershot=80",
+      "tooltip: \"High Power variant of the light laser tower: much more expensive to build and run, but longer range and far higher damage.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armllt_hp = tableMerge(unitDefs['armllt'], {\n\tname = 'High Power Laser Tower',\n\tunitname = 'armllt_hp',\n\tmetalcost = 255,\n\tenergycost = 2380,\n\tbuildtime = 6000,\n\thealth = 930,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'High Power Laser Tower',\n\t\ti18n_en_tooltip = 'High Power variant of the light laser tower: much more expensive to build and run, but longer range and far higher damage.',\n\t},\n\tweapondefs = {\n\t\tarm_lightlaser = {\n\t\t\trange = 688,\n\t\t\tenergypershot = 80,\n\t\t\tdamage = { default = 187.5, c"
   },
   {
     "id": "armllt_rapid",
@@ -253,7 +335,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 620 -> 680 (+10%)",
+      "metalcost: 85 -> 140 (+65%)",
+      "energycost: 680 -> 1600 (+135%)",
+      "buildtime: 2400 -> 3200 (+33%)",
+      "weapon \"arm_lightlaser\" tuned: areaofeffect=40, reloadtime=0.1, energypershot=55",
+      "tooltip: \"High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armllt_rapid = tableMerge(unitDefs['armllt'], {\n\tname = 'Rapid Fire Tower',\n\tunitname = 'armllt_rapid',\n\tmetalcost = 140,\n\tenergycost = 1600,\n\tbuildtime = 3200,\n\thealth = 680,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Rapid Fire Tower',\n\t\ti18n_en_tooltip = 'High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.',\n\t},\n\tweapondefs = {\n\t\tarm_lightlaser = {\n\t\t\tareaofeffect = 40,\n\t\t\treloadtime = 0.1,\n\t\t\tenergypershot "
   },
   {
     "id": "armsupportrelay",
@@ -278,7 +369,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs7)",
       "mark magic 10 (tweakdefs7)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 560 -> 2600 (+364%)",
+      "metalcost: 230 -> 1400 (+509%)",
+      "energycost: 3200 -> 14000 (+338%)",
+      "buildtime: 5300 -> 12000 (+126%)",
+      "tooltip: \"Long-range assist & repair turret with a much larger radius than the standard construction turret.\""
+    ],
+    "rawCode": "-------------------------------------------------\n\nunitDefs.armsupportrelay = tableMerge(unitDefs['armnanotc'], {\n\tname = 'Support Relay',\n\tunitname = 'armsupportrelay',\n\tmetalcost = 1400,\n\tenergycost = 14000,\n\tbuildtime = 12000,\n\thealth = 2600,\n\tbuilddistance = 900,\n\tworkertime = 500,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Support Relay',\n\t\ti18n_en_tooltip = 'Long-range assist & repair turret with a much larger radius than the standard construction turret.',\n\t},\n})\n\nunitDefs.corsupportrelay = tableMerge(unitDefs['cornanotc'], {\n\tname = 'Support Relay'"
   },
   {
     "id": "armthort4",
@@ -329,7 +428,19 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 56000 -> 225000 (+302%)",
+      "metalcost: 9000 -> 35000 (+289%)",
+      "energycost: 240000 -> 596000 (+148%)",
+      "buildtime: 320000 -> 380000 (+19%)",
+      "mass: undefined -> 16000",
+      "weapon \"thunder\" tuned: areaofeffect=60, energypershot=1500, intensity=56, range=850, reloadtime=2.8, thickness=2.7",
+      "weapon \"emp\" tuned: areaofeffect=24, range=650",
+      "weapon \"empmissile\" tuned: areaofeffect=284, range=1250, reloadtime=3, stockpiletime=55, weaponacceleration=100, weapontimer=2.5",
+      "tooltip: \"Ultimate Terminator Tank\""
+    ],
+    "rawCode": "it Printer\n-- Authos: Waffles_II\nlocal unitDefs, tableMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000"
   },
   {
     "id": "bioprinter",
@@ -379,7 +490,9 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 36
+    "presetCount": 36,
+    "changes": null,
+    "rawCode": "on inserts\n-- Authos: Waffles_II\nlocal unitDefs, tableMerge,bioprinter =\nUnitDefs or {},\ntable.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulse"
   },
   {
     "id": "birdangler",
@@ -428,7 +541,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 11100 -> 2230 (-80%)",
+      "metalcost: 240 -> 2900 (+1108%)",
+      "energycost: 6000 -> 65000 (+983%)",
+      "buildtime: 5200 -> 19000 (+265%)",
+      "weapon \"weapon\" tuned: reloadtime=3.6, cameraShake=700, range=3200, flighttime=8, name=\"Deadly Defensive Spores\"",
+      "tooltip: \"Heavy long range Anti Air Turret\""
+    ],
+    "rawCode": "able.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerge(\nunitDefs['raptor_tu"
   },
   {
     "id": "birdofprey",
@@ -477,7 +599,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 1000 -> 930 (-7%)",
+      "metalcost: 72 -> 460 (+539%)",
+      "energycost: 2200 -> 15000 (+582%)",
+      "buildtime: 1950 -> 19000 (+874%)",
+      "weapon \"weapon\" tuned: reloadtime=0.7",
+      "tooltip: \"Khrathm... no, not that one! Air Fighter\""
+    ],
+    "rawCode": "seer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerge(\nunitDefs['raptor_turret_basic_t2_v1'],\n{\nname='Sp"
   },
   {
     "id": "corassemblycomplex",
@@ -502,7 +633,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 3000 -> 4200 (+40%)",
+      "metalcost: 570 -> 2600 (+356%)",
+      "energycost: 1550 -> 26000 (+1577%)",
+      "buildtime: 5650 -> 24000 (+325%)",
+      "tooltip: \"Upgraded Vehicle Plant with much higher build power.\""
+    ],
+    "rawCode": "icle Plant with much higher build power.',\n\t},\n})\n\nunitDefs.corassemblycomplex = tableMerge(unitDefs['corvp'], {\n\tname = 'Assembly Complex',\n\tunitname = 'corassemblycomplex',\n\tmetalcost = 2600,\n\tenergycost = 26000,\n\tbuildtime = 24000,\n\thealth = 4200,\n\tworkertime = 900,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Assembly Complex',\n\t\ti18n_en_tooltip = 'Upgraded Vehicle Plant with much higher build power.',\n\t},\n})\n\nunitDefs.legassemblycomplex = tableMerge(unitDefs['legvp'], {\n\tname = 'Assembly Complex',\n\tunitname = 'legassemblycomplex',\n\tmetalcost = 2600,\n\ten"
   },
   {
     "id": "corbulwark",
@@ -527,7 +666,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 2750 -> 7200 (+162%)",
+      "metalcost: 480 -> 3400 (+608%)",
+      "energycost: 4700 -> 42000 (+794%)",
+      "buildtime: 11400 -> 38000 (+233%)",
+      "weapon \"cor_laserh1\" tuned: range=780, reloadtime=1.4",
+      "tooltip: \"Heavy area-control defense tower, tougher and harder-hitting than the standard laser tower.\""
+    ],
+    "rawCode": "= 1.4,\n\t\t\tdamage = { default = 480 },\n\t\t},\n\t},\n})\n\nunitDefs.corbulwark = tableMerge(unitDefs['corhlt'], {\n\tname = 'Bulwark Tower',\n\tunitname = 'corbulwark',\n\tmetalcost = 3400,\n\tenergycost = 42000,\n\tbuildtime = 38000,\n\thealth = 7200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Bulwark Tower',\n\t\ti18n_en_tooltip = 'Heavy area-control defense tower, tougher and harder-hitting than the standard laser tower.',\n\t},\n\tweapondefs = {\n\t\tlaser = {\n\t\t\trange = 780,\n\t\t\treloadtime = 1.4,\n\t\t\tdamage = { default = 480 },\n\t\t},\n\t},\n})\n\nunitDefs.legbulwark = tableMerge(unitDefs["
   },
   {
     "id": "cordemont4",
@@ -578,7 +726,19 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 18000 -> 145000 (+706%)",
+      "metalcost: 6000 -> 23000 (+283%)",
+      "energycost: 90000 -> 90000 (0%)",
+      "buildtime: 160000 -> 360000 (+125%)",
+      "mass: undefined -> 9000",
+      "energystorage: undefined -> 1000",
+      "weapon \"dmaw\" tuned: areaofeffect=172, damageareaofeffect=5, range=560, rgbcolor=\"0.91 0.88 1\", rgbcolor2=\"0.8 0.8 0.91\", sprayangle=320",
+      "weapon \"karg_shoulder\" tuned: areaofeffect=36, range=950, reloadtime=0.25, weaponvelocity=980",
+      "tooltip: \"Earth scorching Demon\""
+    ],
+    "rawCode": "\n-- Authos: Waffles_II\nlocal unitDefs, tableMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname ="
   },
   {
     "id": "cordepawner",
@@ -602,7 +762,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 1840 -> 2300 (+25%)",
+      "metalcost: 850 -> 1250 (+47%)",
+      "energycost: 14000 -> 22000 (+57%)",
+      "buildtime: 20000 -> 26000 (+30%)",
+      "weapon \"armflak_gun\" tuned: range=1050, reloadtime=0.35",
+      "tooltip: \"Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.\""
+    ],
+    "rawCode": "e = 0.35,\n\t\t\tdamage = { vtol = 620 },\n\t\t},\n\t},\n})\n\nunitDefs.cordepawner = tableMerge(unitDefs['corflak'], {\n\tname = 'The Depawner',\n\tunitname = 'cordepawner',\n\tmetalcost = 1250,\n\tenergycost = 22000,\n\tbuildtime = 26000,\n\thealth = 2300,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Depawner',\n\t\ti18n_en_tooltip = 'Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.',\n\t},\n\tweapondefs = {\n\t\tarmflak_gun = {\n\t\t\trange = 1050,\n\t\t\treloadtime = "
   },
   {
     "id": "corgol_heavy",
@@ -626,7 +795,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 7800 -> 8200 (+5%)",
+      "metalcost: 1650 -> 2300 (+39%)",
+      "energycost: 28000 -> 31000 (+11%)",
+      "buildtime: 40000 -> 50000 (+25%)",
+      "speed: 39 -> 30 (-23%)",
+      "weapon \"cor_gol\" tuned: weapontype=\"BeamLaser\", range=650, reloadtime=3.6, beamtime=0.3",
+      "tooltip: \"Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.\""
+    ],
+    "rawCode": "ders = 2850, subs = 200, vtol = 60 },\n\t\t},\n\t},\n})\n\nunitDefs.corgol_heavy = tableMerge(unitDefs['corgol'], {\n\tname = 'The Dozer',\n\tunitname = 'corgol_heavy',\n\tmetalcost = 2300,\n\tenergycost = 31000,\n\tbuildtime = 50000,\n\thealth = 8200,\n\tspeed = 30,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Dozer',\n\t\ti18n_en_tooltip = 'Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.',\n\t},\n\tweapondefs = {\n\t\tcor_gol = {\n\t\t\tweapontype = 'BeamLaser',\n\t\t\trange = 650,\n\t\t\treloadtime = 3.6,\n\t\t\tbeamtime = 0.3,\n\t\t\tdamage = { default = 1900, commanders = "
   },
   {
     "id": "corhyperreactor",
@@ -651,7 +830,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 4300 -> 9000 (+109%)",
+      "metalcost: 3600 -> 24000 (+567%)",
+      "energycost: 22000 -> 340000 (+1445%)",
+      "buildtime: 59000 -> 260000 (+341%)",
+      "energystorage: undefined -> 4000",
+      "tooltip: \"Massively upscaled Fusion Reactor. Produces 3300 energy.\""
+    ],
+    "rawCode": ". Produces 3000 energy.',\n\t\ttechlevel = 4,\n\t},\n})\n\nunitDefs.corhyperreactor = tableMerge(unitDefs['corfus'], {\n\tname = 'Hyper Reactor',\n\tunitname = 'corhyperreactor',\n\tmetalcost = 24000,\n\tenergycost = 340000,\n\tbuildtime = 260000,\n\thealth = 9000,\n\tenergymake = 3300,\n\tenergystorage = 4000,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Hyper Reactor',\n\t\ti18n_en_tooltip = 'Massively upscaled Fusion Reactor. Produces 3300 energy.',\n\t\ttechlevel = 4,\n\t},\n})\n\nunitDefs.leghyperreactor = tableMerge(unitDefs['legfus'], {\n\tname = 'Hyper Reactor',\n\tunitname = 'leghyperrea"
   },
   {
     "id": "corinterceptor_artillery",
@@ -675,7 +863,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 3300 -> 2400 (-27%)",
+      "metalcost: 1500 -> 650 (-57%)",
+      "energycost: 40000 -> 16000 (-60%)",
+      "buildtime: 60000 -> 22000 (-63%)",
+      "weapon \"fmd_rocket\" tuned: coverage=2600, reloadtime=1.1, stockpiletime=40",
+      "tooltip: \"Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.\""
+    ],
+    "rawCode": "20 },\n\t\t\tdamage = { default = 1500 },\n\t\t},\n\t},\n})\n\nunitDefs.corinterceptor_artillery = tableMerge(unitDefs['corfmd'], {\n\tname = 'Artillery Interceptor',\n\tunitname = 'corinterceptor_artillery',\n\tmetalcost = 650,\n\tenergycost = 16000,\n\tbuildtime = 22000,\n\thealth = 2400,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Artillery Interceptor',\n\t\ti18n_en_tooltip = 'Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondefs = {\n\t\tfmd_rocket = {\n"
   },
   {
     "id": "corinterceptor_energy",
@@ -699,7 +896,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 2750 -> 2200 (-20%)",
+      "metalcost: 480 -> 900 (+88%)",
+      "energycost: 4700 -> 24000 (+411%)",
+      "buildtime: 11400 -> 20000 (+75%)",
+      "weapon \"cor_laserh1\" tuned: interceptor=1, coverage=1600, range=900, reloadtime=0.35, energypershot=120",
+      "tooltip: \"Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.\""
+    ],
+    "rawCode": "00, commanders = 3000, vtol = 3000 },\n\t\t},\n\t},\n})\n\nunitDefs.corinterceptor_energy = tableMerge(unitDefs['corhlt'], {\n\tname = 'Energy Interceptor',\n\tunitname = 'corinterceptor_energy',\n\tmetalcost = 900,\n\tenergycost = 24000,\n\tbuildtime = 20000,\n\thealth = 2200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Energy Interceptor',\n\t\ti18n_en_tooltip = 'Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondef"
   },
   {
     "id": "corllt_armored",
@@ -723,7 +929,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 650 -> 1950 (+200%)",
+      "metalcost: 90 -> 225 (+150%)",
+      "energycost: 700 -> 920 (+31%)",
+      "buildtime: 2500 -> 3750 (+50%)",
+      "tooltip: \"Heavily armored laser tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.\""
+    ],
+    "rawCode": "always-on personal shield.',\n\t},\n}), 700, 62, 25)\n\nunitDefs.corllt_armored = addSelfShield(tableMerge(unitDefs['corllt'], {\n\tname = 'Armored Tower',\n\tunitname = 'corllt_armored',\n\tmetalcost = 225,\n\tenergycost = 920,\n\tbuildtime = 3750,\n\thealth = 1950,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Armored Tower',\n\t\ti18n_en_tooltip = 'Heavily armored laser tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.',\n\t},\n}), 700, 62, 25)\n\nunitDefs.leglht_armored = addSelfShield(tableMerge(unitDefs['leglht'], {\n"
   },
   {
     "id": "corllt_hp",
@@ -747,7 +961,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 650 -> 975 (+50%)",
+      "metalcost: 90 -> 270 (+200%)",
+      "energycost: 700 -> 2450 (+250%)",
+      "buildtime: 2500 -> 6250 (+150%)",
+      "weapon \"cor_lightlaser\" tuned: range=696, energypershot=80",
+      "tooltip: \"High Power variant of the light laser tower: much more expensive to build and run, but longer range and far higher damage.\""
+    ],
+    "rawCode": "rs = 281, subs = 12.5, vtol = 12.5 },\n\t\t},\n\t},\n})\n\nunitDefs.corllt_hp = tableMerge(unitDefs['corllt'], {\n\tname = 'High Power Laser Tower',\n\tunitname = 'corllt_hp',\n\tmetalcost = 270,\n\tenergycost = 2450,\n\tbuildtime = 6250,\n\thealth = 975,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'High Power Laser Tower',\n\t\ti18n_en_tooltip = 'High Power variant of the light laser tower: much more expensive to build and run, but longer range and far higher damage.',\n\t},\n\tweapondefs = {\n\t\tcor_lightlaser = {\n\t\t\trange = 696,\n\t\t\tenergypershot = 80,\n\t\t\tdamage = { default = 187.5, c"
   },
   {
     "id": "corllt_rapid",
@@ -771,7 +994,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 650 -> 710 (+9%)",
+      "metalcost: 90 -> 145 (+61%)",
+      "energycost: 700 -> 1650 (+136%)",
+      "buildtime: 2500 -> 3300 (+32%)",
+      "weapon \"cor_lightlaser\" tuned: areaofeffect=40, reloadtime=0.1, energypershot=55",
+      "tooltip: \"High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.\""
+    ],
+    "rawCode": "ommanders = 33, subs = 2, vtol = 2 },\n\t\t},\n\t},\n})\n\nunitDefs.corllt_rapid = tableMerge(unitDefs['corllt'], {\n\tname = 'Rapid Fire Tower',\n\tunitname = 'corllt_rapid',\n\tmetalcost = 145,\n\tenergycost = 1650,\n\tbuildtime = 3300,\n\thealth = 710,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Rapid Fire Tower',\n\t\ti18n_en_tooltip = 'High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.',\n\t},\n\tweapondefs = {\n\t\tcor_lightlaser = {\n\t\t\tareaofeffect = 40,\n\t\t\treloadtime = 0.1,\n\t\t\tenergypershot "
   },
   {
     "id": "corsupportrelay",
@@ -796,7 +1028,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs7)",
       "mark magic 10 (tweakdefs7)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 560 -> 2600 (+364%)",
+      "metalcost: 230 -> 1400 (+509%)",
+      "energycost: 3200 -> 14000 (+338%)",
+      "buildtime: 5300 -> 12000 (+126%)",
+      "tooltip: \"Long-range assist & repair turret with a much larger radius than the standard construction turret.\""
+    ],
+    "rawCode": "s than the standard construction turret.',\n\t},\n})\n\nunitDefs.corsupportrelay = tableMerge(unitDefs['cornanotc'], {\n\tname = 'Support Relay',\n\tunitname = 'corsupportrelay',\n\tmetalcost = 1400,\n\tenergycost = 14000,\n\tbuildtime = 12000,\n\thealth = 2600,\n\tbuilddistance = 900,\n\tworkertime = 500,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Support Relay',\n\t\ti18n_en_tooltip = 'Long-range assist & repair turret with a much larger radius than the standard construction turret.',\n\t},\n})\n\nunitDefs.legsupportrelay = tableMerge(unitDefs['legnanotc'], {\n\tname = 'Support Relay'"
   },
   {
     "id": "corthermitet3",
@@ -847,7 +1087,19 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 15000 -> 38000 (+153%)",
+      "metalcost: 3500 -> 9100 (+160%)",
+      "energycost: 60000 -> 140000 (+133%)",
+      "buildtime: 188000 -> 131000 (-30%)",
+      "speed: 42.3 -> 52 (+23%)",
+      "mass: undefined -> 210000",
+      "weapon \"thermite_laser\" tuned: areaofeffect=96, craterareaofeffect=96, energypershot=550, range=960, reloadtime=2.2, thickness=7",
+      "weapon \"tmaw\" tuned: accuracy=700, areaofeffect=128, range=450, reloadtime=0.39996, weaponvelocity=600",
+      "tooltip: \"Experimental Heat Ray Heavy Spider\""
+    ],
+    "rawCode": " Waffles_II\nlocal unitDefs, tableMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor"
   },
   {
     "id": "epicunitprinter",
@@ -898,7 +1150,9 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": null,
+    "rawCode": "initybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank Unit to crush your enemies',\n\t\tcustomparams = {\n\t\t\t"
   },
   {
     "id": "grenadier",
@@ -947,7 +1201,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 2000 -> 3200 (+60%)",
+      "metalcost: 396 -> 1800 (+355%)",
+      "energycost: 12320 -> 33500 (+172%)",
+      "weapon \"goolauncher\" tuned: accuracy=280, reloadtime=7, range=1350, impulsefactor=2.4, intensity=28",
+      "tooltip: \"Grenadier Beetle\""
+    ],
+    "rawCode": "Defs, tableMerge,bioprinter =\nUnitDefs or {},\ntable.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nuni"
   },
   {
     "id": "hunterdrone",
@@ -998,7 +1260,9 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [],
+    "rawCode": "corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank Unit to crush you"
   },
   {
     "id": "infinitybox",
@@ -1049,7 +1313,18 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 67000 -> 22000 (-67%)",
+      "metalcost: 2500 -> 119000 (+4660%)",
+      "energycost: 25000 -> 600000 (+2300%)",
+      "buildtime: 1000 -> 2500000 (+249900%)",
+      "sightdistance: undefined -> 273",
+      "metalstorage: undefined -> 600",
+      "energystorage: undefined -> 80000",
+      "tooltip: \"Oww come on, what´s in the box?! Produces energy and metal\""
+    ],
+    "rawCode": "leMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Term"
   },
   {
     "id": "jaeger",
@@ -1100,7 +1375,21 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 300000 -> 1800000 (+500%)",
+      "metalcost: 300000 -> 409000 (+36%)",
+      "energycost: 3000000 -> 14000000 (+367%)",
+      "buildtime: 300000 -> 4100000 (+1267%)",
+      "speed: 15 -> 46 (+207%)",
+      "mass: undefined -> 810000",
+      "weapon \"corcomlaserboss\" tuned: areaofeffect=64, corethickness=0.3, ergypershot=1000, thickness=24",
+      "weapon \"corcomsealaserboss\" tuned: areaofeffect=48, corethickness=0.3, energypershot=1000, thickness=24",
+      "weapon \"disintegratorxl\" tuned: reloadtime=2.4, energypershot=70000",
+      "weapon \"melee\" tuned: areaofeffect=180, avoidfeature=0, avoidfriendly=0, camerashake=0, collidefriendly=0, craterboost=0",
+      "tooltip: \"Experimental Hunter Killer\""
+    ],
+    "rawCode": "hort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank "
   },
   {
     "id": "jaegermk2",
@@ -1150,7 +1439,9 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 36
+    "presetCount": 36,
+    "changes": null,
+    "rawCode": "ordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank Unit to"
   },
   {
     "id": "legassemblycomplex",
@@ -1175,7 +1466,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 3000 -> 4200 (+40%)",
+      "metalcost: 570 -> 2600 (+356%)",
+      "energycost: 1650 -> 26000 (+1476%)",
+      "buildtime: 5700 -> 24000 (+321%)",
+      "tooltip: \"Upgraded Vehicle Plant with much higher build power.\""
+    ],
+    "rawCode": "icle Plant with much higher build power.',\n\t},\n})\n\nunitDefs.legassemblycomplex = tableMerge(unitDefs['legvp'], {\n\tname = 'Assembly Complex',\n\tunitname = 'legassemblycomplex',\n\tmetalcost = 2600,\n\tenergycost = 26000,\n\tbuildtime = 24000,\n\thealth = 4200,\n\tworkertime = 900,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Assembly Complex',\n\t\ti18n_en_tooltip = 'Upgraded Vehicle Plant with much higher build power.',\n\t},\n})\n\n----------------------------------------------------------------------------------------------\n-- UTILITY: Support Relay -- long-range assist/repa"
   },
   {
     "id": "legbulwark",
@@ -1200,7 +1499,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 550 -> 7200 (+1209%)",
+      "metalcost: 70 -> 3400 (+4757%)",
+      "energycost: 550 -> 42000 (+7536%)",
+      "buildtime: 2200 -> 38000 (+1627%)",
+      "weapon \"heat_ray\" tuned: range=780, reloadtime=1.1",
+      "tooltip: \"Heavy area-control defense tower, tougher and harder-hitting than the standard heat ray tower.\""
+    ],
+    "rawCode": "= 1.4,\n\t\t\tdamage = { default = 480 },\n\t\t},\n\t},\n})\n\nunitDefs.legbulwark = tableMerge(unitDefs['leglht'], {\n\tname = 'Bulwark Tower',\n\tunitname = 'legbulwark',\n\tmetalcost = 3400,\n\tenergycost = 42000,\n\tbuildtime = 38000,\n\thealth = 7200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Bulwark Tower',\n\t\ti18n_en_tooltip = 'Heavy area-control defense tower, tougher and harder-hitting than the standard heat ray tower.',\n\t},\n})\n\n----------------------------------------------------------------------------------------------\n-- PRODUCTION: Assembly Complex -- a beefed-up ve"
   },
   {
     "id": "legdepawner",
@@ -1224,7 +1532,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 1750 -> 2300 (+31%)",
+      "metalcost: 820 -> 1250 (+52%)",
+      "energycost: 13000 -> 22000 (+69%)",
+      "buildtime: 19000 -> 26000 (+37%)",
+      "weapon \"leg_t2_microflak\" tuned: range=1050, reloadtime=0.35",
+      "tooltip: \"Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.\""
+    ],
+    "rawCode": "e = 0.35,\n\t\t\tdamage = { vtol = 620 },\n\t\t},\n\t},\n})\n\nunitDefs.legdepawner = tableMerge(unitDefs['legflak'], {\n\tname = 'The Depawner',\n\tunitname = 'legdepawner',\n\tmetalcost = 1250,\n\tenergycost = 22000,\n\tbuildtime = 26000,\n\thealth = 2300,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Depawner',\n\t\ti18n_en_tooltip = 'Anti-air turret specialized against enemy drone-carrier/spawner aircraft -- hits VTOL targets much harder than a standard flak tower, killing carriers before they can deploy.',\n\t},\n\tweapondefs = {\n\t\tleg_t2_microflak = {\n\t\t\trange = 1050,\n\t\t\treloadti"
   },
   {
     "id": "leghyperreactor",
@@ -1249,7 +1566,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 4600 -> 9000 (+96%)",
+      "metalcost: 4000 -> 24000 (+500%)",
+      "energycost: 25000 -> 340000 (+1260%)",
+      "buildtime: 66000 -> 260000 (+294%)",
+      "energystorage: undefined -> 4000",
+      "tooltip: \"Massively upscaled Fusion Reactor. Produces 3600 energy.\""
+    ],
+    "rawCode": ". Produces 3300 energy.',\n\t\ttechlevel = 4,\n\t},\n})\n\nunitDefs.leghyperreactor = tableMerge(unitDefs['legfus'], {\n\tname = 'Hyper Reactor',\n\tunitname = 'leghyperreactor',\n\tmetalcost = 24000,\n\tenergycost = 340000,\n\tbuildtime = 260000,\n\thealth = 9000,\n\tenergymake = 3600,\n\tenergystorage = 4000,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Hyper Reactor',\n\t\ti18n_en_tooltip = 'Massively upscaled Fusion Reactor. Produces 3600 energy.',\n\t\ttechlevel = 4,\n\t},\n})\n\n----------------------------------------------------------------------------------------------\n-- DEFENSE: Bu"
   },
   {
     "id": "leginc_heavy",
@@ -1273,7 +1599,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 9000 -> 7600 (-16%)",
+      "metalcost: 2300 -> 2100 (-9%)",
+      "energycost: 46000 -> 29000 (-37%)",
+      "buildtime: 69700 -> 46000 (-34%)",
+      "speed: 24 -> 26 (+8%)",
+      "weapon \"heatraylarge\" tuned: range=725, reloadtime=3.4, beamtime=0.3",
+      "tooltip: \"Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.\""
+    ],
+    "rawCode": "ders = 2850, subs = 200, vtol = 60 },\n\t\t},\n\t},\n})\n\nunitDefs.leginc_heavy = tableMerge(unitDefs['leginc'], {\n\tname = 'The Beamer',\n\tunitname = 'leginc_heavy',\n\tmetalcost = 2100,\n\tenergycost = 29000,\n\tbuildtime = 46000,\n\thealth = 7600,\n\tspeed = 26,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'The Beamer',\n\t\ti18n_en_tooltip = 'Slow, heavy assault unit. Single laser weapon: high damage, slow fire rate.',\n\t},\n\tweapondefs = {\n\t\theatraylarge = {\n\t\t\trange = 725,\n\t\t\treloadtime = 3.4,\n\t\t\tbeamtime = 0.3,\n\t\t\tdamage = { default = 1850, commanders = 900, vtol = 55 },\n\t\t},"
   },
   {
     "id": "leginterceptor_artillery",
@@ -1297,7 +1633,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 3650 -> 2400 (-34%)",
+      "metalcost: 1500 -> 650 (-57%)",
+      "energycost: 40000 -> 16000 (-60%)",
+      "buildtime: 60000 -> 22000 (-63%)",
+      "weapon \"fmd_rocket\" tuned: coverage=2600, reloadtime=1.1, stockpiletime=40",
+      "tooltip: \"Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.\""
+    ],
+    "rawCode": "20 },\n\t\t\tdamage = { default = 1500 },\n\t\t},\n\t},\n})\n\nunitDefs.leginterceptor_artillery = tableMerge(unitDefs['legabm'], {\n\tname = 'Artillery Interceptor',\n\tunitname = 'leginterceptor_artillery',\n\tmetalcost = 650,\n\tenergycost = 16000,\n\tbuildtime = 22000,\n\thealth = 2400,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Artillery Interceptor',\n\t\ti18n_en_tooltip = 'Missile-based point defense. Stockpiles interceptor rockets to shoot down incoming missile and stockpile-artillery attacks.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondefs = {\n\t\tfmd_rocket = {\n"
   },
   {
     "id": "leginterceptor_energy",
@@ -1321,7 +1666,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs6)",
       "mark magic 10 (tweakdefs6)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 550 -> 2200 (+300%)",
+      "metalcost: 70 -> 900 (+1186%)",
+      "energycost: 550 -> 24000 (+4264%)",
+      "buildtime: 2200 -> 20000 (+809%)",
+      "weapon \"heat_ray\" tuned: interceptor=1, coverage=1600, range=900, reloadtime=0.35",
+      "tooltip: \"Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.\""
+    ],
+    "rawCode": "00, commanders = 3000, vtol = 3000 },\n\t\t},\n\t},\n})\n\nunitDefs.leginterceptor_energy = tableMerge(unitDefs['leglht'], {\n\tname = 'Energy Interceptor',\n\tunitname = 'leginterceptor_energy',\n\tmetalcost = 900,\n\tenergycost = 24000,\n\tbuildtime = 20000,\n\thealth = 2200,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Energy Interceptor',\n\t\ti18n_en_tooltip = 'Instant-hit beam point defense. No stockpile needed, always ready -- shoots down incoming missile and stockpile-artillery attacks the moment they enter range.',\n\t\ttechlevel = 2,\n\t\tunitgroup = 'antinuke',\n\t},\n\tweapondef"
   },
   {
     "id": "leglht_armored",
@@ -1345,7 +1699,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 550 -> 1650 (+200%)",
+      "metalcost: 70 -> 175 (+150%)",
+      "energycost: 550 -> 720 (+31%)",
+      "buildtime: 2200 -> 3300 (+50%)",
+      "tooltip: \"Heavily armored heat ray tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.\""
+    ],
+    "rawCode": "always-on personal shield.',\n\t},\n}), 700, 62, 25)\n\nunitDefs.leglht_armored = addSelfShield(tableMerge(unitDefs['leglht'], {\n\tname = 'Armored Tower',\n\tunitname = 'leglht_armored',\n\tmetalcost = 175,\n\tenergycost = 720,\n\tbuildtime = 3300,\n\thealth = 1650,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Armored Tower',\n\t\ti18n_en_tooltip = 'Heavily armored heat ray tower: far more health, costs more metal, and mitigates incoming damage with a small always-on personal shield.',\n\t},\n}), 700, 62, 25)\n\n----------------------------------------------------------------------"
   },
   {
     "id": "leglht_hp",
@@ -1369,7 +1731,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs5)",
       "mark magic 10 (tweakdefs5)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 550 -> 825 (+50%)",
+      "metalcost: 70 -> 210 (+200%)",
+      "energycost: 550 -> 1925 (+250%)",
+      "buildtime: 2200 -> 5500 (+150%)",
+      "weapon \"heat_ray\" tuned: range=688, energypershot=70",
+      "tooltip: \"High Power variant of the light heat ray tower: much more expensive to build and run, but longer range and far higher damage.\""
+    ],
+    "rawCode": "rs = 281, subs = 12.5, vtol = 12.5 },\n\t\t},\n\t},\n})\n\nunitDefs.leglht_hp = tableMerge(unitDefs['leglht'], {\n\tname = 'High Power Laser Tower',\n\tunitname = 'leglht_hp',\n\tmetalcost = 210,\n\tenergycost = 1925,\n\tbuildtime = 5500,\n\thealth = 825,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'High Power Laser Tower',\n\t\ti18n_en_tooltip = 'High Power variant of the light heat ray tower: much more expensive to build and run, but longer range and far higher damage.',\n\t},\n\tweapondefs = {\n\t\theat_ray = {\n\t\t\trange = 688,\n\t\t\tenergypershot = 70,\n\t\t\tdamage = { default = 500 },\n\t\t},"
   },
   {
     "id": "leglht_rapid",
@@ -1393,7 +1764,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs4)",
       "mark magic 10 (tweakdefs4)"
     ],
-    "presetCount": 10
+    "presetCount": 10,
+    "changes": [
+      "health: 550 -> 610 (+11%)",
+      "metalcost: 70 -> 115 (+64%)",
+      "energycost: 550 -> 1300 (+136%)",
+      "buildtime: 2200 -> 3000 (+36%)",
+      "weapon \"heat_ray\" tuned: areaofeffect=30, reloadtime=0.25",
+      "tooltip: \"High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.\""
+    ],
+    "rawCode": "ommanders = 33, subs = 2, vtol = 2 },\n\t\t},\n\t},\n})\n\nunitDefs.leglht_rapid = tableMerge(unitDefs['leglht'], {\n\tname = 'Rapid Fire Tower',\n\tunitname = 'leglht_rapid',\n\tmetalcost = 115,\n\tenergycost = 1300,\n\tbuildtime = 3000,\n\thealth = 610,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Rapid Fire Tower',\n\t\ti18n_en_tooltip = 'High energy draw, low damage per shot, very high fire rate. Weak against single tough targets, excellent DPS against swarms of small units.',\n\t},\n\tweapondefs = {\n\t\theat_ray = {\n\t\t\tareaofeffect = 30,\n\t\t\treloadtime = 0.25,\n\t\t\tdamage = { default "
   },
   {
     "id": "legsupportrelay",
@@ -1418,7 +1798,15 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs7)",
       "mark magic 10 (tweakdefs7)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 560 -> 2600 (+364%)",
+      "metalcost: 230 -> 1400 (+509%)",
+      "energycost: 3200 -> 14000 (+338%)",
+      "buildtime: 5300 -> 12000 (+126%)",
+      "tooltip: \"Long-range assist & repair turret with a much larger radius than the standard construction turret.\""
+    ],
+    "rawCode": "s than the standard construction turret.',\n\t},\n})\n\nunitDefs.legsupportrelay = tableMerge(unitDefs['legnanotc'], {\n\tname = 'Support Relay',\n\tunitname = 'legsupportrelay',\n\tmetalcost = 1400,\n\tenergycost = 14000,\n\tbuildtime = 12000,\n\thealth = 2600,\n\tbuilddistance = 900,\n\tworkertime = 500,\n\tcustomparams = {\n\t\ti18n_en_humanname = 'Support Relay',\n\t\ti18n_en_tooltip = 'Long-range assist & repair turret with a much larger radius than the standard construction turret.',\n\t},\n})\n\n--------------------------------------------------------------------------------------"
   },
   {
     "id": "overcom",
@@ -1465,7 +1853,19 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 33
+    "presetCount": 33,
+    "changes": [
+      "health: 2800000 -> 1800000 (-36%)",
+      "metalcost: 10000000 -> 480000 (-95%)",
+      "energycost: 10000000 -> 14000000 (+40%)",
+      "buildtime: 750000000000 -> 4100000 (-100%)",
+      "speed: 15 -> 35 (+133%)",
+      "weapon \"emplightning\" tuned: areaofeffect=48, avoidfeature=false, beamttl=1, burst=10, burstrate=0.03333, craterareaofeffect=0",
+      "weapon \"armcomsealaserboss\" tuned: range=1050, energypershot=1000",
+      "weapon \"disintegratorxl\" tuned: avoidfriendly=true, weaponvelocity=450, gravityaffected=false, energypershot=200000, reloadtime=1.5",
+      "tooltip: \"When hope was lost, he kept building\""
+    ],
+    "rawCode": "r',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerge(\nunitDefs['raptor_turret_basic_t2_v1'],\n{\nname='Spitter',\nenergy"
   },
   {
     "id": "overseer",
@@ -1514,7 +1914,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "metalcost: 251 -> 1850 (+637%)",
+      "energycost: 5201 -> 39500 (+659%)",
+      "buildtime: 18000 -> 29000 (+61%)",
+      "sightdistance: undefined -> 800",
+      "weapon \"weapon\" tuned: reloadtime=0.5, range=400",
+      "tooltip: \"Raptor Overseer\""
+    ],
+    "rawCode": "rge,bioprinter =\nUnitDefs or {},\ntable.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter"
   },
   {
     "id": "portafus",
@@ -1565,7 +1974,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 56000 -> 12000 (-79%)",
+      "metalcost: 1500 -> 10900 (+627%)",
+      "energycost: 25000 -> 53000 (+112%)",
+      "buildtime: 1000 -> 265000 (+26400%)",
+      "sightdistance: undefined -> 273",
+      "energystorage: undefined -> 7000",
+      "tooltip: \"Portable, affordable, explosive! Produces 3300 energy\""
+    ],
+    "rawCode": "Defs, tableMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A "
   },
   {
     "id": "portfus",
@@ -1616,7 +2035,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 44500 -> 7000 (-84%)",
+      "metalcost: 750 -> 3700 (+393%)",
+      "energycost: 25000 -> 22000 (-12%)",
+      "buildtime: 1000 -> 58000 (+5700%)",
+      "sightdistance: undefined -> 273",
+      "energystorage: undefined -> 2000",
+      "tooltip: \"You can almost put it in your Pocket! Produces 1100 energy\""
+    ],
+    "rawCode": "cal unitDefs, tableMerge,armthort4,cordemont4,corthermitet3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescripti"
   },
   {
     "id": "raptorbioreactor",
@@ -1641,7 +2070,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs7)",
       "mark magic 10 (tweakdefs7)"
     ],
-    "presetCount": 11
+    "presetCount": 11,
+    "changes": [
+      "health: 56000 -> 11000 (-80%)",
+      "metalcost: 1500 -> 9800 (+553%)",
+      "energycost: 25000 -> 48000 (+92%)",
+      "buildtime: 1000 -> 240000 (+23900%)",
+      "sightdistance: undefined -> 273",
+      "energystorage: undefined -> 6000",
+      "tooltip: \"Salvaged Raptor bio-tech energy building. Produces 2800 energy.\""
+    ],
+    "rawCode": "----------------\n\nif unitDefs['lootboxgold'] then\n\tunitDefs.raptorbioreactor = tableMerge(unitDefs['lootboxgold'], {\n\t\tname = 'Raptor Bio-Reactor',\n\t\tunitname = 'raptorbioreactor',\n\t\tmetalcost = 9800,\n\t\tenergycost = 48000,\n\t\tbuildtime = 240000,\n\t\tenergymake = 2800,\n\t\tenergystorage = 6000,\n\t\tmetalmake = 0,\n\t\thealth = 11000,\n\t\treclaimable = true,\n\t\tsightdistance = 273,\n\t\tyardmap = \"oooooooooooooooooo\",\n\t\tcustomparams = {\n\t\t\ti18n_en_humanname = 'Raptor Bio-Reactor',\n\t\t\ti18n_en_tooltip = 'Salvaged Raptor bio-tech energy building. Produces 2800 energy.',\n\t\t\tr"
   },
   {
     "id": "regurgitator",
@@ -1690,7 +2129,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 350 -> 780 (+123%)",
+      "metalcost: 212 -> 820 (+287%)",
+      "energycost: 4550 -> 35000 (+669%)",
+      "buildtime: 9375 -> 24000 (+156%)",
+      "weapon \"acidspit\" tuned: burst=2, burstrate=0.5, name=\"Regurgitation\"",
+      "tooltip: \"Sprays Acid on enemies\""
+    ],
+    "rawCode": "renadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerge(\nunitDefs['raptor_turret_basic_t2_"
   },
   {
     "id": "slinger",
@@ -1739,7 +2187,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 11100 -> 4230 (-62%)",
+      "metalcost: 240 -> 2100 (+775%)",
+      "energycost: 6000 -> 39000 (+550%)",
+      "buildtime: 5200 -> 47000 (+804%)",
+      "weapon \"weapon\" tuned: accuracy=768, reloadtime=5.5, areaofeffect=256, range=1850, name=\"GOOLAUNCHER\", sprayangle=768",
+      "tooltip: \"Launches big Projecitels over greater distance\""
+    ],
+    "rawCode": "fs or {},\ntable.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerge(\nunitDefs"
   },
   {
     "id": "spitter",
@@ -1788,7 +2245,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs3)",
       "mark magic 10 (tweakdefs3)"
     ],
-    "presetCount": 35
+    "presetCount": 35,
+    "changes": [
+      "health: 1670 -> 2230 (+34%)",
+      "metalcost: 120 -> 870 (+625%)",
+      "energycost: 3000 -> 19000 (+533%)",
+      "buildtime: 2700 -> 19000 (+604%)",
+      "weapon \"weapon\" tuned: reloadtime=2.1, areaofeffect=192, range=850, name=\"GOOLAUNCHER\", sprayangle=512",
+      "tooltip: \"Launches AoE Projectiles\""
+    ],
+    "rawCode": "er =\nUnitDefs or {},\ntable.merge,\n'grenadier',\n'overseer',\n'spitter',\n'slinger',\n'birdangler',\n'regurgitator',\n'birdofprey',\n'overcom',\n'bioprinter'\n\n\nunitDefs.grenadier = tableMerge(\nunitDefs['raptorartillery'],\n{\nname='Grenadier',\nenergycost = 33500,\nmetalcost = 1800,\nhealth = 3200,\nunitname = \"grenadier\",\ncustomparams = {\ni18n_en_humanname = 'Grenadier Beetle',\ni18n_en_tooltip = 'Grenadier Beetle',\n},\nweapondefs = {\ngoolauncher = {\naccuracy = 280,\nreloadtime = 7,\nrange = 1350,\nimpulsefactor = 2.4,\nintensity = 28,\n}\n},\n}\n)\n\nunitDefs.spitter = tableMerg"
   },
   {
     "id": "swarmship",
@@ -1839,7 +2305,16 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 37
+    "presetCount": 37,
+    "changes": [
+      "health: 3500 -> 8500 (+143%)",
+      "metalcost: 1700 -> 7900 (+365%)",
+      "energycost: 17000 -> 160000 (+841%)",
+      "buildtime: 24000 -> 84000 (+250%)",
+      "speed: 34.5 -> 40 (+16%)",
+      "tooltip: \"Anti Air Drone Carrier\""
+    ],
+    "rawCode": "3,portfus,portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank Unit to crush your enemies',\n"
   },
   {
     "id": "umbrellamk2",
@@ -1889,6 +2364,17 @@ window.CUSTOM_CONTENT_DATABASE = [
       "mark magic 9 (tweakdefs1)",
       "mark magic 10 (tweakdefs1)"
     ],
-    "presetCount": 36
+    "presetCount": 36,
+    "changes": [
+      "health: 870 -> 2700 (+210%)",
+      "metalcost: 1150 -> 2700 (+135%)",
+      "energycost: 30000 -> 91000 (+203%)",
+      "buildtime: 49000 -> 64000 (+31%)",
+      "speed: 51 -> 48 (-6%)",
+      "energystorage: undefined -> 800",
+      "weapon \"repulsor\" tuned: avoidfeature=false, craterareaofeffect=0, craterboost=0, cratermult=0, edgeeffectiveness=0.15, name=\"PlasmaRepulsor\"",
+      "tooltip: \"Mobile all-terrain Shield Unit\""
+    ],
+    "rawCode": "portafus,infinitybox,jaeger,jaegermk2,hunterdrone,swarmship,umbrellamk2,epicunitprinter =\n\tUnitDefs or {},\n\ttable.merge,\n\t'armthort4',\n\t'cordemont4',\n\t'corthermitet3',\n\t'portfus',\n\t'portafus',\n\t'infinitybox',\n\t'jaeger',\n\t'jaegermk2',\n\t'hunterdrone',\n\t'swarmship',\n\t'umbrellamk2',\n\t'epicunitprinter'\n\nunitDefs.armthort4 = tableMerge(\n\tunitDefs['armthor'],\n\t{\n\t\tbuildtime = 380000,\n\t\thealth = 225000,\n\t\tmetalcost = 35000,\n\t\tenergycost = 596000,\n\t\tmass = 90000,\n\t\tname = 'Epic Thor',\n\t\tdescription = 'A true Terminator Tank Unit to crush your enemies',\n\t\tcustompa"
   }
 ];
