@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Custom Content Database</title>
+<style>
+	:root { --bg: #1a1c20; --panel: #24272d; --border: #3a3e46; --text: #e6e8eb; --text-dim: #9aa0aa; --accent: #5fb3ff; --good: #6bd48a; --warn: #e8b34d; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font-family: -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); }
+	header { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+	header a { color: var(--accent); text-decoration: none; font-size: 12px; }
+	header h1 { font-size: 18px; margin: 6px 0 4px; }
+	header p { color: var(--text-dim); font-size: 13px; max-width: 760px; margin: 0; }
+	.controls { display: flex; gap: 10px; padding: 12px 20px; flex-wrap: wrap; align-items: center; }
+	.controls input[type=text] { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 13px; width: 260px; }
+	.controls select { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 8px 10px; border-radius: 8px; font-size: 13px; }
+	.count { color: var(--text-dim); font-size: 12px; margin-left: auto; }
+	.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 0 20px 24px; }
+	.card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+	.card .name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+	.card .id { font-size: 11px; color: var(--text-dim); font-family: Consolas, monospace; margin-bottom: 8px; }
+	.card .tooltip { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; min-height: 32px; }
+	.card .meta { display: flex; gap: 6px; flex-wrap: wrap; font-size: 10.5px; }
+	.tag { padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); }
+	.tag.source-ours { border-color: var(--good); color: var(--good); }
+	.tag.source-unattributed { border-color: var(--warn); color: var(--warn); }
+	.card .presets { margin-top: 8px; font-size: 11px; color: var(--text-dim); cursor: pointer; }
+	.card .presets-list { display: none; margin-top: 6px; font-size: 10.5px; max-height: 100px; overflow-y: auto; }
+	.card .presets-list.open { display: block; }
+	.card .presets-list div { padding: 1px 0; }
+</style>
+</head>
+<body>
+<header>
+	<a href="../index.html">&larr; Hub</a>
+	<h1>Custom Content Database</h1>
+	<p>Every custom unit/building found across the whole project &mdash; our own current custom_buildings.lua, everything traced back to CrossGamer/Hazyhazelnuts/Waffles_II, and anything else surfaced while decoding all 51 saved presets. Browse and pick what to build into a new preset; this doesn't change any live preset on its own. Rebuild with <code>node build-database.js</code> after adding new content or tracing a new author.</p>
+</header>
+<div class="controls">
+	<input type="text" id="search" placeholder="Search name, id, tooltip...">
+	<select id="sourceFilter">
+		<option value="">All sources</option>
+	</select>
+	<div class="count" id="count"></div>
+</div>
+<div class="grid" id="grid"></div>
+<script src="data.js"></script>
+<script>
+const DB = window.CUSTOM_CONTENT_DATABASE;
+const sources = [...new Set(DB.map(d => d.source))].sort();
+const sourceFilter = document.getElementById('sourceFilter');
+for (const s of sources) {
+	const opt = document.createElement('option');
+	opt.value = s; opt.textContent = s;
+	sourceFilter.appendChild(opt);
+}
+
+function sourceClass(source) {
+	if (source === 'Ours (current)') return 'source-ours';
+	if (source === 'Unattributed (found in saved presets)') return 'source-unattributed';
+	return '';
+}
+
+function render() {
+	const q = document.getElementById('search').value.toLowerCase();
+	const sourceQ = sourceFilter.value;
+	const filtered = DB.filter(d => {
+		if (sourceQ && d.source !== sourceQ) return false;
+		if (!q) return true;
+		return d.id.toLowerCase().includes(q) || (d.name || '').toLowerCase().includes(q) || (d.tooltip || '').toLowerCase().includes(q);
+	});
+	document.getElementById('count').textContent = `${filtered.length} of ${DB.length}`;
+	const grid = document.getElementById('grid');
+	grid.innerHTML = filtered.map((d, i) => `
+		<div class="card">
+			<div class="name">${d.name}</div>
+			<div class="id">${d.id}${d.baseId ? ' &larr; ' + d.baseId : ''}</div>
+			<div class="tooltip">${d.tooltip || '<em>No description found.</em>'}</div>
+			<div class="meta">
+				<span class="tag ${sourceClass(d.source)}">${d.source}</span>
+				<span class="tag">${d.confidence}</span>
+				<span class="tag">seen in ${d.presetCount} preset${d.presetCount === 1 ? '' : 's'}</span>
+			</div>
+			${d.presetCount ? `<div class="presets" onclick="this.nextElementSibling.classList.toggle('open')">Show presets &darr;</div>
+			<div class="presets-list">${d.foundInPresets.map(p => `<div>${p}</div>`).join('')}</div>` : ''}
+		</div>
+	`).join('');
+}
+
+document.getElementById('search').addEventListener('input', render);
+sourceFilter.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>

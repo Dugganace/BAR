@@ -4,6 +4,72 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Overnight autonomous pass (2026-08-16) — read this first
+
+Ran unsupervised overnight per explicit instruction ("finish all the
+unfinished tasks... clean up the project as much as possible and push all
+of it to the repo without my intervention"). Scope was deliberately
+bounded to bounded/safe work — see the "explicitly not touched" list at
+the end of this section for what was skipped and why.
+
+- **All 5 local tool projects are now on GitHub**, merged into one repo:
+  `github.com/Dugganace/BAR`. `bar-toolkit-hub` (this repo) is the root;
+  `bar-custom-buildings`, `bar-preset-builder`, `bar-scav-spawn-editor`,
+  and `bar-replay-miner` are merged in as subdirectories via `git subtree`
+  (their original standalone local git repos are unaffected, still usable
+  as-is on this machine). `bar-unit-database`'s files were copied in
+  directly rather than subtree-merged, since its own `.git` is a full
+  clone of the real upstream `beyond-all-reason/Beyond-All-Reason` repo,
+  not something to merge history from. Bulk regenerable icon/image dumps
+  (icons-png/, unitpics/, per-tool icons/ folders — hundreds of MB,
+  duplicated across tools) and `node_modules/` were `.gitignore`d out to
+  keep the repo a reasonable size; a handful of leftover scratch/debug
+  files in `bar-custom-buildings` (old `debug-*.lua`, `chat-command-*.txt`
+  dumps, a personal `optionsPresets.backup.json`) were excluded too as
+  not being real source.
+- **NuttyB Configurator added** — the real community tool
+  (`rcorex/nuttyb-config`) copied in locally at
+  `bar-toolkit-hub/nuttyb-configurator/` as a reference implementation for
+  slot-assignment/base64 encoding, with its own hub card. Pulls a few
+  scripts from CDN (marked/luaparse/luamin/giscus) same as upstream, so
+  needs internet to fully render — not fully offline like our own tools.
+- **New: Custom Content Database** (`bar-toolkit-hub/custom-content-database/`)
+  — the real ask behind tonight's biggest chunk of work: one unified,
+  searchable/filterable database of every custom unit/building found
+  anywhere in the project (56 unique ids) — our own current
+  `custom_buildings.lua` (31), the 3 traced authors CrossGamer/
+  Hazyhazelnuts/Waffles_II (mostly overlapping — see
+  [[project_bar_replay_mining]]-adjacent finding that they share a
+  library, not independent content), and 4 more recovered directly from
+  the Preset Catalog's raw decoded text (our own superseded/renamed
+  content: the removed Assembly Complex, the pre-3-tier-split Raptor
+  Bio-Reactor). Each entry shows name/tooltip/base-unit-cloned-from and
+  every saved preset it's been seen in. Rebuild with `node
+  build-database.js` after adding content or tracing a new author. This
+  is a browse-and-pick reference only — it doesn't adopt or change any
+  live preset by itself, deliberately (see below).
+- **New Unit Builder's weapon-key auto-detection**: done, see the
+  "unit-tree building workflow" section below.
+- **Scav Spawn Editor's unit-id validation**: done, see "Tool-specific
+  fixes still needed" below. Also discovered the editor was already far
+  more functionally complete than this roadmap previously said.
+- **Id-collision checker**: done, see "Other known gaps" below.
+
+**Explicitly not touched, and why** (all judgment calls that need your
+input, not bounded/safe overnight work):
+- **Content adoption decisions** — which of CrossGamer's gadgets, Bezz's
+  T3 Commander overhaul, etc. actually go into a live preset. The new
+  Custom Content Database above makes this easier to do together, but
+  the actual picking is still yours.
+- **The full content-browser gallery merge** — still needs the mockup
+  session with you the roadmap has always said it needs.
+- **Map editor / map mirroring** — you explicitly deferred this
+  ("huge ongoing project, come back to that one") and there's no specific
+  target map right now; didn't want to invent scope on an initiative you
+  parked on purpose.
+- **winter_gaming lead** — still blocked on you giving a specific
+  video/map name to search against.
+
 
 Reorganized from v0.1 (see `ROADMAP-v0.1.md` for the raw chronological
 notes from the tool-by-tool walkthrough on 2026-08-15) by initiative.
@@ -79,9 +145,13 @@ trees quickly." Two pieces:
 - **New Unit Builder itself confirmed good as-is** — no changes wanted
   there, it's the piece everything else should route through.
 - Known related gap: it doesn't auto-detect weapon keys from the cloned
-  unit — still requires manual verification against real source every
-  time. **Not fixed** — out of scope for this pass, flagged as real
-  remaining work.
+  unit. **✅ DONE (2026-08-16)** — selecting a base unit with a weapon now
+  fetches its real source file live from
+  `raw.githubusercontent.com/beyond-all-reason/Beyond-All-Reason` and
+  regex-extracts the actual `weapondefs` key(s), shown in the base-card
+  and pre-filled into the generated Lua as a starter block, instead of
+  just a "verify manually" warning. Falls back to the old warning if the
+  fetch fails (offline, rate-limited, etc).
 
 ## Big initiative: game-update resilience process
 
@@ -186,9 +256,21 @@ we will come back to that one" — not neglected, just not now.
 ## Tool-specific fixes still needed
 
 - **Scav Spawn Editor**: broken/incomplete, hub card doesn't even link
-  anywhere. **✅ Link fixed** (hub card now links to its page). The
-  editor itself still needs real functional work — that part is
-  unchanged/still open.
+  anywhere. **✅ Link fixed** (hub card now links to its page). Turned out
+  to already be far more functionally complete than this roadmap
+  previously said — full weight editing, add/remove units, live-splice
+  full-file reconstruction, export, localStorage persistence, and preview
+  were already working. **✅ Its one real documented gap (unit-id
+  validation on add) fixed 2026-08-16** — scav variants are generated by
+  the engine at runtime from a real base unit rather than being
+  separately authored, so adding a unit now strips the `_scav` suffix and
+  checks the base id against `reference/valid-unit-ids.js` (957 real ids
+  from `bar-unit-database`), warning before adding something that would
+  silently produce a dead entry in-game. Still-open items from the
+  README's own "Known limitations": only the 3 unit-pool tables are
+  editable (Turrets/BurrowUnitsList/tierConfiguration/difficultyParameters/
+  squad-assembly system untouched), and no packaging/install step for the
+  exported file yet.
 - **Custom Content + Delivery Pipeline hub card**: same broken-link
   issue. **✅ Fixed** — now links to the Custom Buildings Gallery as the
   visual view of what this pipeline produces.
@@ -223,9 +305,16 @@ we will come back to that one" — not neglected, just not now.
   `split-and-package.js` now backs up the live file to
   `bar-custom-buildings/preset-backups/` before every write, keeping
   the last 5.
-- **No id-collision checker across authors**: still open, not done this
-  pass (lower priority until we're actually combining multiple authors'
-  content into one preset).
+- **No id-collision checker across authors.** **✅ DONE (2026-08-16)** —
+  `bar-custom-buildings/tools/check-id-collisions.js` cross-references
+  every id our `custom_buildings.lua` defines against the real 957-unit
+  vanilla id list (flags accidental overwrites of a real unit — one
+  intentional exception allowlisted: the Depawner's deliberate
+  `armbotrail` weapon override) and against every traced author's
+  extracted content (CrossGamer/Hazyhazelnuts/Waffles_II), plus checks
+  those authors against each other. Run with `node
+  tools/check-id-collisions.js`; re-run after adding new content or
+  tracing a new author.
 - **No slot-budget preview.** ✅ **DONE** — `split-and-package.js` now
   accepts `--dry-run`, prints every chunk's size and flags any over the
   ~11,400-char ceiling, writes nothing and touches no preset.
