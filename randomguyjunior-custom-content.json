@@ -1,0 +1,422 @@
+[
+  {
+    "id": "armnanotc3",
+    "baseId": "armrespawn",
+    "name": "Epic Construction Turret",
+    "tooltip": "Enormous Assist & Repair in a short Radius"
+  },
+  {
+    "id": "cornanotc3",
+    "baseId": "correspawn",
+    "name": "Epic Construction Turret",
+    "tooltip": "Enormous Assist & Repair in a short Radius"
+  },
+  {
+    "id": "legnanotc3",
+    "baseId": "legnanotcbase",
+    "name": "Epic Construction Turret",
+    "tooltip": "Enormous Assist & Repair in a short Radius"
+  },
+  {
+    "id": "armosat",
+    "baseId": "armsat",
+    "name": "Sky Eye",
+    "tooltip": "Long-Range Radar Satellite"
+  },
+  {
+    "id": "armofighter",
+    "baseId": "corsfig",
+    "name": "Blaster",
+    "tooltip": "Orbital Fighter"
+  },
+  {
+    "id": "armoc",
+    "baseId": "armmls",
+    "name": "Advanced Orbital Constructor",
+    "tooltip": "Tech 2 Constructor"
+  },
+  {
+    "id": "armocan",
+    "baseId": "armhawk",
+    "name": "Peacemaker",
+    "tooltip": "Orbital Bomber"
+  },
+  {
+    "id": "armspace",
+    "baseId": "armaap",
+    "name": "Space Factory",
+    "tooltip": "Tech 2 Orbital Units"
+  },
+  {
+    "id": "armorocket",
+    "baseId": "armemp",
+    "name": "Maestro",
+    "tooltip": "Anti-Orbit Missile Launcher"
+  },
+  {
+    "id": "armobruiser",
+    "baseId": "armsubk",
+    "name": "Lion",
+    "tooltip": "Laser Assault Spaceship"
+  },
+  {
+    "id": "armotachyon",
+    "baseId": "armlship",
+    "name": "Accelerator",
+    "tooltip": "Tachyon Accelerator Spaceship"
+  },
+  {
+    "id": "armokaiser",
+    "baseId": "armdronecarry",
+    "name": "Kaiser",
+    "tooltip": "Orbital Drone Carrier Battleship"
+  },
+  {
+    "id": "armodrone",
+    "baseId": "armdrone",
+    "name": "Kaiser Drone",
+    "tooltip": "Rocket drone capable of attacking aircraft and spaceships."
+  },
+  {
+    "id": "armolaser",
+    "baseId": "armdl",
+    "name": "Penguin",
+    "tooltip": "Orbital Laser Defense"
+  },
+  {
+    "id": "armoliberator",
+    "baseId": "armfepocht4",
+    "name": "Iron Sky",
+    "tooltip": "Experimental Orbital Carpet Artillery"
+  },
+  {
+    "id": "legspace",
+    "baseId": "legaap",
+    "name": "Space Factory",
+    "tooltip": "Tech 2 Orbital Units"
+  },
+  {
+    "id": "armomulti",
+    "baseId": "armptt2",
+    "name": "Kraken",
+    "tooltip": "Area Control and Anti-Ground Orbital Defense"
+  },
+  {
+    "id": "coromulti",
+    "baseId": "corfdoom",
+    "name": "Cardinal",
+    "tooltip": "Area Control and Anti-Ground Orbital Defense"
+  },
+  {
+    "id": "legomulti",
+    "baseId": "leganavaldefturret",
+    "name": "Aeon",
+    "tooltip": "Area Control and Anti-Ground Orbital Defense"
+  },
+  {
+    "id": "armspacet3",
+    "baseId": "armapt3",
+    "name": "Experimental Space Factory",
+    "tooltip": "Tech 3 Orbital Units"
+  },
+  {
+    "id": "corspacet3",
+    "baseId": "corapt3",
+    "name": "Experimental Space Factory",
+    "tooltip": "Tech 3 Orbital Units"
+  },
+  {
+    "id": "legspacet3",
+    "baseId": "legapt3",
+    "name": "Experimental Space Factory",
+    "tooltip": "Tech 3 Orbital Units"
+  },
+  {
+    "id": "corspace",
+    "baseId": "coraap",
+    "name": "Space Factory",
+    "tooltip": "Tech 2 Orbital Units"
+  },
+  {
+    "id": "corosat",
+    "baseId": "corsat",
+    "name": "Observer",
+    "tooltip": "Long-Range Radar Satellite"
+  },
+  {
+    "id": "corofighter",
+    "baseId": "corsfig",
+    "name": "Zealot",
+    "tooltip": "Orbital Fighter"
+  },
+  {
+    "id": "coroc",
+    "baseId": "correcl",
+    "name": "Advanced Orbital Constructor",
+    "tooltip": "Tech 2 Constructor"
+  },
+  {
+    "id": "corocan",
+    "baseId": "corvamp",
+    "name": "Bombard",
+    "tooltip": "Orbital Bomber"
+  },
+  {
+    "id": "corobruiser",
+    "baseId": "corshark",
+    "name": "Inquisitor",
+    "tooltip": "Medium Range Missile Assault Spaceship"
+  },
+  {
+    "id": "coroheavy",
+    "baseId": "corssub",
+    "name": "Punisher",
+    "tooltip": "Armored Long Range Laser Spaceship"
+  },
+  {
+    "id": "legosolar",
+    "baseId": "legsolar",
+    "name": "Orbital Solar Collector",
+    "tooltip": "Produces 500 Energy"
+  },
+  {
+    "id": "corosolar",
+    "baseId": "corsolar",
+    "name": "Orbital Solar Collector",
+    "tooltip": "Produces 500 Energy"
+  },
+  {
+    "id": "armosolar",
+    "baseId": "armsolar",
+    "name": "Orbital Solar Collector",
+    "tooltip": "Produces 500 Energy"
+  },
+  {
+    "id": "legosat",
+    "baseId": "armsat",
+    "name": "Lumen",
+    "tooltip": "Long-Range Radar Satellite"
+  },
+  {
+    "id": "legoc",
+    "baseId": "legnavyrezsub",
+    "name": "Advanced Orbital Constructor",
+    "tooltip": "Tech 2 Constructor"
+  },
+  {
+    "id": "legofighter",
+    "baseId": "corsfig",
+    "name": "Lykion",
+    "tooltip": "Orbital Fighter"
+  },
+  {
+    "id": "legocan",
+    "baseId": "legafigdef",
+    "name": "Zeus",
+    "tooltip": "Orbital Lightning Bomber"
+  },
+  {
+    "id": "legobruiser",
+    "baseId": "legnavyscout",
+    "name": "Thaleon",
+    "tooltip": "Gatling Gun Assault Spaceship"
+  },
+  {
+    "id": "legotrigun",
+    "baseId": "legnavyfrigate",
+    "name": "Trikeos",
+    "tooltip": "Seeker Missile Orbital Striker"
+  },
+  {
+    "id": "legospy",
+    "baseId": "legerailtank",
+    "name": "Propheteus",
+    "tooltip": "Orbital Camera Deployer"
+  },
+  {
+    "id": "legoeyes",
+    "baseId": "legeyes",
+    "name": "Argus",
+    "tooltip": "Orbital Deployed Camera with increased uncloaking range."
+  },
+  {
+    "id": "legohelios",
+    "baseId": "legosat",
+    "name": "Phaethon",
+    "tooltip": "Celestial Earth Scorcher"
+  },
+  {
+    "id": "legocannon",
+    "baseId": "leglraa",
+    "name": "Nostradamos",
+    "tooltip": "Anti-Orbit Railgun Defense"
+  },
+  {
+    "id": "legolaser",
+    "baseId": "leglupara",
+    "name": "Pompeii",
+    "tooltip": "Orbital Beam Laser Defense"
+  },
+  {
+    "id": "coroheatray",
+    "baseId": "coresuppt3",
+    "name": "Maginot",
+    "tooltip": "Heavy Heatray Battleship"
+  },
+  {
+    "id": "legofort",
+    "baseId": "legfortt4",
+    "name": "Longinus",
+    "tooltip": "Heavy Anti-Swarm Battleship"
+  },
+  {
+    "id": "legobomber",
+    "baseId": "legstronghold",
+    "name": "Athena",
+    "tooltip": "Cluster Plasma Orbital Bomber"
+  },
+  {
+    "id": "coroapoc",
+    "baseId": "corprince",
+    "name": "Apocalypse",
+    "tooltip": "Meteor Rain Artillery"
+  },
+  {
+    "id": "armobomber",
+    "baseId": "armserpt3",
+    "name": "Porcupine",
+    "tooltip": "Orbital Tumbleweed Cannon"
+  },
+  {
+    "id": "corohunter",
+    "baseId": "corhurc",
+    "name": "Hunter",
+    "tooltip": "Heavy Fighter"
+  },
+  {
+    "id": "armohorizon",
+    "baseId": "armseadragon",
+    "name": "Porter",
+    "tooltip": "Orbital Radar and Vanguard Deployment Spaceship. (55 m/s and 1.1k e/s)"
+  },
+  {
+    "id": "armoplane",
+    "baseId": "armseap",
+    "name": "Aspirant",
+    "tooltip": "Low Orbit Fighter"
+  },
+  {
+    "id": "coroplane",
+    "baseId": "corveng",
+    "name": "Locust",
+    "tooltip": "Low Orbit Fighter"
+  },
+  {
+    "id": "legoplane",
+    "baseId": "corcut",
+    "name": "Koluma",
+    "tooltip": "Low Orbit Fighter"
+  },
+  {
+    "id": "corocannon",
+    "baseId": "corjuno",
+    "name": "Decimator",
+    "tooltip": "Anti-Orbital Unstable Plasma Defense"
+  },
+  {
+    "id": "legodrone",
+    "baseId": "legdrone",
+    "name": "legodrone",
+    "tooltip": null
+  },
+  {
+    "id": "legov",
+    "baseId": "legvcarry",
+    "name": "Carrier",
+    "tooltip": "Mobile Orbital Drone Vehicle (Drones cost 20m 1000E each)"
+  },
+  {
+    "id": "armov",
+    "baseId": "legov",
+    "name": "armov",
+    "tooltip": null
+  },
+  {
+    "id": "corov",
+    "baseId": "legov",
+    "name": "corov",
+    "tooltip": null
+  },
+  {
+    "id": "armollt",
+    "baseId": "armllt",
+    "name": "Orbital Sentry",
+    "tooltip": "Orbital Light Laser Defense"
+  },
+  {
+    "id": "corollt",
+    "baseId": "corllt",
+    "name": "Orbital Guard",
+    "tooltip": "Orbital Light Laser Defense"
+  },
+  {
+    "id": "legollt",
+    "baseId": "leglht",
+    "name": "Orbital Pharos",
+    "tooltip": "Orbital Light Laser Defense"
+  },
+  {
+    "id": "cororocket",
+    "baseId": "cormadsam",
+    "name": "Purger",
+    "tooltip": "Orbital Defense Battery"
+  },
+  {
+    "id": "corobomber",
+    "baseId": "cormship",
+    "name": "Shieldbreaker",
+    "tooltip": "Heavy Duty Orbital Bomber"
+  },
+  {
+    "id": "corodrone",
+    "baseId": "cordrone",
+    "name": "corodrone",
+    "tooltip": null
+  },
+  {
+    "id": "armantiodrone",
+    "baseId": "armdrone",
+    "name": "armantiodrone",
+    "tooltip": null
+  },
+  {
+    "id": "raptor_orbital_fighter_basic_t2_v1",
+    "baseId": "raptor_air_fighter_basic_t2_v1",
+    "name": "raptor_orbital_fighter_basic_t2_v1",
+    "tooltip": "Orbital fighter."
+  },
+  {
+    "id": "raptor_orbital_bomber_basic_t2_v1",
+    "baseId": "raptor_air_bomber_basic_t2_v1",
+    "name": "raptor_orbital_bomber_basic_t2_v1",
+    "tooltip": "Orbital acid rain."
+  },
+  {
+    "id": "raptor_orbital_bruiser_basic_t2_v1",
+    "baseId": "raptor_air_fighter_basic_t4_v1",
+    "name": "raptor_orbital_bruiser_basic_t2_v1",
+    "tooltip": "Evolved Orbital Fighter."
+  },
+  {
+    "id": "raptor_orbital_bomber_basic_t3_v1",
+    "baseId": "raptor_air_bomber_basic_t4_v1",
+    "name": "raptor_orbital_bomber_basic_t3_v1",
+    "tooltip": "Orbital Bombardment."
+  },
+  {
+    "id": "raptor_orbital_battleship_basic_t3_v1",
+    "baseId": "raptor_air_bomber_brood_t4_v4",
+    "name": "raptor_orbital_battleship_basic_t3_v1",
+    "tooltip": "Orbital Biological Battleship."
+  }
+]
