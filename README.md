@@ -56,10 +56,14 @@ and whitespace changes but assumes those three tables keep their current
   (`addNewSquad`, `squadSpawnOptionsTable`) are untouched — those control
   *when/how much* spawns, not *what* spawns, and are a reasonable next
   editor surface if we want more control than just variety.
-- No validation that an added `*_scav` unit id actually exists in the game's
-  unit defs — a typo will silently produce a dead entry in-game rather than
-  an error here. Cross-referencing against a real unit id list is a good
-  follow-up.
+- ~~No validation that an added `*_scav` unit id actually exists~~ **Fixed
+  (2026-08-16).** Scav variants aren't separately authored unitDefs — the
+  engine generates them at runtime from a real base unit (e.g. `armzeus_scav`
+  from the real `armzeus`). Adding a unit now checks the base id (the part
+  before `_scav`) against `reference/valid-unit-ids.js` (957 real unit ids
+  parsed from the game's own source, same data as `bar-unit-database`) and
+  warns before letting you add something that would silently produce a dead
+  entry in-game.
 - No packaging/install step yet — the exported file needs to be manually
   placed into a mutator archive with a `modinfo.lua` for BAR to load it as
   an override. That packaging workflow is not built yet.
