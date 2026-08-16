@@ -92,6 +92,26 @@ function renderNav() {
 	}
 }
 
+// Scav variants aren't separately authored unitDefs -- they're generated
+// at runtime by the engine from a real base unit (e.g. armzeus_scav comes
+// from the real armzeus). So real validation is: strip the _scav suffix
+// and check the base id exists in the real unit database
+// (reference/valid-unit-ids.js, 957 ids parsed from the game's own
+// source). Previously this only checked for the "_scav" string suffix,
+// which caught typo'd suffixes but not typo'd/nonexistent base ids.
+function validateScavUnitId(id) {
+	const validIds = window.VALID_BASE_UNIT_IDS;
+	if (!validIds) return null; // reference data failed to load -- don't block adding
+	if (!id.endsWith('_scav')) {
+		return `"${id}" doesn't end in "_scav" -- the scav unit variant may not exist under that exact name.`;
+	}
+	const baseId = id.slice(0, -'_scav'.length);
+	if (!validIds.includes(baseId)) {
+		return `"${baseId}" (the base unit "${id}" would be generated from) isn't a real unit id -- this will silently produce a dead entry in-game.`;
+	}
+	return null;
+}
+
 function renderEditor() {
 	const editor = document.getElementById('editor');
 	editor.innerHTML = '';
@@ -141,9 +161,8 @@ function renderEditor() {
 		onclick: () => {
 			const id = idInput.value.trim();
 			if (!id) return;
-			if (!id.endsWith('_scav')) {
-				if (!confirm(`"${id}" doesn't end in "_scav" — the scav unit variant may not exist under that exact name. Add anyway?`)) return;
-			}
+			const warning = validateScavUnitId(id);
+			if (warning && !confirm(`${warning} Add anyway?`)) return;
 			const w = parseFloat(weightInput.value) || 1;
 			units[id] = w;
 			idInput.value = '';
