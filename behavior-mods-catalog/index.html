@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Behavior Mods Catalog</title>
+<style>
+	:root { --bg: #1a1c20; --panel: #24272d; --border: #3a3e46; --text: #e6e8eb; --text-dim: #9aa0aa; --accent: #5fb3ff; --good: #6bd48a; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font-family: -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); }
+	header { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+	header a { color: var(--accent); text-decoration: none; font-size: 12px; }
+	header h1 { font-size: 18px; margin: 6px 0 4px; }
+	header p { color: var(--text-dim); font-size: 13px; max-width: 780px; margin: 0; }
+	main { padding: 16px 20px 32px; }
+	.author-block { margin-bottom: 18px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+	.author-header { padding: 12px 16px; background: var(--panel); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+	.author-header .name { font-size: 15px; font-weight: 600; }
+	.author-header .stats { font-size: 11.5px; color: var(--text-dim); }
+	.author-body { display: none; padding: 4px 16px 12px; }
+	.author-block.open .author-body { display: block; }
+	.author-block.open .chevron { transform: rotate(90deg); }
+	.chevron { display: inline-block; transition: transform 0.15s; margin-right: 6px; color: var(--text-dim); }
+	.snippet { border-top: 1px solid var(--border); padding: 10px 0; }
+	.snippet .title { font-size: 13px; font-weight: 600; }
+	.snippet .occ { font-size: 11px; color: var(--good); margin-left: 8px; }
+	.snippet .toggle-code { font-size: 11px; color: var(--accent); cursor: pointer; margin-top: 4px; display: inline-block; }
+	.snippet pre { display: none; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 11px; overflow-x: auto; margin-top: 6px; white-space: pre-wrap; word-break: break-word; }
+	.snippet.code-open pre { display: block; }
+</style>
+</head>
+<body>
+<header>
+	<a href="../index.html">&larr; Hub</a>
+	<h1>Behavior Mods Catalog</h1>
+	<p>Gameplay/behavior modifications found across the 200k-replay global scan, grouped by traced author -- these modify EXISTING units in place (buildoptions, stats, gameplay logic) rather than creating new unit ids, so they're a different content type from the <a href="../custom-content-database/index.html" style="color:var(--accent)">Custom Content Database</a>. Sorted by total occurrences across scanned games as a rough signal of how proven/played each one is. Bezz's T3 Commander overhaul is the single most-played piece of custom content found in the entire scan. Browse only -- doesn't adopt or change anything.</p>
+</header>
+<main id="main"></main>
+<script src="data.js"></script>
+<script>
+const DATA = window.BEHAVIOR_MODS;
+const main = document.getElementById('main');
+
+function escapeHtml(s) {
+	return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+main.innerHTML = DATA.map((a, ai) => `
+	<div class="author-block" id="author-${ai}">
+		<div class="author-header" onclick="document.getElementById('author-${ai}').classList.toggle('open')">
+			<div><span class="chevron">&#9656;</span><span class="name">${escapeHtml(a.author)}</span></div>
+			<div class="stats">${a.snippets.length} snippet${a.snippets.length === 1 ? '' : 's'} &middot; ${a.totalOccurrences} occurrences across scanned games</div>
+		</div>
+		<div class="author-body">
+			${a.snippets.map((s, si) => `
+				<div class="snippet" id="snippet-${ai}-${si}">
+					<span class="title">${escapeHtml(s.title)}</span><span class="occ">seen ${s.occurrences}x</span>
+					<div class="toggle-code" onclick="document.getElementById('snippet-${ai}-${si}').classList.toggle('code-open')">Show code &darr;</div>
+					<pre>${escapeHtml(s.code)}</pre>
+				</div>
+			`).join('')}
+		</div>
+	</div>
+`).join('');
+</script>
+</body>
+</html>

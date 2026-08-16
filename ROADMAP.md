@@ -54,6 +54,19 @@ the end of this section for what was skipped and why.
   fixes still needed" below. Also discovered the editor was already far
   more functionally complete than this roadmap previously said.
 - **Id-collision checker**: done, see "Other known gaps" below.
+- **New: Behavior Mods Catalog** (`bar-toolkit-hub/behavior-mods-catalog/`)
+  — the "content to review" authors (Bezz/LoH/Ambo/MGGW/Mewi/Djarshi/etc.)
+  turned out NOT to be new-unit content like CrossGamer's — checked their
+  raw per-author scripts in `bar-replay-miner/global-credits-full/`
+  directly and confirmed none match the `unitDefs[id] = tableMerge(...)`
+  new-unit pattern; they modify existing units' buildoptions/stats in
+  place (Bezz's T3 Commander overhaul especially). Built a second, simpler
+  browsable catalog for this content type instead of forcing it into the
+  Custom Content Database — parses the already-produced
+  `global-credits-by-author/*.lua` (real credit-comment titles + replay
+  occurrence counts) into per-author expandable snippet lists with
+  show/hide code. See the updated "Content to review and possibly adopt"
+  section below for what's in it.
 
 **Explicitly not touched, and why** (all judgment calls that need your
 input, not bounded/safe overnight work):
@@ -216,17 +229,39 @@ doesn't happen:
 ## Content to review and possibly adopt
 
 From the 200k-replay global scan and person-tracing — all decoded and
-sent to the user, none reviewed/decided on yet:
+now browsable in two structured tools (2026-08-16), none reviewed/decided
+on by the user yet — the actual pick is still theirs:
 
-- **CrossGamer's 7 gadgets** (MIRV Nuke, Portable Shield, Anti-Nuke T3
-  Mod, Antinuke-to-ICBM Visuals, Scavenger Beacon → Nuke Silo, Beacon
-  Nuke, Knockback rework) — user has vouched for CrossGamer directly
-  ("i know crossgamer and yes he makes good ones we should take").
-- **Bezz's T3 Commander overhaul** — the single most-played piece of
-  custom content found in the entire scan (1308 occurrences).
-- **LoH's BaRandom**, **Ambo's Random Rarities / Bigger Tier Steps / No
-  Metal Mod**, **MGGW's Quad Pharos / Lava QoL**, **Mewi's Nutty Raptors
-  T4 Defence**, **Djarshi's LavaPack**.
+- **✅ "New units" content browsable** in the Custom Content Database
+  (`bar-toolkit-hub/custom-content-database/`) — CrossGamer's content
+  that creates standalone new unit ids.
+- **✅ "Behavior/gameplay mod" content browsable** in the new Behavior
+  Mods Catalog (`bar-toolkit-hub/behavior-mods-catalog/`) — these authors'
+  packages turned out to modify EXISTING units in place (buildoptions,
+  stats, gameplay logic via minified per-author scripts, confirmed by
+  checking: none of them match the `unitDefs[id] = tableMerge(...)`
+  new-unit-creation pattern our own content and CrossGamer's use) rather
+  than creating new unit ids, so they don't fit the id-based database —
+  hence a separate tool. Real per-author extraction into fully structured
+  data (what each specific line changes) is still real work — this pass
+  makes them *browsable with real credit-comment titles and play-proof
+  occurrence counts* instead of needing to read raw minified `.lua`, not
+  fully decoded feature-by-feature.
+  - **CrossGamer's 7 gadgets** (MIRV Nuke, Portable Shield, Anti-Nuke T3
+    Mod, Antinuke-to-ICBM Visuals, Scavenger Beacon → Nuke Silo, Beacon
+    Nuke, Knockback rework) — user has vouched for CrossGamer directly
+    ("i know crossgamer and yes he makes good ones we should take").
+  - **Bezz's T3 Commander overhaul** — the single most-played piece of
+    custom content found in the entire scan (1308 occurrences, 23
+    distinct snippets — early-infrastructure/scout/commander eco boosts,
+    constructor boost, corpse/explosion normalization).
+  - **LoH's BaRandom** (32 snippets, 807 occurrences), **Ambo's Random
+    Rarities / Bigger Tier Steps / No Metal Mod** (30 snippets, 210
+    occurrences), **MGGW's Quad Pharos / Lava QoL** (2 snippets, 65
+    occurrences), **Mewi's T5 Super Eco** (24 occurrences), **Djarshi's
+    LavaPack** (6 occurrences) — plus previously-untraced smaller ones now
+    also visible: FiendishDevil, LordOfHangovers, Luigi, RandomGuyJunior,
+    onetrick.
 
 ## Map tools (deliberately deferred)
 
