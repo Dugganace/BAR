@@ -1,0 +1,20 @@
+[
+  {
+    "id": "legendary_bastion",
+    "baseId": null,
+    "name": "Legendary Bastion",
+    "tooltip": "The ultimate defensive emplacement. Projects a devastating, pulsating heatray."
+  },
+  {
+    "id": "legendary_bulwark",
+    "baseId": null,
+    "name": "Legendary Bulwark",
+    "tooltip": "A pinnacle of defensive technology, the Legendary Bulwark annihilates all who approach."
+  },
+  {
+    "id": "legendary_pulsar",
+    "baseId": null,
+    "name": "Legendary Pulsar",
+    "tooltip": "A pinnacle of Armada engineering that fires devastating, rapid-fire tachyon bolts."
+  }
+]
