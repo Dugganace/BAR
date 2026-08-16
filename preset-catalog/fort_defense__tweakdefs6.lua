@@ -1,0 +1,4 @@
+--Cross Faction Tax 70%
+-- Authors: TetrisCo
+-- docs.google.com/spreadsheets/d/1QSVsuAAMhBrhiZdTihVfSCwPzbbZWDLCtXWP23CU0ko
+local a,b,c,d,e,f,g=UnitDefs or{},1.7,{},{},Json.decode(VFS.LoadFile('language/en/units.json')),'_taxed',' (Taxed)'for h,i in pairs(a)do if i.customparams and i.customparams.subfolder and(i.customparams.subfolder:match'Fact'or i.customparams.subfolder:match'Lab')and i.customparams.techlevel==2 then local j=e and e.units.names[h]or h;c[h]=1;d[h..f]=table.merge(i,{energycost=i.energycost*b,icontype=h,metalcost=i.metalcost*b,name=j..g,customparams={i18n_en_humanname=j..g,i18n_en_tooltip=e and e.units.descriptions[h]or h}})end end;for k,l in pairs(a)do if l.buildoptions then for m,n in pairs(l.buildoptions)do if c[n]then for m,o in pairs{'arm','cor','leg'}do local p=o..n:sub(4)..f;if n:sub(1,3)~=o and d[p]then a[k].buildoptions[#a[k].buildoptions+1]=p end end end end end end;table.mergeInPlace(a,d)

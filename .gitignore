@@ -1,0 +1,11 @@
+node_modules/
+icons/
+preset-backups/
+parts/
+optionsPresets.backup.json
+.tmp-sections.json
+debug-tweakdefs2.lua
+chat-command-tweakdefs*.txt
+correct-command-tweakdefs4.txt
+pure-base64-tweakdefs.txt
+pure-code-tweakdefs4.txt
