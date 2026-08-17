@@ -4,6 +4,54 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## New content: T4 Repulsor Turret + T1-T4 Stun Turret family (2026-08-17)
+
+Second real design-and-build session, following the T3 Repulsor Shield.
+Two real engine mechanics verified against source before writing
+anything (per the project's own "never guess weapon keys/mechanics"
+rule):
+
+- **`turret = false` + `firetolerance`** (real field, `WeaponDef.cpp`
+  confirmed — legacy 16-bit angular units, 65536 = 360°) for a fixed,
+  non-tracking weapon that only fires in a narrow cone facing the
+  building. Used by both new turret types.
+- **`paralyzer = true`** (real field, `WeaponDef.h` confirmed — "weapon
+  will only paralyze not do real damage") for the Stun Turrets' pure-stun
+  mechanic — cleaner than the Repulsor Turret's near-zero-damage+impulse
+  approach, since it's the engine's actual dedicated flag for this.
+
+**T4 Repulsor Turret**: short range (400), effectively no damage, huge
+knockback (`impulsefactor`/`impulseboost`), fixed 10° firing cone,
+`avoidfriendly = false` so it hits teammates too. Cloned per faction
+from a real T3 energy-weapon defense (armanni/cordoom/legbastion —
+cordoom was ruled out at first pick for having 3 separate weapons,
+corint's single-weapon `lrpc` almost got used instead before settling
+back on cordoom's primary `atadr` slot). overcom/Grand Admiral only,
+expensive to build and to run.
+
+**Stun Turrets**: 4-tier family, T1-T4, one per faction (12 units
+total). Firing arc widens 5/10/15/20% of a full circle by tier, range
+grows 5%/tier. T1-T3 built by that tier's real constructors (reusing
+the existing tier-matched con-list pattern from the Bio-Reactor/Scav
+Recycler wiring); T4 restricted to overcom/Grand Admiral like every
+other T4-tier building in this file, since T4 doesn't exist natively
+in BAR at all — confirmed by the user directly ("there isnt t4 in the
+game its added as epics from custom content"), matching what this
+project independently found via the Scavenger-only "epic" units
+(armannit3/cordoomt3) earlier.
+
+Both built into **"mark magic 21"**, needs a live test. Also surfaced
+two real, still-open follow-ups from this conversation (not yet
+built): whether scavs should be able to build our existing content
+(answer: no, not via buildoptions — scav wave-spawning is a wholly
+separate mechanism from construction, confirmed via checking for any
+real `_scav`-suffixed commander/constructor id — zero exist), and
+whether captured scav constructors should gain access to our
+buildoptions (also no by default, same reasoning) — user wants both
+addressed, and specifically wants the new Stun/Repulsor turrets added
+to the real scav spawn pool via the Scav Spawn Editor as the actual
+correct mechanism for scav-side access.
+
 ## New content: T3 Repulsor Shield (2026-08-17)
 
 First real "design and build a new thing" request since the toolkit
