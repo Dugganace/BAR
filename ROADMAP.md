@@ -4,6 +4,33 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## New content: T3 Repulsor Shield (2026-08-17)
+
+First real "design and build a new thing" request since the toolkit
+work — a genuine end-to-end test of the whole pipeline (Content Gallery
+for id lookups, real-source verification via WebFetch, pre-injection
+review, packaging, live build). Per faction, cloned from the real T2
+shield generators (armgate/corgate/legdeflector), with the engine's
+real `repulser` shield flag on (bounces projectiles back instead of
+absorbing) and real energy upkeep added (vanilla shields have none).
+Restricted to CrossGamer's Metal OverCommander (`overcom`) and our own
+Grand Admiral (`rank10`) only — not a normal constructor buildoption.
+
+Stats scaled from the one genuine vanilla T2→T3 shield precedent that
+exists in the game (Legion's legdeflector → leggatet3 — the only
+faction with a native T3 shield; Armada/Cortex have none) rather than
+picked arbitrarily: metalcost ×4.53, energycost ×3.93, buildtime ×4.75,
+health ×5.07, shield power ×8.0, powerregen ×4.0. Radius deliberately
+NOT scaled per explicit request (real vanilla scaling would be ×1.29,
+kept flat here so the T3 version doesn't out-range the T2 one).
+
+Content had grown past the 5-slot packaging budget by ~366 chars/slot
+after this addition — fixed by shortening the section-divider comment
+lines (94 chars → 30 chars, 36 occurrences across the file), which
+alone recovered enough space (dividers are pure decoration, duplicated
+in every packaged chunk). Built into **"mark magic 20"** — the current
+baseline, needs a live test.
+
 ## Modoptions Reference: real native settings, separate from tweakdefs content (2026-08-17)
 
 Grew out of a conversation clarifying what "behavior mods" actually are
