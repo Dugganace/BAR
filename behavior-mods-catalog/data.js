@@ -5,6 +5,108 @@
 // occurrences = how many times this content was seen across the
 // 200k-replay global scan, a rough signal of how proven/played it is.
 window.BEHAVIOR_MODS = [
+	// --- CrossGamer's gadgets (2026-08-17) --- read directly from
+	// bar-replay-miner/global-credits/*.lua (real per-gadget credit files,
+	// not the replay scan), traced while investigating "MIRV" for the
+	// user. Turned out to be 12 distinct gadgets, not the "7" this
+	// project had assumed earlier without actually verifying -- that
+	// number came from an unread roadmap note, not a real count.
+	{
+		author: 'CrossGamer',
+		title: 'MIRV Nuke',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Makes the three factions' Nuke Silos (armsilo/corsilo/legsilo) split their main missile into 6-8 smaller \"MIRV child\" cluster warheads on impact (damage divided by 6-15 depending on which version -- multiple slightly different revisions were found, suggesting it was iterated on over time) instead of one single big hit. Turns a nuke from a pinpoint strike into an area-saturation weapon.",
+		verdict: 'Significant nuke rework -- changes nuke tactics from precision to area denial.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Scavenger Beacon to Nuke Silo',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: 'Converts all 8 tiers of Scavenger loot beacons (the PvE reward buildings) into fully functional nuke silos, cloning the real Nuke Silo\'s weapon onto each one and applying the same MIRV cluster-split as the MIRV Nuke gadget above. Higher-tier beacons get much faster stockpile times (T4 down to 10s vs. the normal ~90s). Also called "Beacon Nuke" in some scans -- same content, found twice under different extracted titles.',
+		verdict: 'Turns PvE loot beacons into serious offensive weapons -- major PvE-to-PvP power spike if adopted.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Anti-Nuke T3 Mod',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Creates an upgraded T3 tier of each faction's Anti-Nuke (armamdt3/corfmdt3/legabmt3), cloned from the real T2 version: 2.5x health, 3x cost, double coverage range, stockpile time cut to a third, ~10% cheaper per-shot, capped at 30 stockpiled interceptors. Added to every advanced (T2/T3) constructor's buildoptions.",
+		verdict: 'Straightforward tech-tier upgrade for anti-nuke coverage -- low risk.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Antinuke to ICBM Visuals & Stats',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Reworks every anti-nuke interceptor missile's look and feel to resemble a real ICBM (swapped 3D model, exhaust trail effects, launch/impact sounds) plus stat changes (faster, more damage, bigger blast radius, longer stockpile time). Purely cosmetic/flavor plus a moderate stat rebalance layered on top.",
+		verdict: 'Mostly visual flavor with a stat tweak riding along -- low risk either way.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Air T2 Builds Nuke',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Adds the Nuke Silo and Anti-Nuke to every faction's T2 advanced air constructor's buildoptions directly, letting you build nukes/anti-nukes straight from an air con instead of needing a dedicated ground constructor first.",
+		verdict: 'Small QoL accessibility unlock for nuke tech.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'AdvSAM AA Homing Nuke',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Turns the Armada Mercury and Cortex Screamer (advanced AA missile units) into tactical homing nukes -- their SAM missile gets a massive turnrate boost (near-perfect tracking), 15,000 damage (also to VTOL), a big area-of-effect, and the engine's nuclear flag. The launcher unit itself also gets much more expensive (6,500 metal, 90,000 energy, 150,000 buildtime) to match.",
+		verdict: 'Major single-unit power spike -- effectively a mobile, homing tactical nuke launcher.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Portable Shield',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: 'Converts one specific mobile unit per faction (Armada Croc, Cortex Salamander, Legion Floating tank) into a "Mobile Shield" -- disables its weapon entirely and gives it a large personal deflector shield instead (6,175 shield power, 550 radius), at increased cost. A genuinely mobile, deployable shield generator.',
+		verdict: 'Interesting tactical tool -- a shield that can reposition, unlike stock static shield generators.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Knockback',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Global weapon rework: normalizes every weapon's damage-per-second down (the higher a weapon's DPS, the more its raw damage gets reduced) while massively increasing physical knockback/impulse and crater size on every hit. Also makes all non-flying units affected by gravity with fall damage. The net effect: fights look and feel much more physical/chaotic (units get sent flying) without proportionally changing time-to-kill.",
+		verdict: 'Big feel/chaos change to combat -- not a small tweak, changes how every fight looks.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Chain Lightning',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: "Adds a small lightning-arc spark effect to every weapon in the game that doesn't already have one (skips shields) -- each hit has a chance to fork a small amount of extra damage (10% of the original) to nearby enemies within 120 range, hitting up to 8 units.",
+		verdict: 'Universal minor AoE-splash addition -- affects every weapon in the game, so test for balance before committing.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'No Dgun',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: 'Strips the D-Gun (disintegrator special weapon) from every commander-type unit (detected via customparams.iscommander, isdecoycommander, or a "COMMANDER" movement class) -- removes the weapon slot and its weapondef entirely rather than just disabling it.',
+		verdict: 'Simple, contained removal -- meaningfully changes commander-vs-commander dueling since D-Gun is normally a key defensive tool.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Flying Tanks & Walking Planes Mod',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: 'A large curated list of specific ground vehicles (Flash, Stumpy, Bulldog, Thor, and dozens more per faction) get flight capability, while a large curated list of specific aircraft (fighters, bombers, gunships, and more per faction) get grounded into walking/hovering units instead. A hand-picked swap, not a blanket rule.',
+		verdict: 'Wild, chaotic gameplay-inversion mod -- fun/novelty territory, not balance-focused.',
+	},
+	{
+		author: 'CrossGamer',
+		title: 'Gravity Inversion Mod',
+		occurrences: null,
+		source: '200k-replay scan (global-credits)',
+		description: 'A blanket version of the same idea as Flying Tanks above: EVERY flying unit in the game becomes a ground unit, and every ground unit with a movement class becomes a flying unit -- applied universally via a rule (not a curated list), with commanders/bosses explicitly excluded. Looks like a broader evolution of the Flying Tanks mod\'s hand-picked approach.',
+		verdict: 'Same idea as Flying Tanks but applied to the whole game automatically -- pick one, not both (they\'d conflict).',
+	},
 	{
 		author: 'Bezz',
 		title: 'T3 Commander & Army Overhaul',

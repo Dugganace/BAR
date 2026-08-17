@@ -4,6 +4,35 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Traced the Epic Unit Printer's "missing" dependencies + all 12 real CrossGamer gadgets (2026-08-17)
+
+User asked to trace the 13 uncatalogued ids Epic Unit Printer's
+buildoptions referenced (flagged as a known gap in the auto-pick-
+dependencies work above). **Resolution: they were never missing custom
+content at all** — cross-checked all 13 against `bar-unit-database`
+and every one is a **real vanilla unit** (the game's own "Epic"/T4 boss
+tier: armbanth=Titan, corjugg=Behemoth, corkorg=Juggernaut, legfortt4=
+Epic Tyrannus, and 9 more). They correctly don't appear in Content
+Gallery because that tool only tracks *custom* content — nothing to
+fix, the auto-pick logic already correctly leaves real vanilla units
+alone.
+
+User then asked to trace "MIRV" (from the roadmap's old, never-actually-
+verified "CrossGamer's 7 gadgets" note). Found real per-gadget credit
+files in `bar-replay-miner/global-credits/*.lua` and read every one —
+**turned out to be 12 distinct gadgets, not 7** (the "7" in this
+roadmap's earlier "Content to review" section was carried forward from
+early replay-mining work and never actually counted/verified). All 12
+added to Behavior Mods Catalog with real descriptions:
+MIRV Nuke, Scavenger Beacon to Nuke Silo, Anti-Nuke T3 Mod, Antinuke to
+ICBM Visuals & Stats, Air T2 Builds Nuke, AdvSAM AA Homing Nuke,
+Portable Shield, Knockback, Chain Lightning, No Dgun, Flying Tanks &
+Walking Planes Mod, Gravity Inversion Mod. Two pairs worth noting:
+Scavenger Beacon to Nuke Silo and Beacon Nuke are the same gadget found
+under two different extracted titles; Flying Tanks and Gravity
+Inversion look like two versions of the same idea (a curated hand-list
+vs. a universal rule) — flagged as likely conflicting if both adopted.
+
 ## Toolkit moved off OneDrive (2026-08-17)
 
 All 7 bar-* project folders moved from
@@ -397,10 +426,11 @@ on by the user yet — the actual pick is still theirs:
   makes them *browsable with real credit-comment titles and play-proof
   occurrence counts* instead of needing to read raw minified `.lua`, not
   fully decoded feature-by-feature.
-  - **CrossGamer's 7 gadgets** (MIRV Nuke, Portable Shield, Anti-Nuke T3
-    Mod, Antinuke-to-ICBM Visuals, Scavenger Beacon → Nuke Silo, Beacon
-    Nuke, Knockback rework) — user has vouched for CrossGamer directly
-    ("i know crossgamer and yes he makes good ones we should take").
+  - **CrossGamer's gadgets — ✅ all 12 traced and real-described
+    (2026-08-17)**, was wrongly assumed to be "7" here before anyone
+    actually counted. See the dated section near the top of this file.
+    User has vouched for CrossGamer directly ("i know crossgamer and
+    yes he makes good ones we should take").
   - **Bezz's T3 Commander overhaul** — the single most-played piece of
     custom content found in the entire scan (1308 occurrences, 23
     distinct snippets — early-infrastructure/scout/commander eco boosts,
