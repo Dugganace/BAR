@@ -22,7 +22,7 @@ local function addBuildOptionAll(variantList, newUnitId)
 	end
 end
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- MOBILE UNITS: The Bull / The Dozer / The Beamer -- one slow, heavy unit per
 -- faction, single weapon, reskinned as a high-damage/slow-fire-rate laser.
 -- Armada: cloned from armbull (already named "Bull" in the base game --
@@ -34,7 +34,7 @@ end
 -- Legion: cloned from leginc ("(barely) Mobile Heavy Heat Ray") -- already a
 --   single beam-laser weapon, just retuned from its stock rapid-pulse
 --   (0.033s reload) into one slow, hard-hitting beam.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armbull_heavy = tableMerge(unitDefs['armbull'], {
 	name = 'The Bull',
@@ -104,11 +104,11 @@ unitDefs.leginc_heavy = tableMerge(unitDefs['leginc'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: The Depawner -- intercepts the Scavenger Pawn Launcher's shell
 -- (armbotrail/arm_botrail) via the engine's targetable/interceptor bitmask
 -- pair, so the Pawn never spawns on impact.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 -- Bit 128 chosen to avoid colliding with the vanilla nuke (1) / typical
 -- anti-air missile (2) interceptor conventions.
@@ -184,11 +184,11 @@ unitDefs.legdepawner = tableMerge(unitDefs['legflak'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: Rapid Fire Tower -- high energy requirement, low per-shot damage,
 -- very high fire rate. Anti-swarm role: bad against single tough targets,
 -- excellent DPS against many small units. Cloned from the light laser tower.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armllt_rapid = tableMerge(unitDefs['armllt'], {
 	name = 'Rapid Fire Tower',
@@ -252,9 +252,9 @@ unitDefs.leglht_rapid = tableMerge(unitDefs['leglht'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- ECONOMY: Hyper Reactor -- a T4-tier fusion reactor, ~4x a stock fusion's output/cost
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armhyperreactor = tableMerge(unitDefs['armfus'], {
 	name = 'Hyper Reactor',
@@ -304,9 +304,9 @@ unitDefs.leghyperreactor = tableMerge(unitDefs['legfus'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: Bulwark Tower -- a heavier area-control turret than the stock hlt/lht
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armbulwark = tableMerge(unitDefs['armhlt'], {
 	name = 'Bulwark Tower',
@@ -368,13 +368,13 @@ unitDefs.legbulwark = tableMerge(unitDefs['leglht'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: High Power Laser Tower -- a new "High Power" line of laser defenses.
 -- Cloned from the light laser tower per faction (armllt/corllt/leglht -- Legion's
 -- "leglht" is itself the light-tier heat ray tower, matching the other two's tier).
 -- More expensive to build (metal/energy), more expensive to fire (energypershot,
 -- i.e. costs more energy to *run*), longer range, and roughly 2.5x the damage.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armllt_hp = tableMerge(unitDefs['armllt'], {
 	name = 'High Power Laser Tower',
@@ -436,12 +436,12 @@ unitDefs.leglht_hp = tableMerge(unitDefs['leglht'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: Armored Tower -- more health, more metal cost, and actual damage
 -- mitigation (not just a bigger HP pool) via a small always-on self-shield
 -- covering just the tower itself -- same shield mechanic this preset already
 -- uses for the Umbrella Mk II, just scaled down to a passive personal shield.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 local function addSelfShield(def, power, radius, powerRegen)
 	def.weapondefs = def.weapondefs or {}
@@ -508,12 +508,12 @@ unitDefs.leglht_armored = addSelfShield(tableMerge(unitDefs['leglht'], {
 	},
 }), 700, 62, 25)
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- DEFENSE: Interceptors -- shoots down targetable=1 projectiles (nukes/LRPC/
 -- starburst missiles), same engine mechanic as stock anti-nuke silos.
 -- Artillery: cloned from the anti-nuke silo, tuned to area-defense cost.
 -- Energy: instant-hit beam version cloned from the heavy laser tower.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.arminterceptor_artillery = tableMerge(unitDefs['armamd'], {
 	name = 'Artillery Interceptor',
@@ -661,7 +661,7 @@ unitDefs.leginterceptor_energy = tableMerge(unitDefs['leglht'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- UTILITY: Barrier -- a large inert obstacle/pathing blocker, reskinned as a
 -- repurposed husk rather than a purpose-built Dragon's Teeth shape (reuses the
 -- game's own existing wreck art -- no new assets needed). Comes in three tiers
@@ -669,7 +669,7 @@ unitDefs.leginterceptor_energy = tableMerge(unitDefs['leglht'], {
 -- wreck to match: Bronze reuses a light laser tower's wreck, Silver a fusion
 -- reactor's, Gold a commander's. Same inert-blocker mechanics underneath as
 -- armdrag/cordrag/legdrag (blocking=true, canattack=false) throughout.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 local barrierTiers = {
 	{ suffix = 'bronze', label = 'Barrier (Bronze)', wreckSuffix = 'llt_dead', metalcost = 150, buildtime = 1400, health = 8000, crushresistance = 700 },
@@ -709,9 +709,9 @@ for _, tier in ipairs(barrierTiers) do
 end
 
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- UTILITY: Support Relay -- long-range assist/repair building, bigger radius than nanotc
-----------------------------------------------------------------------------------------------
+------------------------------
 
 unitDefs.armsupportrelay = tableMerge(unitDefs['armnanotc'], {
 	name = 'Support Relay',
@@ -758,14 +758,14 @@ unitDefs.legsupportrelay = tableMerge(unitDefs['legnanotc'], {
 	},
 })
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- RAPTOR-FLAVORED: Bio Reactor -- REWORKED 2026-08-15 into 3 tiers (Bronze/
 -- Silver/Gold, matching this file's Barrier naming convention), one per
 -- lootbox rarity used as the stat/model template (Silver/Gold/Platinum --
 -- same "clone a lootbox building shell" trick as before, just now three
 -- of them instead of one). Costs lowered and outputs re-set on request
 -- (2026-08-15): Bronze 5k / Silver 10k / Gold 20k energy.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 local raptorReactorTiers = {
 	{ size = 'Bronze', lootbox = 'lootboxsilver', id = 'raptorbioreactor_bronze', techlevel = 1,
@@ -802,12 +802,12 @@ for _, tier in ipairs(raptorReactorTiers) do
 	end
 end
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- RAPTOR-FLAVORED: Scav Metal Recycler -- same pattern as the Bio-Reactor
 -- directly above (same lootbox shells for a consistent look across the
 -- 3 tiers, same Bronze/Silver/Gold naming, same tier-1/4/9 gating), but
 -- produces metal only via metalmake, no energy output.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 local scavRecyclerTiers = {
 	{ size = 'Bronze', lootbox = 'lootboxsilver', id = 'scavmetalrecycler_bronze', techlevel = 1,
@@ -843,9 +843,9 @@ for _, tier in ipairs(scavRecyclerTiers) do
 	end
 end
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- Wire everything into the commanders' buildoptions so it's immediately buildable
-----------------------------------------------------------------------------------------------
+------------------------------
 
 addBuildOptionAll(armComVariants, 'armbull_heavy')
 addBuildOptionAll(armComVariants, 'armdepawner')
@@ -897,7 +897,7 @@ addBuildOptionAll(legComVariants, 'leglht_armored')
 addBuildOptionAll(legComVariants, 'leginterceptor_artillery')
 addBuildOptionAll(legComVariants, 'leginterceptor_energy')
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- Remove the original preset's Pocket Fusion Reactor (portfus, 1100E) and
 -- Portable Advanced Fusion Reactor (portafus, 3300E) -- defined in the
 -- base preset's own slots (1/3), which already ran by the time this
@@ -905,7 +905,7 @@ addBuildOptionAll(legComVariants, 'leginterceptor_energy')
 -- Add Scav Metal Recycler + Raptor Bio-Reactor to every T1/T2/T3
 -- bot/vehicle/air constructor, tier-matched (Bronze->T1, Silver->T2,
 -- Gold->T3), for all 3 factions.
-----------------------------------------------------------------------------------------------
+------------------------------
 UnitDefs.portfus = nil
 UnitDefs.portafus = nil
 
@@ -925,7 +925,7 @@ for prefix, tiers in pairs(consByTier) do
 	end
 end
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- NOTE: an earlier version of this file added static buildings (Hyper
 -- Reactor, Bulwark Tower, Armored Tower, Interceptors, Depawner) to the
 -- printer buildoptions here. That was a real bug: printers ("Epic Unit
@@ -936,7 +936,7 @@ end
 -- live 2026-08-15). Buildings belong on commander/constructor buildoptions
 -- only (already handled elsewhere in this file) -- don't add any building
 -- to a printer's buildoptions, only genuinely mobile units.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 addBuildOptionAll(legComVariants, 'legbarrier_bronze')
 addBuildOptionAll(legComVariants, 'legbarrier_silver')
@@ -949,12 +949,12 @@ if unitDefs['scavmetalrecycler_bronze'] then addBuildOptionAll(legComVariants, '
 if unitDefs['scavmetalrecycler_silver'] then addBuildOptionAll(legComVariants, 'scavmetalrecycler_silver') end
 if unitDefs['scavmetalrecycler_gold'] then addBuildOptionAll(legComVariants, 'scavmetalrecycler_gold') end
 
-----------------------------------------------------------------------------------------------
+------------------------------
 -- COMMANDER PROGRESSION CHAIN -- 10 ranks (Cadet..Grand Admiral), stats
 -- cloned from real evocom levels. Real commander (any level) builds only
 -- Cadet; each rank then builds the next. iscommander stays false; own
 -- buildoptions cumulative up to Grand Admiral, who builds everything.
-----------------------------------------------------------------------------------------------
+------------------------------
 
 local rankNames = { 'Cadet', 'Private', 'Corporal', 'Sergeant', 'Lieutenant', 'Captain', 'Major', 'Colonel', 'General', 'Grand Admiral' }
 
@@ -1137,10 +1137,64 @@ buildRankChain('arm')
 buildRankChain('cor')
 buildRankChain('leg')
 
-----------------------------------------------------------------------------------------------
+------------------------------
+-- T3 REPULSOR SHIELD: upgraded shield generator with the engine's real
+-- repulser flag on, so it physically knocks projectiles back instead of
+-- just absorbing them. Restricted to the Metal OverCommander (overcom)
+-- and Grand Admiral (rank10) only -- not a normal constructor buildoption.
+------------------------------
+
+-- Scaling derived from the one real vanilla T2->T3 shield pair that
+-- exists (Legion's legdeflector -> leggatet3, the only faction with a
+-- native T3 shield): metalcost x4.53, energycost x3.93, buildtime x4.75,
+-- health x5.07, shield power x8.0, powerregen x4.0. Radius deliberately
+-- NOT scaled (real vanilla goes x1.29, kept flat here on request).
+local repulsorShieldTiers = {
+	{ prefix = 'arm', base = 'armgate', metalcost = 13600, energycost = 212000, buildtime = 261000, health = 18000 },
+	{ prefix = 'cor', base = 'corgate', metalcost = 14500, energycost = 216000, buildtime = 261000, health = 18000 },
+	{ prefix = 'leg', base = 'legdeflector', metalcost = 14500, energycost = 216000, buildtime = 261000, health = 18000 },
+}
+
+for _, tier in ipairs(repulsorShieldTiers) do
+	local id = tier.prefix .. 'repulsorshield'
+	if unitDefs[tier.base] then
+		unitDefs[id] = tableMerge(unitDefs[tier.base], {
+			name = 'T3 Repulsor Shield',
+			unitname = id,
+			metalcost = tier.metalcost,
+			energycost = tier.energycost,
+			buildtime = tier.buildtime,
+			health = tier.health,
+			customparams = {
+				i18n_en_humanname = 'T3 Repulsor Shield',
+				i18n_en_tooltip = 'Upgraded shield that repels incoming fire instead of absorbing it. Same range as the T2 shield, but stronger and costs energy to keep running.',
+				techlevel = 3,
+			},
+			weapondefs = {
+				repulsor = {
+					shield = {
+						power = 49400,
+						powerregen = 520,
+						energyupkeep = 500,
+						repulser = true,
+					},
+				},
+			},
+		})
+	end
+end
+
+addBuildOption('overcom', 'armrepulsorshield')
+addBuildOption('overcom', 'correpulsorshield')
+addBuildOption('overcom', 'legrepulsorshield')
+addBuildOption('armrank10', 'armrepulsorshield')
+addBuildOption('corrank10', 'correpulsorshield')
+addBuildOption('legrank10', 'legrepulsorshield')
+
+------------------------------
 -- STARTUP CONFIRMATION: prints once the whole script above has parsed and run
 -- without error, so a missing message in infolog.txt is itself the failure
 -- signal (a Lua error here would mean this line never executes).
-----------------------------------------------------------------------------------------------
+------------------------------
 
 Spring.Echo("=== Darth_Raider's Force Magic loaded ===")

@@ -10,8 +10,16 @@ const SRC = path.join(__dirname, '..', 'custom_buildings.lua');
 const OUT_DIR = path.join(__dirname, '..', 'parts');
 const PRESETS_PATH = 'C:/Program Files/Beyond-All-Reason/data/optionsPresets.json';
 const SOURCE_PRESET = 'tetris scav mode';
-const NEW_PRESET = 'mark magic 19';
+const NEW_PRESET = 'mark magic 20';
 const SLOTS = ['tweakdefs4', 'tweakdefs5', 'tweakdefs6', 'tweakdefs7', 'tweakdefs8'];
+
+// Real, native BAR modoptions to set on top of the cloned source preset --
+// e.g. { unit_restrictions_noair: true } -- these are plain key/value
+// settings, NOT tweakdefs code, applied directly to Modoptions. Checked
+// against bar-toolkit-hub/modoptions-reference/modoptions.json (159 real
+// options fetched from the game's own modoptions.lua) so a typo'd or
+// nonexistent key fails loudly instead of silently doing nothing.
+const MODOPTION_OVERRIDES = {};
 
 // CONFIRMED 2026-08-15: the game requires URL-safe, UNPADDED base64 for
 // these modoption values (standard base64 with +/=/ gets silently rejected
@@ -152,6 +160,30 @@ for (let i = 0; i < chunkTexts.length; i++) {
 const cloned = JSON.parse(JSON.stringify(presets[SOURCE_PRESET]));
 for (let i = 0; i < chunkTexts.length; i++) {
 	cloned.Modoptions[SLOTS[i]] = encodeForModoption(chunkTexts[i]);
+}
+
+// Apply any real native modoption overrides on top -- validated against
+// the fetched reference so a typo'd key fails loudly instead of silently
+// writing a dead key the game just ignores.
+const overrideKeys = Object.keys(MODOPTION_OVERRIDES);
+if (overrideKeys.length) {
+	const MODOPTIONS_REF_PATH = path.join(__dirname, '..', '..', 'bar-toolkit-hub', 'modoptions-reference', 'modoptions.json');
+	const ref = JSON.parse(fs.readFileSync(MODOPTIONS_REF_PATH, 'utf8'));
+	const refByKey = Object.fromEntries(ref.map(o => [o.key, o]));
+	for (const key of overrideKeys) {
+		if (!refByKey[key]) throw new Error(`MODOPTION_OVERRIDES has unknown key "${key}" -- not in the real modoptions reference. Typo?`);
+		const value = MODOPTION_OVERRIDES[key];
+		const opt = refByKey[key];
+		if (opt.type === 'number' && typeof value === 'number') {
+			if (opt.min != null && value < opt.min) throw new Error(`"${key}" = ${value} is below its min (${opt.min}).`);
+			if (opt.max != null && value > opt.max) throw new Error(`"${key}" = ${value} is above its max (${opt.max}).`);
+		}
+		if (opt.type === 'list' && opt.items && !opt.items.some(i => i.key === value)) {
+			throw new Error(`"${key}" = "${value}" is not one of its valid options: ${opt.items.map(i => i.key).join(', ')}`);
+		}
+		cloned.Modoptions[key] = typeof value === 'boolean' ? (value ? 1 : 0) : String(value);
+		console.log(`Set modoption "${key}" (${opt.name}) = ${value}`);
+	}
 }
 
 presets[NEW_PRESET] = cloned;
