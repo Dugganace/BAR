@@ -10,7 +10,7 @@ const SRC = path.join(__dirname, '..', 'custom_buildings.lua');
 const OUT_DIR = path.join(__dirname, '..', 'parts');
 const PRESETS_PATH = 'C:/Program Files/Beyond-All-Reason/data/optionsPresets.json';
 const SOURCE_PRESET = 'tetris scav mode';
-const NEW_PRESET = 'mark magic 20';
+const NEW_PRESET = 'mark magic 21';
 const SLOTS = ['tweakdefs4', 'tweakdefs5', 'tweakdefs6', 'tweakdefs7', 'tweakdefs8'];
 
 // Real, native BAR modoptions to set on top of the cloned source preset --

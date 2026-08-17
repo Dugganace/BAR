@@ -1192,6 +1192,150 @@ addBuildOption('corrank10', 'correpulsorshield')
 addBuildOption('legrank10', 'legrepulsorshield')
 
 ------------------------------
+-- T4 REPULSOR TURRET: short-range, near-zero damage, huge knockback,
+-- fires only in a narrow 10-degree cone facing the direction the turret
+-- is built, hits friendly units and teammates too. Real engine fields:
+-- turret=false (fixed, no independent aim/tracking) + firetolerance in
+-- legacy 16-bit angular units (65536 = 360 degrees; 10 degrees = ~1820).
+-- overcom/Grand Admiral only, expensive to build and to run.
+------------------------------
+
+local repulsorTurretTiers = {
+	{ prefix = 'arm', base = 'armanni', weaponKey = 'ata' },
+	{ prefix = 'cor', base = 'cordoom', weaponKey = 'atadr' },
+	{ prefix = 'leg', base = 'legbastion', weaponKey = 't2heatray' },
+}
+
+for _, tier in ipairs(repulsorTurretTiers) do
+	local id = tier.prefix .. 'repulsorturret'
+	if unitDefs[tier.base] then
+		local override = {
+			[tier.weaponKey] = {
+				range = 400,
+				areaofeffect = 90,
+				turret = false,
+				firetolerance = 1820, -- 10 degrees
+				avoidfriendly = false,
+				avoidfeature = false,
+				impulsefactor = 20,
+				impulseboost = 10,
+				damage = { default = 1 },
+			},
+		}
+		unitDefs[id] = tableMerge(unitDefs[tier.base], {
+			name = 'T4 Repulsor Turret',
+			unitname = id,
+			metalcost = 13000,
+			energycost = 280000,
+			buildtime = 220000,
+			health = 16000,
+			customparams = {
+				i18n_en_humanname = 'T4 Repulsor Turret',
+				i18n_en_tooltip = 'Short range, no real damage -- fires a narrow 10-degree shockwave that shoves everything back, friend or foe.',
+				techlevel = 4,
+			},
+			weapondefs = override,
+		})
+	end
+end
+
+addBuildOption('overcom', 'armrepulsorturret')
+addBuildOption('overcom', 'correpulsorturret')
+addBuildOption('overcom', 'legrepulsorturret')
+addBuildOption('armrank10', 'armrepulsorturret')
+addBuildOption('corrank10', 'correpulsorturret')
+addBuildOption('legrank10', 'legrepulsorturret')
+
+------------------------------
+-- STUN TURRETS: 4-tier family (T1-T4), real engine "paralyzer" weapon
+-- flag (stuns only, zero real damage -- distinct mechanism from the
+-- Repulsor Turret's near-zero-damage + impulse approach). Firing arc
+-- widens by tier: 5%/10%/15%/20% of a full circle (18/36/54/72 degrees
+-- -> 3277/6554/9830/13107 in legacy 16-bit angular units). Range also
+-- grows 5%/tier from a 500 base. T1-T3 built by that tier's real
+-- constructors per faction; T4 restricted to overcom/Grand Admiral like
+-- the other T4-tier buildings in this file (no real T4 constructor
+-- exists in the base game).
+------------------------------
+
+local stunTurretTiers = {
+	{ level = 1, arcPct = 5, firetolerance = 3277, rangeMult = 1.00, metalcost = 800, energycost = 9000, buildtime = 9000, health = 900, stunPower = 400,
+		bases = { arm = { id = 'armllt', weaponKey = 'arm_lightlaser' }, cor = { id = 'corllt', weaponKey = 'cor_lightlaser' }, leg = { id = 'leglht', weaponKey = 'heat_ray' } } },
+	{ level = 2, arcPct = 10, firetolerance = 6554, rangeMult = 1.05, metalcost = 2200, energycost = 28000, buildtime = 24000, health = 2600, stunPower = 900,
+		bases = { arm = { id = 'armhlt', weaponKey = 'arm_laserh1' }, cor = { id = 'corhlt', weaponKey = 'cor_laserh1' }, leg = { id = 'leglht', weaponKey = 'heat_ray' } } },
+	{ level = 3, arcPct = 15, firetolerance = 9830, rangeMult = 1.10, metalcost = 5500, energycost = 75000, buildtime = 60000, health = 6200, stunPower = 1800,
+		bases = { arm = { id = 'armanni', weaponKey = 'ata' }, cor = { id = 'cordoom', weaponKey = 'atadr' }, leg = { id = 'legbastion', weaponKey = 't2heatray' } } },
+	{ level = 4, arcPct = 20, firetolerance = 13107, rangeMult = 1.15, metalcost = 13000, energycost = 260000, buildtime = 210000, health = 15000, stunPower = 3200, energyupkeep = 450,
+		bases = { arm = { id = 'armanni', weaponKey = 'ata' }, cor = { id = 'cordoom', weaponKey = 'atadr' }, leg = { id = 'legbastion', weaponKey = 't2heatray' } } },
+}
+
+local stunTurretIdsByTierAndFaction = {}
+for _, tier in ipairs(stunTurretTiers) do
+	stunTurretIdsByTierAndFaction[tier.level] = {}
+	for prefix, base in pairs(tier.bases) do
+		local id = prefix .. 'stunturret' .. tier.level
+		stunTurretIdsByTierAndFaction[tier.level][prefix] = id
+		if unitDefs[base.id] then
+			local shieldOverride = {
+				[base.weaponKey] = {
+					range = math.floor(500 * tier.rangeMult),
+					turret = false,
+					firetolerance = tier.firetolerance,
+					paralyzer = true,
+					damage = { default = tier.stunPower },
+				},
+			}
+			local override = {
+				name = 'T' .. tier.level .. ' Stun Turret',
+				unitname = id,
+				metalcost = tier.metalcost,
+				energycost = tier.energycost,
+				buildtime = tier.buildtime,
+				health = tier.health,
+				customparams = {
+					i18n_en_humanname = 'T' .. tier.level .. ' Stun Turret',
+					i18n_en_tooltip = 'Stuns, deals no real damage. Tier ' .. tier.level .. ': ' .. tier.arcPct .. '% firing arc.',
+					techlevel = tier.level,
+				},
+				weapondefs = shieldOverride,
+			}
+			if tier.energyupkeep then
+				override.weapondefs[base.weaponKey].energyupkeep = tier.energyupkeep
+			end
+			unitDefs[id] = tableMerge(unitDefs[base.id], override)
+		end
+	end
+end
+
+-- T1-T3: each tier's real constructors per faction (bot/vehicle/air),
+-- reusing the same tier-matched constructor lists as the Bio-Reactor/
+-- Scav Recycler wiring above.
+local stunTurretCons = {
+	arm = { { 'armck', 'armcv', 'armca' }, { 'armack', 'armacv', 'armaca' }, { 'armhack', 'armhacv', 'armhaca' } },
+	cor = { { 'corck', 'corcv', 'corca' }, { 'corack', 'coracv', 'coraca' }, { 'corhack', 'corhacv', 'corhaca' } },
+	leg = { { 'legck', 'legcv', 'legca' }, { 'legack', 'legacv', 'legaca' }, { 'leghack', 'leghacv', 'leghaca' } },
+}
+for prefix, tiersConsList in pairs(stunTurretCons) do
+	for tierIdx, consList in ipairs(tiersConsList) do
+		local id = stunTurretIdsByTierAndFaction[tierIdx][prefix]
+		if unitDefs[id] then
+			for _, conId in ipairs(consList) do
+				addBuildOption(conId, id)
+			end
+		end
+	end
+end
+
+-- T4: overcom/Grand Admiral only, same restriction as our other T4 buildings.
+for _, prefix in ipairs({ 'arm', 'cor', 'leg' }) do
+	local id = stunTurretIdsByTierAndFaction[4][prefix]
+	if unitDefs[id] then
+		addBuildOption('overcom', id)
+		addBuildOption(prefix .. 'rank10', id)
+	end
+end
+
+------------------------------
 -- STARTUP CONFIRMATION: prints once the whole script above has parsed and run
 -- without error, so a missing message in infolog.txt is itself the failure
 -- signal (a Lua error here would mean this line never executes).
