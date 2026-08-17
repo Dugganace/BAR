@@ -1463,3 +1463,4 @@ addBuildOption('overcom', 'legneuroxnipples')
 ------------------------------
 
 Spring.Echo("=== Darth_Raider's Force Magic loaded ===")
+Spring.Echo("Welcome to the fun house")
