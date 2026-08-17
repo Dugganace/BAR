@@ -4,6 +4,50 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Toolkit moved off OneDrive (2026-08-17)
+
+All 7 bar-* project folders moved from
+`C:\Users\marka\OneDrive\Documents\GitHub\` to
+`C:\Claude creations\Beyond all reason\` — same sibling structure
+preserved, so every relative cross-project path (`../bar-unit-database/`
+etc) still works unchanged. Verified via a local server smoke test after
+the move (hub, Content Gallery, and the visual gallery all confirmed
+loading correctly). No code changes were needed since nothing used
+hardcoded absolute paths — checked and confirmed clean.
+
+## Preset Explorer: auto-pick a printer/lab's full buildoptions (2026-08-17)
+
+User's real question, using Epic Unit Printer as the concrete example:
+picking a printer only preserved *its own* definition exactly (verbatim,
+via the existing luaparse-based original-block lookup) but didn't also
+pull in the ~20 units listed in *its* `buildoptions` — so the printer
+would show build buttons in-game for units that don't exist in the
+resulting preset. Confirmed this gap for real: of Epic Unit Printer's 20
+buildoptions, only 7 were in Content Gallery at all (armthort4,
+cordemont4, corthermitet3, jaeger, jaegermk2, swarmship, umbrellamk2) —
+13 were previously-uncatalogued custom units this project didn't know
+about yet (armbanth, armrattet4, armfepocht4, corjugg, corkorg, corcrwt4,
+corkarganetht4, corgolt4, corfblackhyt4, legfortt4,
+legeheatraymech_old, legelrpcmech, legsrailt4).
+
+Fixed with explicit auto-dependency-resolution, since the user is going
+to build more "labs" that construct units and wants this automatic:
+picking any item in Preset Explorer now recursively walks its own
+`buildoptions` table and auto-picks every id found there too (each via
+the same real-AST original-block lookup, not just the top-level item),
+skipping ids that aren't a known custom unit (i.e. real vanilla units,
+which already exist and don't need picking). Verified live in-browser:
+clicking Epic Unit Printer correctly auto-picks all 7 known dependencies
+alongside itself. Also added "Import marked items from Content Gallery"
+so a shortlist built while browsing there (via that tool's own Mark
+button) carries into Preset Explorer's pick list automatically instead
+of needing to be manually re-found.
+
+Known remaining gap: the 13 uncatalogued dependency ids above are still
+not picked (nothing to find them from) — they'd need tracing back to
+whichever author's raw content actually defines them, same technique as
+the RandomGuyJunior/Mewi expansion earlier.
+
 ## NuttyB Configurator content mined into both catalogs (2026-08-16)
 
 User request: "is it possible to do the same for the nutty configuartor,
