@@ -4,6 +4,38 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## More new content: MIRV Launcher + Neurox Nipples; genuine 6th slot (2026-08-17)
+
+Continuing the same build session as the Repulsor Turret/Stun Turrets.
+
+- **MIRV Launcher** (Grand Admiral only) — directly reuses CrossGamer's
+  own real MIRV Nuke mechanic (already catalogued in Behavior Mods
+  Catalog): mother nuke gets a cloned child warhead plus
+  `customparams.cluster_def`/`cluster_number`, splitting into 5 on
+  impact. `stockpilelimit = 1` (holds one nuke at a time). Cloned per
+  faction from the real Nuke Silo, using the exact real weapon keys
+  already verified from CrossGamer's own code (`nuclear_missile` /
+  `crblmssl` / `legicbm`).
+- **Neurox Nipples** (overcom only) — a stealthed nuclear mine. Real
+  finding while building this: mines deal their actual damage through
+  `explodeas`/`selfdestructas` (a separate explosion weapondef), not
+  their own equipped "weapon" — the real `armmine3` source calls its own
+  weapon a literal "Crawlingbomb Dummy Weapon" with 0 damage, purely for
+  proximity detection. Kept the real stealth/detonation mechanic
+  unchanged, just pointed the explosion at our own nuke-tier weapondef.
+  Deliberately a plain single warhead, not the MIRV mechanic, per
+  explicit correction mid-build.
+- **Genuine 6th packaging slot added**: content outgrew the 5-slot
+  budget by 985 chars/slot after the turret work — rather than keep
+  destructively trimming comments, added `tweakunits2` as a real 6th
+  slot in `split-and-package.js`'s `SLOTS` array (confirmed working via
+  a live test earlier this session, distinct from `tweakunits1` which
+  silently failed once pre-patch).
+
+Both built into **"mark magic 23"** (current baseline, chain: 20 → 21 →
+22 → 23 across this session's builds), needs a live test alongside the
+Repulsor Shield/Turret and Stun Turret family.
+
 ## New content: T4 Repulsor Turret + T1-T4 Stun Turret family (2026-08-17)
 
 Second real design-and-build session, following the T3 Repulsor Shield.
