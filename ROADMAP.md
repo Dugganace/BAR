@@ -4,6 +4,40 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Scav integration findings + lobby naming/messages (2026-08-17)
+
+Two real findings while chasing the "captured scav con" and "scavs in
+spawn pool" questions, both worth remembering so they're not
+re-investigated from scratch later:
+
+- **Captured scav constructors: confirmed, definitively, there's
+  nothing there.** Checked all 85 real Scavengers-faction units — none
+  are constructor-type units. Scavengers don't build via buildoptions
+  at all; their whole economy is spawner/beacon-driven (`scavbeacon_t1-4`,
+  `scavempspawner`, `scavengerdroppod`, etc). This isn't a tooling gap,
+  it's just how the faction works — nothing to wire our content into.
+- **Adding our turrets to the scav spawn pool: real, unbuilt work,
+  correctly parked rather than rushed.** Static defenses belong in the
+  spawn-defs' `Turrets` table, which the Scav Spawn Editor's own README
+  already flagged as not-yet-editable (only the 3 mobile unit-pool
+  tables are). Even if it were editable, there's a second gap: no
+  established deployment pipeline exists for `scav_spawn_defs.lua`
+  overrides at all (unlike the smooth tweakdefs pipeline) — the editor
+  can only export a file with no packaging/mutator-archive step built.
+  User chose to hold off entirely rather than build this now.
+
+**Lobby presentation, answered directly:**
+- **Preset display name** — there's no separate name/title field in
+  `optionsPresets.json`; the JSON key itself IS what shows in the
+  lobby's preset list. Switched from internal `mark magic N` iteration
+  naming to the real public name going forward:
+  **"Darth Raiders Fun Pack 1"**.
+- **In-game "tweak loaded" chat messages** (what the user meant by
+  seeing things like "bioprinter tweak xxxx" when tweaks load) — this
+  project already had one (`Spring.Echo("=== Darth_Raider's Force
+  Magic loaded ===")`), now joined by a second: `Spring.Echo("Welcome
+  to the fun house")`.
+
 ## More new content: MIRV Launcher + Neurox Nipples; genuine 6th slot (2026-08-17)
 
 Continuing the same build session as the Repulsor Turret/Stun Turrets.
