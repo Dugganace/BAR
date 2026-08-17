@@ -1336,6 +1336,127 @@ for _, prefix in ipairs({ 'arm', 'cor', 'leg' }) do
 end
 
 ------------------------------
+-- MIRV LAUNCHER: Grand Admiral only. Real MIRV cluster-nuke mechanic
+-- (same technique as CrossGamer's own MIRV Nuke gadget, already in the
+-- Behavior Mods Catalog): the mother nuke's weapondef gets a cloned
+-- "child" nuke and customparams.cluster_def/cluster_number so it splits
+-- into 5 smaller warheads on impact. Stockpile capped at 1 (holds one
+-- nuke at a time).
+------------------------------
+
+local function addMIRVToSilo(unitDefId, weaponKey, childCount, childDamageDivisor)
+	local silo = unitDefs[unitDefId]
+	if not silo or not silo.weapondefs or not silo.weapondefs[weaponKey] then return end
+	local motherNuke = silo.weapondefs[weaponKey]
+
+	local childNuke = {}
+	for k, v in pairs(motherNuke) do
+		if type(v) == 'table' then
+			childNuke[k] = {}
+			for k2, v2 in pairs(v) do childNuke[k][k2] = v2 end
+		else
+			childNuke[k] = v
+		end
+	end
+
+	local childName = weaponKey .. '_mirvlauncher_child'
+	childNuke.name = (childNuke.name or 'Nuke') .. ' (MIRV Child)'
+	childNuke.weapontype = 'Cannon'
+	childNuke.range = 1500
+	if childNuke.damage then
+		for k, v in pairs(childNuke.damage) do
+			childNuke.damage[k] = math.floor(v / childDamageDivisor)
+		end
+	end
+
+	silo.weapondefs[childName] = childNuke
+	motherNuke.customparams = motherNuke.customparams or {}
+	motherNuke.customparams.cluster_def = childName
+	motherNuke.customparams.cluster_number = childCount
+	motherNuke.customparams.stockpilelimit = 1
+	motherNuke.stockpilelimit = 1
+end
+
+local mirvLauncherTiers = {
+	{ prefix = 'arm', base = 'armsilo', weaponKey = 'nuclear_missile' },
+	{ prefix = 'cor', base = 'corsilo', weaponKey = 'crblmssl' },
+	{ prefix = 'leg', base = 'legsilo', weaponKey = 'legicbm' },
+}
+
+for _, tier in ipairs(mirvLauncherTiers) do
+	local id = tier.prefix .. 'mirvlauncher'
+	if unitDefs[tier.base] then
+		unitDefs[id] = tableMerge(unitDefs[tier.base], {
+			name = 'MIRV Launcher',
+			unitname = id,
+			metalcost = 16000,
+			energycost = 180000,
+			buildtime = 280000,
+			health = 10000,
+			customparams = {
+				i18n_en_humanname = 'MIRV Launcher',
+				i18n_en_tooltip = 'Holds 1 nuke at a time. Splits into 5 warheads in a star pattern on impact.',
+				techlevel = 4,
+			},
+		})
+		addMIRVToSilo(id, tier.weaponKey, 5, 6)
+	end
+end
+
+addBuildOption('armrank10', 'armmirvlauncher')
+addBuildOption('corrank10', 'cormirvlauncher')
+addBuildOption('legrank10', 'legmirvlauncher')
+
+------------------------------
+-- NEUROX NIPPLES: overcom only. Real mines deal their actual damage via
+-- explodeas/selfdestructas (a separate explosion weapondef), not their
+-- own "weapon" (a literal 0-damage proximity-trigger dummy) -- verified
+-- against the real armmine3 source. Keeps the real stealth/detonation
+-- mechanic unchanged, just points the explosion at our own nuke-tier
+-- weapondef instead of the stock "MINE_HEAVY" one.
+------------------------------
+
+local neuroxNipplesTiers = {
+	{ prefix = 'arm', base = 'armmine3' },
+	{ prefix = 'cor', base = 'cormine3' },
+	{ prefix = 'leg', base = 'legmine3' },
+}
+
+for _, tier in ipairs(neuroxNipplesTiers) do
+	local id = tier.prefix .. 'neuroxnipples'
+	if unitDefs[tier.base] then
+		local explosionKey = id .. '_nuke'
+		unitDefs[id] = tableMerge(unitDefs[tier.base], {
+			name = 'Neurox Nipples',
+			unitname = id,
+			metalcost = 4000,
+			energycost = 60000,
+			buildtime = 45000,
+			explodeas = explosionKey,
+			selfdestructas = explosionKey,
+			customparams = {
+				i18n_en_humanname = 'Neurox Nipples',
+				i18n_en_tooltip = 'A hidden mine with a nuclear payload -- triggers like any other mine, explodes like a nuke.',
+				techlevel = 4,
+			},
+			weapondefs = {
+				[explosionKey] = {
+					name = 'Neurox Detonation',
+					weapontype = 'Cannon',
+					areaofeffect = 900,
+					craterareaofeffect = 900,
+					damage = { default = 6000, commanders = 1500 },
+				},
+			},
+		})
+	end
+end
+
+addBuildOption('overcom', 'armneuroxnipples')
+addBuildOption('overcom', 'corneuroxnipples')
+addBuildOption('overcom', 'legneuroxnipples')
+
+------------------------------
 -- STARTUP CONFIRMATION: prints once the whole script above has parsed and run
 -- without error, so a missing message in infolog.txt is itself the failure
 -- signal (a Lua error here would mean this line never executes).
