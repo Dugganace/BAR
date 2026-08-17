@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Modoptions Reference</title>
+<style>
+	:root { --bg: #1a1c20; --panel: #24272d; --border: #3a3e46; --text: #e6e8eb; --text-dim: #9aa0aa; --accent: #5fb3ff; --good: #6bd48a; --warn: #e8b34d; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font-family: -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--text); }
+	header { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+	header a { color: var(--accent); text-decoration: none; font-size: 12px; }
+	header h1 { font-size: 18px; margin: 6px 0 4px; }
+	header p { color: var(--text-dim); font-size: 13px; max-width: 780px; margin: 0; }
+	main { display: flex; gap: 16px; padding: 14px 20px 28px; align-items: flex-start; }
+	.sidebar { width: 180px; flex-shrink: 0; position: sticky; top: 14px; }
+	.sidebar h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-dim); margin: 14px 0 6px; }
+	.sidebar h3:first-child { margin-top: 0; }
+	.filter-btn { display: block; width: 100%; text-align: left; background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 5px 10px; border-radius: 6px; font-size: 12.5px; cursor: pointer; margin-bottom: 3px; }
+	.filter-btn.active { background: var(--accent); color: #0b1a24; border-color: var(--accent); font-weight: 600; }
+	.content { flex: 1; min-width: 0; }
+	.controls { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; align-items: center; }
+	.controls input[type=text] { background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 13px; width: 260px; }
+	.count { color: var(--text-dim); font-size: 12px; margin-left: auto; }
+	.row { display: flex; gap: 10px; align-items: flex-start; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; }
+	.row.changed { border-color: var(--accent); }
+	.row-main { flex: 1; min-width: 0; }
+	.row-name { font-size: 13px; font-weight: 600; }
+	.row-key { font-size: 10.5px; color: var(--text-dim); font-family: Consolas, monospace; margin-bottom: 4px; }
+	.row-desc { font-size: 12px; color: var(--text-dim); }
+	.row-control { flex-shrink: 0; display: flex; align-items: center; gap: 6px; }
+	.row-control select, .row-control input[type=number] { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 5px 8px; border-radius: 6px; font-size: 12px; }
+	.row-control input[type=checkbox] { width: 18px; height: 18px; }
+	.reset-btn { font-size: 10px; color: var(--warn); cursor: pointer; background: none; border: none; padding: 0; }
+	.overrides-panel { position: sticky; bottom: 0; background: var(--panel); border-top: 1px solid var(--border); padding: 12px; margin-top: 12px; border-radius: 8px 8px 0 0; }
+	.overrides-panel h3 { font-size: 12px; margin: 0 0 6px; }
+	.overrides-panel pre { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 11.5px; margin: 0 0 8px; max-height: 120px; overflow-y: auto; }
+	.overrides-panel button { font-size: 12px; padding: 5px 10px; background: var(--accent); color: #0b1a24; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+	<a href="../index.html">&larr; Hub</a>
+	<h1>Modoptions Reference</h1>
+	<p>Every real, settable BAR modoption (159), fetched straight from the game's own <code>modoptions.lua</code> -- these are plain key/value settings applied when a preset loads, NOT tweakdefs code. Toggle anything here to build a real override set, then copy it into <code>split-and-package.js</code>'s <code>MODOPTION_OVERRIDES</code> (applied automatically alongside content injection, validated against this same reference). Re-fetch with <code>node parse-modoptions.js</code> after re-downloading modoptions.lua from upstream if the game updates.</p>
+</header>
+<main>
+	<div class="sidebar">
+		<h3>Section</h3>
+		<div id="sectionFilters"></div>
+	</div>
+	<div class="content">
+		<div class="controls">
+			<input type="text" id="search" placeholder="Search name, key, description...">
+			<div class="count" id="count"></div>
+		</div>
+		<div id="list"></div>
+	</div>
+</main>
+<div class="overrides-panel" id="overridesPanel" style="display:none">
+	<h3>Changed from default (<span id="changedCount">0</span>)</h3>
+	<pre id="overridesCode"></pre>
+	<button id="copyBtn">Copy MODOPTION_OVERRIDES object</button>
+</div>
+<script src="modoptions-data.js"></script>
+<script>
+const OPTIONS = window.MODOPTIONS_REFERENCE.filter(o => !o.hidden);
+const SECTION_LABELS = {
+	options_main: 'Main', options: 'Restrictions', raptor_defense_options: 'Raptors',
+	scav_defense_options: 'Scavengers', options_extra: 'Extra', options_experimental: 'Experimental',
+	dev: 'Dev', mapmetadata: 'Map metadata', options_cheats: 'Cheats',
+};
+let state = { section: 'All', q: '' };
+let changed = {}; // key -> new value
+
+function escapeHtml(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+const sections = ['All', ...new Set(OPTIONS.map(o => o.section))];
+function renderSectionFilters() {
+	const container = document.getElementById('sectionFilters');
+	container.innerHTML = '';
+	for (const s of sections) {
+		const b = document.createElement('button');
+		b.className = 'filter-btn' + (state.section === s ? ' active' : '');
+		b.textContent = s === 'All' ? 'All' : (SECTION_LABELS[s] || s);
+		b.onclick = () => { state.section = s; render(); };
+		container.appendChild(b);
+	}
+}
+
+function controlForOption(opt) {
+	const isChanged = opt.key in changed;
+	const current = isChanged ? changed[opt.key] : opt.def;
+	const wrap = document.createElement('div');
+	wrap.className = 'row-control';
+	if (opt.type === 'bool') {
+		const cb = document.createElement('input');
+		cb.type = 'checkbox';
+		cb.checked = !!current;
+		cb.onchange = () => { setChanged(opt, cb.checked); };
+		wrap.appendChild(cb);
+	} else if (opt.type === 'list' && opt.items) {
+		const sel = document.createElement('select');
+		for (const item of opt.items) {
+			const o = document.createElement('option');
+			o.value = item.key; o.textContent = item.name || item.key;
+			if (item.key === current) o.selected = true;
+			sel.appendChild(o);
+		}
+		sel.onchange = () => { setChanged(opt, sel.value); };
+		wrap.appendChild(sel);
+	} else if (opt.type === 'number') {
+		const inp = document.createElement('input');
+		inp.type = 'number';
+		if (opt.min != null) inp.min = opt.min;
+		if (opt.max != null) inp.max = opt.max;
+		if (opt.step != null) inp.step = opt.step;
+		inp.value = current;
+		inp.style.width = '80px';
+		inp.onchange = () => { setChanged(opt, Number(inp.value)); };
+		wrap.appendChild(inp);
+	} else {
+		const inp = document.createElement('input');
+		inp.type = 'text';
+		inp.value = current || '';
+		inp.onchange = () => { setChanged(opt, inp.value); };
+		wrap.appendChild(inp);
+	}
+	if (isChanged) {
+		const reset = document.createElement('button');
+		reset.className = 'reset-btn';
+		reset.textContent = 'reset';
+		reset.onclick = () => { delete changed[opt.key]; render(); };
+		wrap.appendChild(reset);
+	}
+	return wrap;
+}
+
+function setChanged(opt, value) {
+	if (value === opt.def) delete changed[opt.key];
+	else changed[opt.key] = value;
+	render();
+}
+
+function renderOverridesPanel() {
+	const keys = Object.keys(changed);
+	const panel = document.getElementById('overridesPanel');
+	document.getElementById('changedCount').textContent = keys.length;
+	if (keys.length === 0) { panel.style.display = 'none'; return; }
+	panel.style.display = 'block';
+	const lines = keys.map(k => `\t${k}: ${typeof changed[k] === 'string' ? `'${changed[k]}'` : changed[k]},`);
+	const code = `const MODOPTION_OVERRIDES = {\n${lines.join('\n')}\n};`;
+	document.getElementById('overridesCode').textContent = code;
+}
+
+function render() {
+	renderSectionFilters();
+	renderOverridesPanel();
+	const q = state.q.toLowerCase();
+	const filtered = OPTIONS.filter(o => {
+		if (state.section !== 'All' && o.section !== state.section) return false;
+		if (!q) return true;
+		return o.key.toLowerCase().includes(q) || (o.name || '').toLowerCase().includes(q) || (o.desc || '').toLowerCase().includes(q);
+	});
+	document.getElementById('count').textContent = `${filtered.length} of ${OPTIONS.length}`;
+	const list = document.getElementById('list');
+	list.innerHTML = '';
+	for (const opt of filtered) {
+		const row = document.createElement('div');
+		row.className = 'row' + (opt.key in changed ? ' changed' : '');
+		const main = document.createElement('div');
+		main.className = 'row-main';
+		main.innerHTML = `<div class="row-name">${escapeHtml(opt.name)}</div><div class="row-key">${opt.key}${opt.type === 'number' && (opt.min != null || opt.max != null) ? ` (${opt.min ?? '-'} to ${opt.max ?? '-'})` : ''}</div><div class="row-desc">${escapeHtml(opt.desc)}</div>`;
+		row.appendChild(main);
+		row.appendChild(controlForOption(opt));
+		list.appendChild(row);
+	}
+}
+
+document.getElementById('search').addEventListener('input', e => { state.q = e.target.value; render(); });
+document.getElementById('copyBtn').addEventListener('click', () => {
+	navigator.clipboard.writeText(document.getElementById('overridesCode').textContent).catch(() => {});
+});
+render();
+</script>
+</body>
+</html>

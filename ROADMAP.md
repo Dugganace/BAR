@@ -4,6 +4,38 @@
 now actually built vs. still open. Full status recap sent to the user
 separately; this file is the source of truth going forward.
 
+## Modoptions Reference: real native settings, separate from tweakdefs content (2026-08-17)
+
+Grew out of a conversation clarifying what "behavior mods" actually are
+(one-time static rewrites of the UnitDefs/WeaponDefs tables at preset
+load, not live running scripts) versus real native BAR settings like
+`unit_restrictions_noair` — discovered while tracing "no wind/no solar/
+no air" that these ARE already real, built-in modoptions (confirmed via
+NuttyB's own `modes.txt`, which sets them via chat command, no custom
+Lua at all). User's own framing: "i would have thought these would be
+have been built into the injector pipeline already" — correct, and now
+fixed properly instead of as a disconnected browse-only tool:
+
+- **`bar-toolkit-hub/modoptions-reference/`** — fetched the real,
+  complete `modoptions.lua` from the game's own repo (2,899 lines) and
+  parsed it with luaparse (real Lua parse, not regex — option entries
+  are full table literals including nested `items` arrays for list-type
+  options) into 159 structured, settable options across 9 sections
+  (Main, Restrictions, Raptors, Scavengers, Extra, Experimental, Dev,
+  Cheats, map metadata). A real bug surfaced during parsing: this
+  luaparse build leaves `StringLiteral.value` null, only `.raw`
+  populated — fixed by parsing from `.raw` with proper unescaping.
+- **Browsable toggle UI** — search/filter by section, set any option,
+  generates a ready-to-paste `MODOPTION_OVERRIDES` object showing only
+  what changed from default.
+- **Wired into the actual injector**, not a separate tool: added
+  `MODOPTION_OVERRIDES` to `bar-custom-buildings/tools/
+  split-and-package.js` itself, applied to the cloned preset's
+  `Modoptions` alongside the existing tweakdefs content injection,
+  validated against this same 159-option reference (unknown key,
+  out-of-range number, or invalid list value all fail loudly instead of
+  silently writing a dead/wrong setting).
+
 ## Traced the Epic Unit Printer's "missing" dependencies + all 12 real CrossGamer gadgets (2026-08-17)
 
 User asked to trace the 13 uncatalogued ids Epic Unit Printer's
