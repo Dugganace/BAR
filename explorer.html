@@ -55,7 +55,9 @@
 	<section id="content"><p class="hint">Pick a preset on the left to see the custom units/buildings it adds beyond the vanilla game.</p></section>
 	<aside id="cart">
 		<h3>Picked across all presets</h3>
-		<p class="hint">Click any card to add/remove it here. Picks persist as you browse different presets.</p>
+		<p class="hint">Click any card to add it and everything in its buildoptions (recursively) -- e.g. picking a printer/lab also picks every unit it builds. Click a picked card again, or the ✕ in the list, to remove just that one item.</p>
+		<button id="importMarkedBtn">Import marked items from Content Gallery</button>
+		<div id="importNote" class="hint" style="display:none"></div>
 		<div id="cartItems"></div>
 		<button id="buildBtn">Build preset from picks</button>
 		<div id="buildOutput" style="display:none">
@@ -67,6 +69,7 @@
 </main>
 <script src="custom-content.js"></script>
 <script src="../bar-custom-buildings/catalog-viewer/data.js"></script>
+<script src="../bar-toolkit-hub/custom-content-database/data.js"></script>
 <script src="luaparse.js"></script>
 <script src="explorer.js"></script>
 </body>

@@ -1,11 +1,30 @@
 const CUSTOM_CONTENT = window.CUSTOM_CONTENT;
 const CATALOG = window.CATALOG || {};
+const CUSTOM_CONTENT_DATABASE = window.CUSTOM_CONTENT_DATABASE || [];
 const presetNames = Object.keys(CUSTOM_CONTENT).sort();
 let activePreset = null;
 
 // picked: Map(itemId -> { ...item, sourcePreset })
 const STORAGE_KEY = 'bar-explorer-picks';
 let picked = new Map(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+
+// Global index: every custom id found anywhere across all 51 decoded
+// presets -> the first preset/slot it was found in. Needed so
+// auto-picking a printer/lab's dependencies can find units that aren't
+// part of the currently-active preset being browsed.
+const globalIdIndex = new Map();
+for (const [presetName, preset] of Object.entries(CATALOG)) {
+	for (const [slotName, slot] of Object.entries(preset.slots || {})) {
+		for (const id of (slot.unitIds || [])) {
+			if (!globalIdIndex.has(id)) globalIdIndex.set(id, { sourcePreset: presetName, slotName });
+		}
+	}
+}
+
+// Quick id -> {name, tooltip, baseId} lookup from the Content Gallery's
+// unified database, for ids not part of the currently-browsed preset's
+// own item list (e.g. a dependency pulled in from a printer's buildoptions).
+const dbById = new Map(CUSTOM_CONTENT_DATABASE.map(d => [d.id, d]));
 
 function savePicks() {
 	localStorage.setItem(STORAGE_KEY, JSON.stringify([...picked.entries()]));
@@ -60,8 +79,12 @@ function renderContent() {
 		const card = el('div', {
 			class: 'card' + (isPicked ? ' picked' : ''),
 			onclick: () => {
-				if (picked.has(item.id)) picked.delete(item.id);
-				else picked.set(item.id, { ...item, sourcePreset: activePreset });
+				if (picked.has(item.id)) {
+					picked.delete(item.id);
+				} else {
+					const n = autoPickWithDependencies(item.id, activePreset, null);
+					if (n > 1) showImportNote(`Added "${item.name}" plus ${n - 1} unit(s) from its buildoptions.`);
+				}
 				savePicks();
 				renderAll();
 			},
@@ -98,16 +121,18 @@ function renderAll() {
 	renderCart();
 }
 
-// Finds the exact original code for a picked item by parsing the raw
-// decoded slot text it came from (via a real Lua AST, not regex slicing),
-// so the generated preset keeps the real stat overrides instead of a
-// reconstructed guess from just name/tooltip.
-function findOriginalBlock(item) {
-	const preset = CATALOG[item.sourcePreset];
+// Finds the exact original code for an id by parsing the raw decoded slot
+// text it came from (via a real Lua AST, not regex slicing), so the
+// generated preset keeps the real stat overrides instead of a
+// reconstructed guess from just name/tooltip. Generalized to take an id +
+// sourcePreset directly (rather than a picked item) so it can also be
+// used while walking a printer/lab's buildoptions dependency chain.
+function findOriginalBlockById(id, sourcePreset) {
+	const preset = CATALOG[sourcePreset];
 	if (!preset) return null;
 	for (const [slotName, data] of Object.entries(preset.slots)) {
 		const text = data.text;
-		if (!text || !text.includes(item.id)) continue;
+		if (!text || !text.includes(id)) continue;
 		let ast;
 		try { ast = luaparse.parse(text, { ranges: true }); } catch (e) { continue; }
 		let found = null;
@@ -119,7 +144,7 @@ function findOriginalBlock(item) {
 					let newId = null;
 					if (v.type === 'MemberExpression') newId = v.identifier.name;
 					else if (v.type === 'IndexExpression' && v.index.type === 'StringLiteral') newId = v.index.value;
-					if (newId === item.id) { found = text.slice(node.range[0], node.range[1]); return; }
+					if (newId === id) { found = text.slice(node.range[0], node.range[1]); return; }
 				}
 			}
 			for (const key of Object.keys(node)) {
@@ -130,6 +155,58 @@ function findOriginalBlock(item) {
 		if (found) return { code: found, slot: slotName };
 	}
 	return null;
+}
+
+function findOriginalBlock(item) {
+	return findOriginalBlockById(item.id, item.sourcePreset);
+}
+
+// Pulls every unit id referenced in a code block's own `buildoptions =
+// {...}` table (if it has one) -- both `[1] = 'id'` and bare `'id',` forms.
+function extractBuildOptionIds(code) {
+	const m = code.match(/buildoptions\s*=\s*\{([^}]*)\}/);
+	if (!m) return [];
+	return [...m[1].matchAll(/'([A-Za-z0-9_]+)'/g)].map(x => x[1]);
+}
+
+function getIdMeta(id, sourcePreset, slotName) {
+	const fromDb = dbById.get(id);
+	if (fromDb) return { name: fromDb.name, tooltip: fromDb.tooltip, baseId: fromDb.baseId, baseIcon: fromDb.icon };
+	const block = findOriginalBlockById(id, sourcePreset);
+	if (block) {
+		const nameMatch = block.code.match(/name\s*=\s*'([^']*)'/);
+		const tooltipMatch = block.code.match(/i18n_en_tooltip\s*=\s*'([^']*)'/);
+		const baseMatch = block.code.match(/unitDefs\[['"]?([A-Za-z0-9_]+)['"]?\]/);
+		return { name: nameMatch ? nameMatch[1] : id, tooltip: tooltipMatch ? tooltipMatch[1] : null, baseId: baseMatch ? baseMatch[1] : null, baseIcon: null };
+	}
+	return { name: id, tooltip: null, baseId: null, baseIcon: null };
+}
+
+// Picks an id and recursively auto-picks everything in its own
+// buildoptions too, so clicking a printer/lab pulls in every unit it
+// builds -- not just itself. Guards against cycles/repeat work with
+// `visited`. Only follows ids we can actually find a source for; a
+// buildoptions entry that's a real vanilla unit (not custom) is simply
+// left alone since it already exists in the base game.
+function autoPickWithDependencies(id, sourcePreset, slotName, visited) {
+	visited = visited || new Set();
+	if (visited.has(id)) return 0;
+	visited.add(id);
+
+	const meta = getIdMeta(id, sourcePreset, slotName);
+	picked.set(id, { id, name: meta.name, tooltip: meta.tooltip, baseId: meta.baseId, baseIcon: meta.baseIcon, sourcePreset });
+	let count = 1;
+
+	const block = findOriginalBlockById(id, sourcePreset);
+	if (block) {
+		for (const depId of extractBuildOptionIds(block.code)) {
+			if (visited.has(depId)) continue;
+			const depIndex = globalIdIndex.get(depId);
+			if (!depIndex) continue; // not a known custom id (real vanilla unit, or genuinely uncatalogued) -- leave it alone
+			count += autoPickWithDependencies(depId, depIndex.sourcePreset, depIndex.slotName, visited);
+		}
+	}
+	return count;
 }
 
 function buildPresetFromPicks() {
@@ -163,9 +240,55 @@ function buildPresetFromPicks() {
 		: `All ${picked.size} item(s) matched to their exact original code.`;
 }
 
+function showImportNote(text) {
+	const el2 = document.getElementById('importNote');
+	el2.textContent = text;
+	el2.style.display = 'block';
+}
+
 document.getElementById('buildBtn').addEventListener('click', buildPresetFromPicks);
 document.getElementById('buildCopyBtn').addEventListener('click', () => {
 	navigator.clipboard.writeText(document.getElementById('buildOutputCode').value).catch(() => {});
+});
+
+// Pulls in whatever's currently marked in the Content Gallery
+// (localStorage, set from that tool's own "Mark" button) and auto-picks
+// each one (with its own dependencies) here too, so a shortlist built
+// while browsing carries over instead of needing to be re-found by hand.
+document.getElementById('importMarkedBtn').addEventListener('click', () => {
+	let markedIds;
+	try {
+		markedIds = JSON.parse(localStorage.getItem('bar-content-gallery-marked-v1') || '[]');
+	} catch (e) {
+		markedIds = [];
+	}
+	if (markedIds.length === 0) {
+		showImportNote('Nothing marked in the Content Gallery yet -- mark items there first.');
+		return;
+	}
+	let totalAdded = 0, noSourceCount = 0;
+	const visited = new Set();
+	for (const id of markedIds) {
+		if (picked.has(id) && visited.has(id)) continue;
+		const idx = globalIdIndex.get(id);
+		if (!idx) {
+			// No decoded preset has this id (e.g. an author-sourced item
+			// found only via raw script scanning, never seen in a saved
+			// preset) -- still add it standalone using the Content Gallery's
+			// own data so it's not silently dropped, just flagged.
+			const dbItem = dbById.get(id);
+			if (dbItem) {
+				picked.set(id, { id, name: dbItem.name, tooltip: dbItem.tooltip, baseId: dbItem.baseId, baseIcon: dbItem.icon, sourcePreset: null });
+				totalAdded++;
+				noSourceCount++;
+			}
+			continue;
+		}
+		totalAdded += autoPickWithDependencies(id, idx.sourcePreset, idx.slotName, visited);
+	}
+	savePicks();
+	renderAll();
+	showImportNote(`Imported ${totalAdded} item(s) from ${markedIds.length} marked.${noSourceCount ? ` ${noSourceCount} had no source preset found -- will use reconstructed code (flagged) when built.` : ''}`);
 });
 
 renderAll();
